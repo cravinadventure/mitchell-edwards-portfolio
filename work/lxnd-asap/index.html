@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thoto × A$AP Rocky Tour Visuals — Mitchell Edwards</title>
+<meta name="description" content="A hyper-real war-scene stage loop, brainstormed, built, and delivered in a single same-night sprint for Thoto's full set on A$AP Rocky's Don't Be Dumb tour.">
+
+<!-- Open Graph / link preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mitchell Edwards">
+<meta property="og:title" content="Thoto × A$AP Rocky Tour Visuals">
+<meta property="og:description" content="A hyper-real war-scene stage loop, brainstormed, built, and delivered in a single same-night sprint for Thoto's full set on A$AP Rocky's Don't Be Dumb tour.">
+<meta property="og:url" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/lxnd-asap/">
+<meta property="og:image" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/lxnd-asap/assets/og_cover_v2.jpg">
+<meta property="og:image:secure_url" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/lxnd-asap/assets/og_cover_v2.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="A squad of soldiers advancing through green smoke, a frame from the final stage-visual loop">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thoto × A$AP Rocky Tour Visuals">
+<meta name="twitter:description" content="A hyper-real war-scene stage loop, built and delivered in a single same-night sprint for Thoto's full set on A$AP Rocky's Don't Be Dumb tour.">
+<meta name="twitter:image" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/lxnd-asap/assets/og_cover_v2.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf8; --panel:#f3f3f0; --panel2:#ffffff;
+    --paper:#111112; --muted:#6f6f74; --muted2:#9b9b9f;
+    --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.18);
+    --green:#5A6678; --green-dim:#3e4754; --red:#b3423f;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(1200px 600px at 70% -10%,rgba(90,102,120,.05),transparent 60%);}
+  .wide{max-width:1240px;margin:0 auto;padding-left:48px;padding-right:48px}
+  a{color:inherit}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;
+    padding:14px 28px;background:rgba(250,250,248,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .brand{font-weight:800;letter-spacing:.5px}
+  nav .brand span{color:var(--green)}
+  nav .tag{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:620px){nav .tag{display:none}}
+
+  /* subnav */
+  .subnav{position:sticky;top:51px;z-index:40;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+    padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .subnav a{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+    text-decoration:none;padding:6px 12px;border-radius:30px;transition:.15s}
+  .subnav a:hover{color:var(--green);background:rgba(90,102,120,.10)}
+  section[id]{scroll-margin-top:104px}
+
+  /* type */
+  .k{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+  h1{font-size:clamp(38px,6vw,76px);line-height:1.02;letter-spacing:-1.5px;font-weight:800}
+  h2{font-size:clamp(26px,3.4vw,40px);line-height:1.08;letter-spacing:-.6px;font-weight:800;margin-bottom:18px}
+  h3{font-size:18px;font-weight:700;margin-bottom:8px}
+  p{color:#2c2c30;font-size:16.5px;max-width:760px}
+  p+p{margin-top:16px}
+  .lede{font-size:clamp(18px,2vw,21px);color:#3c3c40}
+  .em{color:var(--green)}
+  .sectionhead{margin-bottom:44px}
+  section{padding-top:120px;padding-bottom:120px;border-top:1px solid var(--line)}
+
+  /* hero */
+  .hero{padding-top:96px;padding-bottom:48px;border-top:none}
+  .hero h1{margin:6px 0 22px;max-width:18ch;overflow-wrap:break-word}
+  .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:1px;color:var(--muted);margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta span{border:1px solid var(--line);border-radius:30px;padding:6px 12px}
+  .rec{color:var(--red)}
+
+  /* placeholder frames (HUD viewfinder) */
+  .ph{position:relative;width:100%;background:
+      repeating-linear-gradient(45deg,rgba(0,0,0,.015) 0 12px,transparent 12px 24px),var(--panel);
+    border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:26px 22px;gap:9px;overflow:hidden}
+  .ph::before{content:"";position:absolute;top:9px;left:9px;width:20px;height:20px;border-top:2px solid var(--green);border-left:2px solid var(--green);opacity:.8}
+  .ph::after{content:"";position:absolute;bottom:9px;right:9px;width:20px;height:20px;border-bottom:2px solid var(--green);border-right:2px solid var(--green);opacity:.8}
+  .ph .ico{font-size:20px;color:var(--green);opacity:.85}
+  .ph .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--green)}
+  .ph .desc{font-size:13.5px;color:#4a4a4f;max-width:92%;line-height:1.5}
+  .ph .fmt{position:absolute;top:10px;right:12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--muted2)}
+  .ph.hero169{aspect-ratio:16/9}
+  .r169{aspect-ratio:16/9}
+  .r916{aspect-ratio:9/16}
+  .r11{aspect-ratio:1/1}
+  .r43{aspect-ratio:4/3}
+  .vid169,.vid916,.img169,.img916{width:100%;display:block;border:1px solid var(--green-dim);background:#000;object-fit:cover}
+  .vid169,.img169{aspect-ratio:16/9}
+  .vid916,.img916{aspect-ratio:9/16}
+  .moodgrid{column-count:3;column-gap:16px;margin-top:18px}
+  .moodgrid>*{width:100%;display:block;margin:0 0 16px;break-inside:avoid;border:1px solid var(--green-dim);background:#000}
+
+  /* layout helpers */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .stack-sm{display:grid;gap:18px}
+  .mt{margin-top:40px}
+  .narrow{max-width:300px}
+  .center{margin-left:auto;margin-right:auto}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:10px}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--green);border:1px solid var(--green-dim);border-radius:30px;padding:5px 11px;margin:0 6px 8px 0}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .card h3{color:var(--green)}
+  .roles div{padding:14px 0;border-bottom:1px solid var(--line)}
+  .roles b{color:var(--paper)}
+  .roles a,.roles a b{color:var(--green);text-decoration:none}
+  .roles a:hover,.roles a:hover b{color:#7c8aa0;text-decoration:underline}
+  .toolflow{font-family:var(--mono);font-size:13px;line-height:2;color:#3c3c40}
+  .stat{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-1px;color:var(--green);font-family:var(--mono)}
+
+  .cta2{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto}
+  .bigbtn{display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:var(--mono);font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+    font-size:clamp(15px,2vw,21px);color:var(--green);text-decoration:none;
+    border:1px solid var(--green-dim);border-radius:16px;padding:44px 24px;min-height:120px;
+    background:rgba(90,102,120,.04);transition:.16s}
+  .bigbtn:hover{background:var(--green);color:#04110a;border-color:var(--green);transform:translateY(-2px)}
+  @media(max-width:620px){.cta2{grid-template-columns:1fr}}
+  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;text-align:center}
+
+  @media(max-width:820px){
+    .wide{padding-left:22px;padding-right:22px}
+    .split,.grid2,.grid3,.grid4,.twocol{grid-template-columns:1fr}
+    .moodgrid{column-count:2}
+    .hero h1{white-space:normal}
+    .subnav{justify-content:flex-start;overflow-x:auto}
+  }
+
+  /* portfolio header, matches the main site */
+  .pnav{position:fixed;top:0;left:0;right:0;z-index:60;height:52px;display:flex;justify-content:space-between;
+    align-items:center;padding:0 28px;background:var(--bg);border-bottom:1px solid var(--line);
+    font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  .pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;letter-spacing:.12em;font-size:13px;text-transform:uppercase;color:#111112;text-decoration:none}
+  .pnav .plinks{display:flex;gap:26px}
+  .pnav .plinks a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f6f74;text-decoration:none;transition:color .3s}
+  .pnav .plinks a:hover{color:#111112}
+  @media(max-width:760px){.pnav .plinks{display:none}}
+
+  /* match the portfolio typography */
+  body{font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  h1,h2,h3,h4,.bigbtn,.pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%}
+  h1{letter-spacing:-.4px}
+  h2{letter-spacing:-.2px}
+</style>
+</head>
+<body>
+
+<div class="pnav">
+  <a class="pname" href="../../">Mitchell Edwards</a>
+  <span class="plinks">
+    <a href="../../#work">Work</a>
+    <a href="../../#pipeline">How I work</a>
+    <a href="../../#about">About</a>
+    <a href="../../#skills">Skills</a>
+    <a href="../../#contact">Contact</a>
+  </span>
+</div>
+<div class="subnav">
+  <a href="#artist">The Artist</a>
+  <a href="#start">The Start</a>
+  <a href="#warroom">War Room</a>
+  <a href="#brief">The Brief</a>
+  <a href="#build">The Build</a>
+  <a href="#qr">The QR code</a>
+  <a href="#redgreen">Red → Green</a>
+  <a href="#logo">Logo</a>
+  <a href="#delivery">Delivery</a>
+  <a href="#result">The Result</a>
+  <a href="#credits">Credits</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="hero wide">
+  <div class="k">Case Study · Stage Visuals</div>
+  <h1>Thoto × A$AP Rocky Tour</h1>
+  <p class="lede">I made a hyper-real war-scene stage loop for Thoto's full set on A$AP Rocky's Don't Be Dumb tour. Brainstormed, built, and delivered in a single same-night sprint.</p>
+  <div class="meta">
+    <span><span class="rec">●</span> Don't Be Dumb Tour</span>
+    <span>June 25, 2026</span>
+    <span>1920 × 1080</span>
+    <span>3.5 hour turnaround</span>
+  </div>
+  <div class="mt">
+    <video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/final_loop_25s.mp4?v=2" type="video/mp4"></video>
+    <div class="cap">The final 25-second loop</div>
+  </div>
+</section>
+
+<!-- THE ARTIST -->
+<section id="artist" class="wide">
+  <div class="sectionhead">
+    <div class="k">The Artist</div>
+    <h2>Who is Thoto?</h2>
+  </div>
+  <div class="split">
+    <div class="narrow center">
+      <img src="assets/thoto.jpg" alt="Thoto in camo standing among inflatable guns on white" style="width:100%;display:block;border:1px solid var(--green-dim);background:#000">
+      <div class="cap"><span style="color:var(--green);text-decoration:none">@thxto_klk</span> · 22K followers</div>
+    </div>
+    <div>
+      <p>Thoto (<span style="color:var(--green)">@thxto_klk</span>) is a Harlem rapper signed to <b>AWGE</b>, A$AP Rocky's own label. Thoto is half of the cloud-rap duo ThotTwat with ICYTWAT.</p>
+      <p>Rocky picked Thoto to open the Don't Be Dumb tour, the full run outside the Governors Ball date. The war-scene loop I built carried the entire set.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE START -->
+<section id="start" class="wide">
+  <div class="sectionhead">
+    <div class="k">01 — How It Started</div>
+    <h2>It started with a phone call from a good friend.</h2>
+  </div>
+  <div class="split">
+    <div>
+      <p>A story went up looking for people who make stage visuals and know 3D. Friend-1 spotted it within about ten minutes and called me to reach out ASAP.</p>
+      <p>I DM'd the contact, followed up by email, then found more of the right people on the team and reached out myself.</p>
+    </div>
+    <div class="narrow center">
+      <img class="img916" src="assets/cult_cultvega_ig_story.png" alt="The story looking for stage-visual artists who know 3D"><div class="cap">The spark, the post looking for 3D stage-visual artists</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAR ROOM -->
+<section id="warroom" class="wide">
+  <div class="sectionhead">
+    <div class="k">02 — The War Room</div>
+    <h2>The creative got built in a group chat.</h2>
+  </div>
+  <p>At <b>5:44 PM EST</b>, two close friends and I opened a group chat to brainstorm. That is where the creative direction got built. Friend-1 steered the vibe right away: army, not SWAT. They dropped reference boards and handed me the client question list, hammering that the songs mattered most.</p>
+  <p>The direction came together fast: army not SWAT, grunge, heavy haze and smoke, glitchy strobe, a hint of CCTV. Soldiers with guns, selectively, with red lasers off them. Helicopter propeller blades as scene transitions. Then I steered it into what I would actually build.</p>
+  <h3 style="margin-top:56px">Mood board</h3>
+  <p>The board the three of us pulled together: red HUD scopes, surveillance and CCTV, black-and-white targeting, glitch, smoke. I built straight toward this.</p>
+  <div class="moodgrid mt">
+    <img src="assets/mb_swat_red_smoke.jpg" alt="SWAT squad walking through red smoke">
+    <img src="assets/mb_thermal_headshot.jpg" alt="Red thermal scope HUD, head shot">
+    <video autoplay loop muted playsinline preload="auto"><source src="assets/mb_bw_artist_stage.mp4?v=2" type="video/mp4"></video>
+    <img src="assets/mb_sniper_urban.jpg" alt="Red sniper scope HUD over a dark urban scene">
+    <video autoplay loop muted playsinline preload="auto"><source src="assets/mb_securitycam_cyberpunk.mp4?v=2" type="video/mp4"></video>
+    <img src="assets/mb_bw_face_hud.jpg" alt="Black and white face with HUD scanner overlay, god complex">
+    <img src="assets/mb_cctv_poi.jpg" alt="CCTV surveillance footage with red tracking boxes">
+    <video autoplay loop muted playsinline preload="auto"><source src="assets/mb_glitch_terminal.mp4?v=2" type="video/mp4"></video>
+    <img src="assets/mb_bw_street_tracking.jpg" alt="Black and white street with red tracking boxes, Boulevard Depo">
+    <video autoplay loop muted playsinline preload="auto"><source src="assets/mb_corridor_robotvision.mp4?v=2" type="video/mp4"></video>
+    <img src="assets/mb_thermal_aerial.jpg" alt="Black and white thermal aerial surveillance, TriCAT">
+  </div>
+  <p style="font-size:12.5px;color:var(--muted);margin-top:14px">References collected on Pinterest, full credit to the original creators. <span style="color:var(--green)">View the full board &rarr;</span></p>
+</section>
+
+<!-- THE BRIEF -->
+<section id="brief" class="wide">
+  <div class="sectionhead">
+    <div class="k">03 — Locking The Brief</div>
+    <h2>I called the client before I touched a single file.</h2>
+  </div>
+  <p>LXND bit within about five minutes on Instagram. I called instead of texting back. They told me exactly what they wanted: soldiers walking toward the camera, a battlefield war-zone vibe, and to swag it out. The visuals were for <b>Thoto, an opener on the A$AP Rocky tour</b>, covering Thoto's whole set.</p>
+  <p>On that same call I pinned down the environment, the colors, the soldiers' outfits, and sent the mood board to confirm direction. They locked it to a single QR code, and the visuals had to carry every song of the set, not score one track. LXND gave me the screen spec: <b>1920×1080, horizontal</b>.</p>
+  <div class="mt">
+    <span class="pill">War-zone soldiers</span><span class="pill">Camo / green</span><span class="pill">HUD + glitch</span><span class="pill">One QR code, every minute</span><span class="pill">Whole set</span><span class="pill">1920×1080</span>
+  </div>
+  <div class="mt">
+    <img src="assets/proposal_teaser.png" alt="The proposal PDF I emailed LXND, the shot list with style notes and per-shot subjects" style="width:100%;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">The proposal PDF</div>
+  </div>
+</section>
+
+<!-- THE BUILD -->
+<section id="build" class="wide">
+  <div class="sectionhead">
+    <div class="k">04 — Building The Soldiers</div>
+    <h2>One AI couldn't do it. A better one could.</h2>
+  </div>
+  <p>I started thumbnails with one AI image tool. Not realistic enough. So I jumped to a better one, ran the same prompts plus variations, and got stills I loved. Then I brought each still to life as AI video, directing it shot by shot. Usable motion, fast.</p>
+  <div class="grid2 mt">
+    <div><img class="img169" src="assets/build_first_ai.png" alt="Early AI soldier thumbnail, not realistic enough"><div class="cap">First AI pass (scrapped, not real enough)</div></div>
+    <div><img class="img169" src="assets/build_better_ai.png" alt="AI wide cinematic soldier, the look that landed"><div class="cap">Better AI (the win)</div></div>
+  </div>
+  <div class="mt"><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/wide_cinematic_soldiers_walking.mp4?v=2" type="video/mp4"></video><div class="cap">AI video: the wide cinematic soldiers, the still brought to life</div></div>
+  <h3 class="mt" style="margin-top:36px">The shot list</h3>
+  <p>I couldn't just have them walking at the camera, I needed real angles.</p>
+  <div class="grid3 mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/TopDownAerial_SoldierSquad_AdvancingTowardCamera_RedSmoke_02.mp4?v=2" type="video/mp4"></video><div class="cap">Squad advancing toward camera (top-down)</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/GroundLevel_LoneSoldier_WalkingTowardCamera_RedExplosion_01.mp4?v=2" type="video/mp4"></video><div class="cap">Lone soldier walking toward camera into a red explosion</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/Closeup_SpecialOps_Soldier_QuadNightVisionGoggles_RedLight_01.mp4?v=2" type="video/mp4"></video><div class="cap">Black-ops face, quad night-vision goggles</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/TopDownAerial_ThreeSoldiers_AdvancingThroughRedSmoke_01.mp4?v=2" type="video/mp4"></video><div class="cap">Three soldiers through red smoke (top-down)</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/GroundLevel_Soldier_AdvancingTowardCamera_OrangeBombBlast_02.mp4?v=2" type="video/mp4"></video><div class="cap">Advancing through the bomb blast</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/Closeup_SpecialOps_Soldier_QuadNightVisionGoggles_RedLight_02.mp4?v=2" type="video/mp4"></video><div class="cap">Black-ops face, second variation</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/CloseupSideAngle_TacticalBoot_SteppingThroughRedSmoke.mp4?v=2" type="video/mp4"></video><div class="cap">Boot through the red smoke (side angle)</div></div>
+    <div><img class="img169" src="assets/shotlist_tank_tread.png" alt="Extreme close-up side angle of a heavy tank tread, red glow"><div class="cap">Tank tread, made but cut for time (saved for the next show)</div></div>
+  </div>
+</section>
+
+<section id="qr" class="wide">
+  <div class="sectionhead">
+    <div class="k">05 — The QR code, Built Into The World</div>
+    <h2>They said pop it on screen. I baked it into the world.</h2>
+  </div>
+  <p>The QR codes came through as dark black-gray on transparent. To read clean against a dark scene, I vectorized one and recolored it white, then carved a space into a soldier's back vest and placed it there. I built an in frame and an out frame and fed both to a more powerful AI. Give that AI one endpoint and the code gets mangled and will not scan. Both endpoints keep it sharp.</p>
+  <div class="grid2 mt">
+    <div><img src="assets/qr_before_dark.png" alt="The original dark-gray QR code, low contrast against the dark scene" style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;border:1px solid var(--green-dim);background:#14161b"><div class="cap">Before: the original dark gray, low contrast against the dark scene</div></div>
+    <div><img src="assets/qr_after_white.png" alt="QR code vectorized and recolored white in vector software" style="width:100%;aspect-ratio:1/1;object-fit:contain;display:block;border:1px solid var(--green-dim);background:#000;padding:18px"><div class="cap">Fixed: vectorized + recolored white in vector software</div></div>
+  </div>
+  <div class="grid2 mt">
+    <div><img class="img169" src="assets/qr_vest_in.png" alt="QR code built onto the soldier's back vest, the in frame"><div class="cap">Image-editing software: the QR code built onto the back vest (in frame)</div></div>
+    <div><img class="img169" src="assets/qr_vest_out.png" alt="QR code on the soldier's back vest, the out frame"><div class="cap">A more powerful AI: the out frame, animated in-point to out-point to keep the QR code scannable</div></div>
+  </div>
+  <div class="mt"><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/Closeup_SoldierBack_WhiteQRCodeOnVest_RedBackground_Reversed.mp4?v=2" type="video/mp4"></video><div class="cap">The in-world white QR code riding on the soldier's back vest</div></div>
+  <h3 style="margin-top:56px">Then I timed the QR code.</h3>
+  <p>They wanted the QR code up once a minute, but my loop was only <b>25 seconds</b> with the code at the very end. In the final comp I duplicated the loop across the full <b>10 minutes</b> and stripped the code off every other pass.</p>
+  <div class="mt"><img src="assets/qr_timing_diagram.png" alt="Comp 3, the final 10-minute assembly with the QR code kept on every other pass" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">Comp 3: the final 10-minute assembly, the 25-second loop duplicated with the QR code kept on every other pass (the alternating colors) so it lands about once a minute, for exactly 10 minutes</div></div>
+</section>
+
+<!-- LOGO -->
+
+<!-- RED GREEN -->
+<section id="redgreen" class="wide">
+  <div class="sectionhead">
+    <div class="k">06 — Red → Green</div>
+    <h2>Built it all in red. Flipped it green in one move.</h2>
+  </div>
+  <p>It started all red, following the Rocky vibe and my mood board. <strong>Then LXND and Casper both hit me to switch it to green</strong>, and I was already deep into red. My fix was two compositions: a movement comp holding the chopped clips, and a final comp at <b>1920×1080</b> matched to the pixel map. I dropped the first inside the second and applied a single hue rotate. Everything flipped in one move.</p>
+  <div class="mt"><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/red_to_green_loop.mp4?v=2" type="video/mp4"></video>
+  <div class="cap">The one-move color flip: the 25s loop fading up red, then hue-rotated to green</div></div>
+  <div class="grid2 mt">
+    <div><img src="assets/ae_comp1_timeline.png" alt="Comp 1, the clips clipped together in the compositing timeline (red version)" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">Comp 1: the raw clips clipped together in the compositing timeline</div></div>
+  </div>
+
+  <h3 style="margin-top:56px">Then I hand-treated it.</h3>
+  <p>In that same final comp I hand-treated the whole thing. Curves of calculated blur riding in and out. Monochrome grain pushed and pulled so it breathed like CCTV footage. Each shot fading up from black and back down, so the loop never cut harshly.</p>
+  <div class="grid3 mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/treatment_blur.mp4?v=2" type="video/mp4"></video><div class="cap">Calculated blur curves, timed to the switches between frames and to pull a figure crawling into focus</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/treatment_grain.mp4?v=2" type="video/mp4"></video><div class="cap">Pulsing monochrome grain, size and amount breathing like CCTV footage</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/treatment_black_fade.mp4?v=2" type="video/mp4"></video><div class="cap">Black fade in / out per shot for a seamless, non-harsh loop</div></div>
+  </div>
+  <div class="mt"><img src="assets/ae_comp2_final_comp.png" alt="Comp 2, the final comp with the red-to-green hue, grain, and blur stacked on" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">Comp 2: the final comp, the movement comp dropped inside with the red-to-green hue rotate plus the grain and blur treatment stacked on top</div></div>
+</section>
+
+<!-- QR code -->
+
+<!-- DELIVERY -->
+<section id="logo" class="wide">
+  <div class="sectionhead">
+    <div class="k">07 — The Logo Mission</div>
+    <h2>They only had a video of the logo. So I rebuilt it.</h2>
+  </div>
+  <p>Casper, on the media team, only had the logo as a video with its own colors baked in, which did not match the look I was building. The source files could not come through in time. So I screenshotted a frame, lifted the logo out with my own software, and rebuilt it as a clean PNG and SVG. The custom 3D version ran out of clock and became a next-show item.</p>
+  <div class="grid3 mt">
+    <div><video autoplay loop muted playsinline preload="auto" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><source src="assets/logo_source.mp4?v=2" type="video/mp4"></video><div class="cap">Source: the LXND logo, sent as a 3D video with colors baked in</div></div>
+    <div><img src="assets/logo_pulled.png" alt="LXND logo extracted and cleaned to a white PNG and SVG" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">Pulled + cleaned to a PNG / SVG</div></div>
+    <div class="ph r169"><span class="fmt">16:9</span><span class="tag">Next</span><span class="desc">Planned 3D logo asset matched with real-time environment lighting (for the next show).</span></div>
+  </div>
+</section>
+
+<section id="delivery" class="wide">
+  <div class="sectionhead">
+    <div class="k">08 — The Handoff</div>
+    <h2>Files named, labeled, delivered. Nothing lost.</h2>
+  </div>
+  <p>I exported the final loop, then a ten-minute version, the length of Thoto's set. I uploaded everything to their Dropbox, every file named so they knew which was which. Fully uploaded by <b>9:20 PM EST</b>. From <b>5:44 PM EST</b> to delivery, about a three-and-a-half-hour sprint.</p>
+  <p>That obsession with staying organized is why I built my agents the way I did. They read my raw files, rename them, sort them into a client file system, and set up the delivery folder. Even on a chaotic same-night turnaround, nothing got lost.</p>
+  <div class="grid2 mt">
+    <div><img src="assets/handoff_system.png" alt="The organized ASAP_ROCKY client file system with cleanly named clips" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">The client file system, every clip cleanly named and sorted</div></div>
+    <div><img src="assets/handoff_dropbox.png" alt="The Dropbox folder with the final files, cleanly named" style="width:100%;height:auto;display:block;border:1px solid var(--green-dim);background:#000"><div class="cap">The Dropbox handoff, the final loop + 10-min version, cleanly named</div></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="wide">
+  <div class="sectionhead">
+    <div class="k">09 — The Result</div>
+    <h2>On stage, on the A$AP Rocky tour.</h2>
+  </div>
+  <p>The loop ran for Thoto's full set. Soldiers walking toward the camera. The full compositing treatment. The in-world QR code showing up once a minute. All at 1920×1080, built and delivered in a single night.</p>
+  <div class="mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="metadata"><source src="assets/final_loop_25s.mp4?v=2" type="video/mp4"></video><div class="cap">The loop that ran on stage</div></div>
+  </div>
+</section>
+
+<!-- SHIPPED / NEXT -->
+<section class="wide">
+  <div class="sectionhead">
+    <div class="k">10 — Scope</div>
+    <h2>What shipped, and what's next.</h2>
+  </div>
+  <div class="twocol">
+    <div class="card">
+      <h3>Shipped for the show</h3>
+      <p>Hyper-real soldiers walking toward the camera. The full compositing treatment: red-to-green hue rotate, blur curves, pulsing monochrome CCTV grain, black fades between shots. A seamless <b>25-second loop expanded to a clean 10 minutes</b>. The in-world white QR code baked onto a soldier's back vest, up about once a minute. All at <b>1920×1080</b>, for Thoto's full set.</p>
+    </div>
+    <div class="card">
+      <h3>Locked for the next show</h3>
+      <p>The LXND logo as a custom 3D asset with real-time environment lighting. The tanks. The helicopter and propeller-blade transitions. More clips, more glitch passes. Everything cut for the clock is prepped and ready.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits" class="wide">
+  <div class="sectionhead">
+    <div class="k">11 — Credits, Tools & Timeline</div>
+    <h2>Built fast, built together.</h2>
+  </div>
+  <div class="twocol">
+    <div>
+      <h3 style="color:var(--green)">Who did what</h3>
+      <div class="roles">
+        <div><b>Mitch</b> — Directed the project and the creative direction, designed and built every visual from concept to final loop, ran the client outreach, and delivered the whole thing in a single same-night sprint.</div>
+        <div><b>Mitchell Edwards - AI Agent System</b> — researched the tour, built the visual map and proposal PDF, custom-named every file, set up the client folder system, and handled version control.</div>
+        <div><b>Friend-1</b> — spotted the post within about ten minutes and called me in. Gave the client question list and the idea to hide the logo on the soldier. Pushed me to lock the screen dimensions.</div>
+        <div><b>Friend-2</b> — pulled in early as a creative asset who knows the tour and the vibe inside out. Re-listened to the discography to help dial the aesthetic and chipped in references.</div>
+        <div><span><b>Thoto</b> (@thxto_klk)</span> — the artist. The opener on the A$AP Rocky tour whose full set the visuals ran for.</div>
+        <div><span><b>LXND</b> (@thelxnd)</span> — the brand the set repped and my brief contact. Gave the brief, the single QR code, the green switch, the 1920×1080 spec, and the logo built into the scene.</div>
+        <div><span><b>Casper</b> (@caspersplayground)</span> — on Thoto's media team. Sent the LXND logo, chased it down, gave feedback, coordinated the Dropbox handoff.</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--green)">Tool chain</h3>
+      <div class="toolflow">
+        Image AI tools <span style="color:var(--muted2)">(early thumbnails, scrapped)</span><br>↓<br>
+        Image AI tools + Video AI tools <span style="color:var(--muted2)">(fast stills + motion)</span><br>↓<br>
+        Vector software <span style="color:var(--muted2)">(QR code vectorized + whitened)</span><br>↓<br>
+        Image-editing software <span style="color:var(--muted2)">(QR code on vest + in/out frames, logo pull)</span><br>↓<br>
+        Video AI tools <span style="color:var(--muted2)">(in/out points, QR code integrity)</span><br>↓<br>
+        Compositing software <span style="color:var(--muted2)">(two-comp, hue rotate, grain, fades, loop + QR code timing)</span>
+      </div>
+      <div class="mt" style="margin-top:34px">
+        <div class="stat">3.5 hrs</div>
+        <p style="color:var(--muted)">Friends Group Chat 5:44 PM EST → files uploaded 9:20 PM EST. June 25, 2026. Brainstorm to delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wide">
+  <div class="cta2">
+    <a class="bigbtn" href="../../#work">All Work</a>
+    <a class="bigbtn" href="mailto:cravinadventure@gmail.com">Contact</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="wide">
+  Mitchell Edwards · Stage Visuals · Thoto × A$AP Rocky Don't Be Dumb Tour, June 2026.<br>
+  <a href="mailto:cravinadventure@gmail.com" style="color:var(--green);text-decoration:none">cravinadventure@gmail.com</a>
+</footer>
+
+<script>
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video'));
+  vids.forEach(function(v){v.muted=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('webkit-playsinline','');});
+  function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){play(e.target);} else {e.target.pause();} });
+    },{threshold:0.2});
+    vids.forEach(function(v){io.observe(v);});
+  } else { vids.forEach(play); }
+})();
+</script>
+</body>
+</html>
