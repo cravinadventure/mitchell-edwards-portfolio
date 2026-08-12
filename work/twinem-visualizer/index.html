@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TWINEM Visualizer - Mitchell Edwards</title>
+<meta name="description" content="A branded video app I designed and built for a DJ duo. Their fans point a camera at anything and it comes back in the duo's signature style.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mitchell Edwards">
+<meta property="og:title" content="TWINEM Visualizer">
+<meta property="og:description" content="A branded video app I designed and built for a DJ duo, now linked in their Instagram bio.">
+<meta property="og:url" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/twinem-visualizer/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    :root{
+    --bg:#fafaf8; --panel:#f3f3f0; --panel2:#ffffff;
+    --paper:#111112; --text:#2c2c30; --text-soft:#3c3c40; --text-dim:#4a4a4f;
+    --muted:#6f6f74; --muted2:#9b9b9f;
+    --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.18);
+    --accent:#5A6678; --accent-dim:#3e4754; --accent-bright:#7c8aa0;
+    --on-accent:#ffffff; --signal:#3e4754;
+    --accent-glow:rgba(90,102,120,.05);
+    --accent-tint:rgba(90,102,120,.08);
+    --accent-tint-faint:rgba(90,102,120,.04);
+    --nav-bg:rgba(250,250,248,.88);
+    --subnav-bg:rgba(250,250,248,.92);
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(1200px 600px at 70% -10%,var(--accent-glow),transparent 60%);}
+  .wide{max-width:1240px;margin:0 auto;padding-left:48px;padding-right:48px}
+  a{color:inherit}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;
+    padding:14px 28px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .brand{font-weight:800;letter-spacing:.5px}
+  nav .brand span{color:var(--accent)}
+  nav .tag{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:620px){nav .tag{display:none}}
+
+  /* subnav */
+  .subnav{position:sticky;top:51px;z-index:40;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+    padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .subnav a{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+    text-decoration:none;padding:6px 12px;border-radius:30px;transition:.15s}
+  .subnav a:hover{color:var(--accent);background:var(--accent-tint)}
+  section[id]{scroll-margin-top:104px}
+
+  /* type */
+  .k{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-size:clamp(38px,6vw,76px);line-height:1.02;letter-spacing:-1.5px;font-weight:800}
+  h2{font-size:clamp(26px,3.4vw,40px);line-height:1.08;letter-spacing:-.6px;font-weight:800;margin-bottom:18px}
+  h3{font-size:18px;font-weight:700;margin-bottom:8px}
+  p{color:var(--text);font-size:16.5px;max-width:760px}
+  p+p{margin-top:16px}
+  .lede{font-size:clamp(18px,2vw,21px);color:var(--text-soft)}
+  .em{color:var(--accent)}
+  .sectionhead{margin-bottom:44px}
+  section{padding-top:120px;padding-bottom:120px;border-top:1px solid var(--line)}
+
+  /* hero */
+  .hero{padding-top:96px;padding-bottom:48px;border-top:none}
+  .hero h1{margin:6px 0 22px;max-width:18ch;overflow-wrap:break-word}
+  .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:1px;color:var(--muted);margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta span{border:1px solid var(--line);border-radius:30px;padding:6px 12px}
+  .rec{color:var(--signal)}
+
+  /* placeholder frames (HUD viewfinder) */
+  .ph{position:relative;width:100%;background:
+      repeating-linear-gradient(45deg,rgba(0,0,0,.015) 0 12px,transparent 12px 24px),var(--panel);
+    border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:26px 22px;gap:9px;overflow:hidden}
+  .ph::before{content:"";position:absolute;top:9px;left:9px;width:20px;height:20px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);opacity:.8}
+  .ph::after{content:"";position:absolute;bottom:9px;right:9px;width:20px;height:20px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent);opacity:.8}
+  .ph .ico{font-size:20px;color:var(--accent);opacity:.85}
+  .ph .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+  .ph .desc{font-size:13.5px;color:var(--text-dim);max-width:92%;line-height:1.5}
+  .ph .fmt{position:absolute;top:10px;right:12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--muted2)}
+  .ph.hero169{aspect-ratio:16/9}
+  .r169{aspect-ratio:16/9}
+  .r916{aspect-ratio:9/16}
+  .r11{aspect-ratio:1/1}
+  .r43{aspect-ratio:4/3}
+  .vid169,.vid916,.img169,.img916{width:100%;display:block;border:1px solid var(--accent-dim);background:#000;object-fit:cover}
+  .vid169,.img169{aspect-ratio:16/9}
+  .vid916,.img916{aspect-ratio:9/16}
+  .moodgrid{column-count:3;column-gap:16px;margin-top:18px}
+  .moodgrid>*{width:100%;display:block;margin:0 0 16px;break-inside:avoid;border:1px solid var(--accent-dim);background:#000}
+
+  /* layout helpers */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .stack-sm{display:grid;gap:18px}
+  .mt{margin-top:40px}
+  .narrow{max-width:300px}
+  .center{margin-left:auto;margin-right:auto}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:10px}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--accent);border:1px solid var(--accent-dim);border-radius:30px;padding:5px 11px;margin:0 6px 8px 0}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .card h3{color:var(--accent)}
+  .roles div{padding:14px 0;border-bottom:1px solid var(--line)}
+  .roles b{color:var(--paper)}
+  .roles a,.roles a b{color:var(--accent);text-decoration:none}
+  .roles a:hover,.roles a:hover b{color:var(--accent-bright);text-decoration:underline}
+  .toolflow{font-family:var(--mono);font-size:13px;line-height:2;color:var(--text-soft)}
+  .stat{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-1px;color:var(--accent);font-family:var(--mono)}
+
+  /* before/after drag slider */
+  .baslider{position:relative;overflow:hidden;border:1px solid var(--accent-dim);background:#000;
+    aspect-ratio:16/9;cursor:ew-resize;touch-action:none;user-select:none;--pos:50%}
+  .baslider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border:none;pointer-events:none}
+  .baslider .ba-top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+  .baslider .ba-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--accent);
+    transform:translateX(-1px);pointer-events:none;box-shadow:0 0 12px rgba(228,23,94,.6)}
+  .baslider .ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:44px;height:44px;border-radius:50%;background:rgba(10,11,14,.8);border:2px solid var(--accent);
+    color:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px}
+  .baslider .ba-tag{position:absolute;top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;
+    text-transform:uppercase;background:rgba(10,11,14,.75);border:1px solid var(--line);border-radius:20px;
+    padding:4px 11px;pointer-events:none}
+  .baslider .ba-tag-l{left:12px;color:var(--paper)}
+  .baslider .ba-tag-r{right:12px;color:var(--accent)}
+
+  .strobewrap{position:relative;cursor:pointer}
+  .strobewrap .playbtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:rgba(10,11,14,.25);transition:.15s}
+  .strobewrap .playbtn span{width:74px;height:74px;border-radius:50%;background:rgba(10,11,14,.75);
+    border:2px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;
+    font-size:26px;padding-left:6px}
+  .strobewrap:hover .playbtn span{background:var(--accent);color:var(--on-accent)}
+  .strobewrap.playing .playbtn{display:none}
+  .epilepsy{margin-top:14px;font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;
+    color:#febc2e;border:1px solid rgba(254,188,46,.35);background:rgba(254,188,46,.06);
+    border-radius:10px;padding:10px 14px}
+  .cta2{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto}
+  .bigbtn{display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:var(--mono);font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+    font-size:clamp(15px,2vw,21px);color:var(--accent);text-decoration:none;
+    border:1px solid var(--accent-dim);border-radius:16px;padding:44px 24px;min-height:120px;
+    background:var(--accent-tint-faint);transition:.16s}
+  .bigbtn:hover{background:var(--accent);color:var(--on-accent);border-color:var(--accent);transform:translateY(-2px)}
+  @media(max-width:620px){.cta2{grid-template-columns:1fr}}
+  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;text-align:center}
+
+  .cap-mobile{display:none}
+  @media(max-width:820px){
+    .mossgrid{grid-template-columns:1fr 1fr !important}
+    .mossgrid > div:nth-child(n+3){display:none}
+    .cap-desktop{display:none}
+    .cap-mobile{display:inline}
+
+    .wide{padding-left:22px;padding-right:22px}
+    .split,.grid2,.grid3,.grid4,.twocol{grid-template-columns:1fr}
+    .moodgrid{column-count:2}
+    .hero h1{white-space:normal}
+    .subnav{justify-content:flex-start;overflow-x:auto}
+  }
+
+  /* portfolio header, matches the main site */
+  .pnav{position:fixed;top:0;left:0;right:0;z-index:60;height:52px;display:flex;justify-content:space-between;
+    align-items:center;padding:0 28px;background:var(--bg);border-bottom:1px solid var(--line);
+    font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  .pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;letter-spacing:.12em;font-size:13px;text-transform:uppercase;color:#111112;text-decoration:none}
+  .pnav .plinks{display:flex;gap:26px}
+  .pnav .plinks a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f6f74;text-decoration:none;transition:color .3s}
+  .pnav .plinks a:hover{color:#111112}
+  @media(max-width:760px){.pnav .plinks{display:none}}
+
+  /* match the portfolio typography */
+  body{font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  h1,h2,h3,h4,.bigbtn,.pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%}
+  h1{letter-spacing:-.4px}
+  h2{letter-spacing:-.2px}
+</style>
+</head>
+<body>
+
+<div class="pnav">
+  <a class="pname" href="../../">Mitchell Edwards</a>
+  <span class="plinks">
+    <a href="../../#work">Work</a>
+    <a href="../../#pipeline">How I work</a>
+    <a href="../../#about">About</a>
+    <a href="../../#skills">Skills</a>
+    <a href="../../#contact">Contact</a>
+  </span>
+</div>
+
+<div class="subnav">
+  <a href="#brief">Why</a>
+  <a href="#design">Design</a>
+  <a href="#build">Build</a>
+  <a href="#result">Result</a>
+</div>
+
+<main>
+
+<section class="hero wide">
+  <div class="k">Case study &middot; Product design and build</div>
+  <h1>A camera app in a band's own style.</h1>
+  <p class="lede">I designed and built a small video app for TWINEM, a twin DJ duo. Point a phone at anything and it comes back looking like their visuals. It is live, it is theirs, and it sits in their Instagram bio.</p>
+  <div class="meta">
+    <span>Designed and coded by me</span><span>Runs in any browser</span><span>Their brand, their song</span>
+  </div>
+  <div class="mt">
+    <iframe src="../twinem/dither-demo/" scrolling="no" title="The TWINEM visualizer running live" style="width:100%;aspect-ratio:16/10;display:block;border:1px solid var(--accent-dim);background:#000" allow="camera"></iframe>
+    <div class="cap">This is the real app. Turn the knobs, switch the look, load a video or use your camera</div>
+  </div>
+</section>
+
+<section id="brief" class="wide">
+  <div class="sectionhead">
+    <div class="k">01 &mdash; Why it exists</div>
+    <h2>The tool came before the idea.</h2>
+  </div>
+  <p>Making TWINEM's visual pack, I needed a specific pixelated look. The plugins that do it well were too expensive for the timeline, so I wrote my own tool in about an hour. That tool became the signature look of the whole pack.</p>
+  <p>When the pack shipped, the tool was still sitting there. So I put a real interface on it, painted it in their brand, and handed it over. A pack of files eventually gets old. An app that makes more of them does not.</p>
+</section>
+
+<section id="design" class="wide">
+  <div class="sectionhead">
+    <div class="k">02 &mdash; The design</div>
+    <h2>A television, not a control panel.</h2>
+  </div>
+  <p>The first version looked like software: sliders, labels, a preview window. Correct, but nobody wants to play with a settings menu. Their whole aesthetic is Y2K, so I rebuilt it as an old TV set. Knobs you drag, chunky buttons, a glass screen.</p>
+  <p>That changed how people use it. A slider says adjust a parameter. A knob says turn me. Every lit pixel on the screen is drawn with their four-point star instead of a square, so the picture is made out of their logo.</p>
+  <div class="grid2 mt">
+    <div><img style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000" src="assets/dither_lab_ui.jpg" alt="The original unbranded tool"><div class="cap">Before: the tool I built for myself</div></div>
+    <div><img style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000" src="assets/app_desktop.jpg" alt="The finished branded app"><div class="cap">After: the app they own</div></div>
+  </div>
+  <div class="grid2 mt">
+    <div><img style="max-height:60vh;width:auto;display:block;margin:0 auto;border:1px solid var(--accent-dim);background:#000" src="assets/app_mobile.jpg" alt="The app on a phone"><div class="cap">On a phone it becomes a handheld device, not a squeezed website</div></div>
+    <div><img style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000" src="assets/app_gate.jpg" alt="The passcode screen"><div class="cap">Passcode screen: private to them and their fans</div></div>
+  </div>
+</section>
+
+<section id="build" class="wide">
+  <div class="sectionhead">
+    <div class="k">03 &mdash; What it does</div>
+    <h2>Everything a fan needs, nothing else.</h2>
+  </div>
+  <p>Load a video or turn on the camera. Four knobs control the look. Two buttons switch between the star-pixel style and the TV-line style, both taken straight from the visuals I made for their show. Three keys hold their brand colors.</p>
+  <p>Their song plays while you use it and the picture pulses to the beat, because the app listens to the music live. Hit record and it saves a video of the screen with their track already in it. Whatever a fan makes and posts carries their look and their music.</p>
+  <div class="mt">
+    <video class="vid169" autoplay loop muted playsinline preload="metadata"><source src="assets/twinem_stainless_loop.mp4" type="video/mp4"></video>
+    <div class="cap">Their logo running through the app, the channel it opens on</div>
+  </div>
+</section>
+
+<section id="result" class="wide">
+  <div class="sectionhead">
+    <div class="k">04 &mdash; The result</div>
+    <h2>They put it in their bio.</h2>
+  </div>
+  <p>The duo linked it in their Instagram bio the day they got it. Every fan who opens it makes something that looks like TWINEM and sounds like TWINEM.</p>
+  <div class="biz">
+    <b>What it did for the business</b>
+    <p>A visual pack gets used for one show. This turned the same style into something the duo can use forever, and something their fans use for them. It costs nothing to run and keeps producing branded content long after the event it was made for.</p>
+  </div>
+</section>
+
+<section class="wide">
+  <div class="cta2">
+    <a class="bigbtn" href="../../#work">All Work</a>
+    <a class="bigbtn" href="mailto:cravinadventure@gmail.com">Contact</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="wide">
+  Mitchell Edwards &middot; Product design and build &middot; TWINEM Visualizer, August 2026.<br>
+  <a href="mailto:cravinadventure@gmail.com" style="color:var(--accent);text-decoration:none">cravinadventure@gmail.com</a>
+</footer>
+
+</body>
+</html>

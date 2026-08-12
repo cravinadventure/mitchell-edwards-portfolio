@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TWINEM VISUALIZER - demo</title>
+<link rel="stylesheet" href="style.css?demo=3">
+</head>
+<body>
+
+
+<audio id="tvaudio" src="assets/twinem_track.mp3" loop preload="none"></audio>
+<div class="tvroom">
+  <div class="tv">
+    <div class="tv-top">
+      <div class="tv-brand"><img src="assets/twinem_wordmark.png" alt="TWINEM" class="brandmark"></div>
+    </div>
+
+    <div class="stage tv-screen">
+      <div class="canvas-wrap"><canvas id="out"></canvas></div>
+
+      <div class="transport" id="transport" hidden>
+        <button id="play" aria-label="Play or pause">Play</button>
+        <span class="slider scrub">
+          <span class="track"><span class="fill"></span></span>
+          <input id="seek" type="range" min="0" max="10000" value="0" step="1" aria-label="Position">
+        </span>
+        <span class="tc"><b id="tc-cur">0:00.00</b> <span class="tc-sep">/</span> <span id="tc-dur">0:00.00</span></span>
+      </div>
+
+      <div class="progress" id="progress" hidden>
+        <span class="bar"><span class="bar-fill" id="bar-fill"></span></span>
+        <span id="prog-text">Exporting</span>
+        <button id="cancel">Cancel</button>
+      </div>
+    </div>
+
+    <div class="tv-panel">
+      <div class="knobs">
+        <div class="knobunit"><div class="knob" data-input="scale" data-fmt="px"><div class="ind"></div></div><b>SCALE</b></div>
+        <div class="knobunit"><div class="knob" data-input="con" data-fmt="dec"><div class="ind"></div></div><b>CONTRAST</b></div>
+        <div class="knobunit"><div class="knob" data-input="mid" data-fmt="dec"><div class="ind"></div></div><b>MIDTONES</b></div>
+        <div class="knobunit"><div class="knob" data-input="thr" data-fmt="dec"><div class="ind"></div></div><b>THRESHOLD</b></div>
+      </div>
+      <div class="pixelrow">
+        <div class="swatches" id="swatches"></div>
+        <div class="styletoggles">
+          <button class="pixelbtn" id="m-star" aria-pressed="true" title="Star pixels" aria-label="Star pixels"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c1 5 3 7 8 8-5 1-7 3-8 8-1-5-3-7-8-8 5-1 7-3 8-8z"/></svg></button>
+          <button class="pixelbtn" id="m-lines" aria-pressed="false" title="TV lines" aria-label="TV lines"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h14v2H1zM1 7h14v2H1zM1 11h14v2H1z"/></svg></button>
+        </div>
+      </div>
+      <div class="channels">
+        <button class="pixelbtn" id="sound" aria-pressed="false" title="Music" aria-label="Music"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2l8-1.6v9.1a2.5 2.5 0 1 1-1.5-2.3V4.2L7.5 5.2v7.3A2.5 2.5 0 1 1 6 10.2z"/></svg></button>
+        <button class="pixelbtn" id="demo" aria-pressed="true" title="Logo loop" aria-label="Logo loop"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a6 6 0 1 0 6 6h-2a4 4 0 1 1-4-4z" /><path d="M8 0l4.5 2.5L8 5.5z"/></svg></button>
+        <label class="pixelbtn" for="file" title="Load a file"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1 3h5l2 2h7v8H1z"/></svg></label>
+        <input id="file" type="file" accept="image/*,video/*" hidden>
+        <button class="pixelbtn" id="cam" title="Camera" aria-label="Camera"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M1 4h4l1-2h4l1 2h4v9H1zM8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></button>
+        <button class="pixelbtn" id="rec" title="Record" aria-label="Record"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5"/></svg></button>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- engine dependencies: hidden but fully functional -->
+<div class="panel" hidden>
+  <span id="r-src"></span><span id="r-res"></span><span id="r-ms"></span><span id="r-fps"></span>
+  <div class="group"><div class="group-label">Look</div>
+    <div class="btn-grid" id="presets"></div><div class="note" id="preset-note"></div></div>
+  <div class="group"><div class="group-label">Algorithm</div>
+    <select id="algo">
+      <optgroup label="Ordered"><option value="bayer8" selected>Bayer 8x8</option><option value="bayer4">Bayer 4x4</option></optgroup>
+      <optgroup label="Error diffusion"><option value="fs">Floyd-Steinberg</option><option value="atkinson">Atkinson</option><option value="jarvis">Jarvis-Judice-Ninke</option><option value="stucki">Stucki</option><option value="burkes">Burkes</option><option value="sierra">Sierra</option><option value="sierra-lite">Sierra Lite</option></optgroup>
+      <optgroup label="Other"><option value="noise">Random noise</option><option value="none">Hard threshold</option></optgroup>
+    </select><div class="note" id="algo-note"></div></div>
+  <div class="group"><div class="group-label">Worming</div>
+    <label class="row"><span class="row-head"><b>Diffusion</b><i id="v-diff">86%</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="diff" type="range" min="0" max="200" value="86"></span></label>
+    <label class="row"><span class="row-head"><b>Smoothness</b><i id="v-blur">0.0</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="blur" type="range" min="0" max="400" value="0"></span></label>
+    <label class="toggle"><input id="serp" type="checkbox"><span class="box"></span>Serpentine scan</label>
+    <label class="toggle"><input id="inv" type="checkbox"><span class="box"></span>Invert</label></div>
+  <div class="group"><div class="group-label">Levels</div>
+    <label class="row"><span class="row-head"><b>Scale</b><i id="v-scale">1 px</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="scale" type="range" min="1" max="16" value="1"></span></label>
+    <label class="row"><span class="row-head"><b>Contrast</b><i id="v-con">0.79</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="con" type="range" min="0" max="300" value="79"></span></label>
+    <label class="row"><span class="row-head"><b>Midtones</b><i id="v-mid">0.73</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="mid" type="range" min="20" max="300" value="73"></span></label>
+    <label class="row"><span class="row-head"><b>Threshold</b><i id="v-thr">0.50</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="thr" type="range" min="0" max="100" value="50"></span></label></div>
+  <div class="group"><div class="group-label">Temporal</div>
+    <label class="row"><span class="row-head"><b>Frame hold</b><i id="v-hold">1</i></span>
+      <span class="slider"><span class="track"><span class="fill"></span></span><input id="hold" type="range" min="1" max="6" value="1"></span></label></div>
+  <div class="group"><div class="group-label">Export</div>
+    <label class="row"><span class="row-head"><b>Frame rate</b><i id="v-fps">30</i></span>
+      <select id="fps"><option value="30" selected>30</option><option value="24">24</option><option value="60">60</option></select></label>
+    <label class="row"><span class="row-head"><b>Size</b><i id="v-size">-</i></span>
+      <select id="outsize"><option value="source" selected>Source resolution</option><option value="grid">Grid resolution</option></select></label>
+    <label class="row"><span class="row-head"><b>Format</b></span>
+      <select id="codec"><option value="h264" selected>MP4 / H.264</option><option value="prores">MOV / ProRes 422 HQ</option></select></label>
+    <div class="btn-grid three"><button id="export">Export</button><button id="png">PNG</button><button id="reset">Reset</button></div>
+    <div class="note" id="export-note"></div></div>
+</div>
+
+<script src="app.js?demo=3"></script>
+<script>
+// ---- Y2K knobs: proxy drag-rotation onto the hidden range inputs ----
+(function(){
+  // Browsers restore form values across reloads; a TV should always power on
+  // at its factory settings.
+  ['diff','blur','scale','con','mid','thr','hold'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el && el.value !== el.getAttribute('value')) {
+      el.value = el.getAttribute('value');
+      el.dispatchEvent(new Event('input'));
+    }
+  });
+  var inv = document.getElementById('inv');
+  if (inv && inv.checked) { inv.checked = false; inv.dispatchEvent(new Event('change')); }
+
+  var FMT = {
+    px: function(v){ return v + ' px'; },
+    dec: function(v){ return (v/100).toFixed(2); }
+  };
+  document.querySelectorAll('.knob').forEach(function(k){
+    var input = document.getElementById(k.dataset.input);
+    var out = document.getElementById('k-' + k.dataset.input);
+    var min = +input.min, max = +input.max;
+    function paint(){
+      var v = +input.value, t = (v - min) / (max - min);
+      k.querySelector('.ind').style.transform = 'rotate(' + (-135 + t * 270) + 'deg)';
+      if (out) out.textContent = FMT[k.dataset.fmt](v);
+    }
+    input.addEventListener('input', paint);
+    var startY = 0, startV = 0;
+    k.addEventListener('pointerdown', function(e){
+      e.preventDefault(); k.setPointerCapture(e.pointerId);
+      startY = e.clientY; startV = +input.value;
+      function mv(ev){
+        var v = Math.round(Math.max(min, Math.min(max, startV + (startY - ev.clientY) * (max - min) / 160)));
+        if (v !== +input.value){ input.value = v; input.dispatchEvent(new Event('input')); }
+      }
+      function up(){ k.removeEventListener('pointermove', mv); k.removeEventListener('pointerup', up); }
+      k.addEventListener('pointermove', mv); k.addEventListener('pointerup', up);
+    });
+    paint();
+  });
+})();
+</script>
+<script>
+// ---- soundtrack: starts on gate entry, or first touch for returning visitors ----
+(function(){
+  var au = document.getElementById('tvaudio'), btn = document.getElementById('sound');
+  if (!au) return;
+  au.volume = 0.65;
+  btn.onclick = function(){
+    var g = window.__tvAudioGraph;
+    if (g && g.ctx.state === 'suspended') g.ctx.resume().catch(function(){});
+    if (au.paused) { btn.setAttribute('aria-pressed', 'true'); au.play().catch(function(){}); }
+    else { au.pause(); btn.setAttribute('aria-pressed', 'false'); }
+  };
+  var np = document.getElementById('nowplaying');
+  if (np) {
+    au.addEventListener('play', function(){ np.classList.add('live'); });
+    au.addEventListener('pause', function(){ np.classList.remove('live'); });
+  }
+})();
+</script>
+<script>
+// ---- beat pulse: MIDTONES rides the track's bass, from wherever the knob
+// sits up to 1.50, decaying back between hits ----
+(function(){
+  var au = document.getElementById('tvaudio'), mid = document.getElementById('mid');
+  if (!au || !mid) return;
+  var ctx = null, analyser = null, data = null, base = +mid.value, pulse = 0, avg = 0, self = false;
+  mid.addEventListener('input', function(){ if (!self) base = +mid.value; });
+  function setup(){
+    if (ctx) { if (ctx.state === 'suspended') ctx.resume().catch(function(){}); return; }
+    try {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var src = ctx.createMediaElementSource(au);
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 1024;             // ~43 Hz per bin: fine enough to see the kick itself
+      analyser.smoothingTimeConstant = 0.15; // fast attack, no smear
+      src.connect(analyser); analyser.connect(ctx.destination);
+      window.__tvAudioGraph = { ctx: ctx, src: src };
+      data = new Uint8Array(analyser.frequencyBinCount);
+      if (ctx.state === 'suspended') ctx.resume().catch(function(){});
+      setInterval(tick, 33);
+    } catch (e) { ctx = null; }
+  }
+  window.__tvAudioSetup = setup;
+  // build the graph inside the gesture, in CAPTURE phase so it exists before play starts
+  document.addEventListener('pointerdown', setup, true);
+  document.addEventListener('keydown', setup, true);
+  au.addEventListener('play', setup);
+  function tick(){
+    if (ctx.state === 'suspended') { ctx.resume().catch(function(){}); return; }
+    analyser.getByteFrequencyData(data);
+    var e = 0; for (var i = 1; i < 6; i++) e += data[i]; e /= 5;   // 43-258 Hz: the kick band
+    avg = avg * 0.96 + e * 0.04;
+    var drive = e > 25 ? Math.max(0, e / (avg + 0.001) - 1.08) * 5 : 0;
+    if (drive > pulse) pulse = Math.min(1, drive);
+    pulse *= 0.78;
+    window.__beat = { e: e, avg: avg, pulse: pulse, state: ctx.state };
+    if (au.paused && pulse < 0.02) {
+      if (+mid.value !== base){ self = true; mid.value = base; mid.dispatchEvent(new Event('input')); self = false; }
+      return;
+    }
+    var target = Math.round(base + (150 - base) * pulse);
+    if (target !== +mid.value){ self = true; mid.value = target; mid.dispatchEvent(new Event('input')); self = false; }
+  }
+})();
+</script>
+<script>
+// ---- record: canvas + music bus -> mp4 (click to start, click to stop) ----
+(function(){
+  var btn = document.getElementById('rec'), canvas = document.getElementById('out');
+  if (!btn || !canvas) return;
+  var mr = null, chunks = [], musicWasOn = false, recVid = null;
+  var tvAu = document.getElementById('tvaudio');
+  btn.onclick = function(){
+    if (mr) { mr.stop(); return; }
+    musicWasOn = tvAu && !tvAu.paused;
+    // a loaded FILE video records as a take: restart it, capture live effect
+    // changes, auto-stop at its end (loop and camera record freely)
+    var now = window.__tvNow || {};
+    recVid = (now.mode === 'video' && now.video && now.label !== 'logo loop' && now.label !== 'webcam') ? now.video : null;
+    if (recVid) {
+      recVid.loop = false;
+      recVid.onended = function(){ if (mr) mr.stop(); };
+      recVid.currentTime = 0;
+      recVid.play().catch(function(){});
+    }
+    if (window.__tvAudioSetup) window.__tvAudioSetup();
+    var stream = canvas.captureStream(30);
+    var g = window.__tvAudioGraph;
+    if (g) {
+      if (!g.recDest) { g.recDest = g.ctx.createMediaStreamDestination(); g.src.connect(g.recDest); }
+      g.recDest.stream.getAudioTracks().forEach(function(t){ stream.addTrack(t); });
+    }
+    var mime = ['video/mp4;codecs=avc1,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm']
+      .find(function(m){ return MediaRecorder.isTypeSupported(m); }) || '';
+    chunks = [];
+    try {
+      mr = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 8000000 } : undefined);
+    } catch (e) { mr = null; return; }
+    mr.ondataavailable = function(e){ if (e.data && e.data.size) chunks.push(e.data); };
+    mr.onstop = function(){
+      var ext = (mr.mimeType || '').indexOf('mp4') > -1 ? 'mp4' : 'webm';
+      var blob = new Blob(chunks, { type: mr.mimeType });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      var d = new Date(), pad = function(n){ return (n < 10 ? '0' : '') + n; };
+      a.download = 'TWINEM_' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + '_' +
+                   pad(d.getHours()) + pad(d.getMinutes()) + pad(d.getSeconds()) + '.' + ext;
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 5000);
+      mr = null;
+      if (recVid) { recVid.onended = null; recVid.loop = true; recVid.play().catch(function(){}); recVid = null; }
+      btn.setAttribute('aria-pressed', 'false'); btn.classList.remove('recording');
+      // saving can pause the track (share sheet, download focus steal): bring it back
+      setTimeout(function(){
+        var g = window.__tvAudioGraph;
+        if (g && g.ctx.state === 'suspended') g.ctx.resume().catch(function(){});
+        if (musicWasOn && tvAu && tvAu.paused) tvAu.play().catch(function(){});
+      }, 400);
+    };
+    mr.start(250);
+    btn.setAttribute('aria-pressed', 'true'); btn.classList.add('recording');
+  };
+})();
+</script>
+<style>
+/* embedded: the whole chassis scales to fit the iframe, nothing scrolls */
+html, body { overflow: hidden; }
+.tvroom { min-height: 100vh; align-items: flex-start; padding: 8px; }
+.tv { transform-origin: top center; }
+</style>
+<script>
+(function(){
+  function fitTV(){
+    var tv = document.querySelector('.tv');
+    if (!tv || !innerWidth || !innerHeight) return;
+    tv.style.transform = 'none';
+    var r = tv.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    var s = Math.min(innerWidth / (r.width + 12), innerHeight / (r.height + 12), 1);
+    if (s > 0.05) tv.style.transform = 'scale(' + s + ')';
+  }
+  addEventListener('resize', fitTV);
+  addEventListener('load', fitTV);
+  if (window.ResizeObserver) new ResizeObserver(fitTV).observe(document.documentElement);
+  setTimeout(fitTV, 300); setTimeout(fitTV, 1200); setTimeout(fitTV, 3000);
+})();
+</script>
+<script>
+// ---- the two embedded demos are one machine: actions mirror across them ----
+(function(){
+  if (!window.BroadcastChannel) return;
+  var ch = new BroadcastChannel('twinem-demo-sync');
+  var applying = false;
+  ['diff','blur','scale','con','mid','thr','hold'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', function(){ if (!applying) ch.postMessage({t:'in', id:id, v:el.value}); });
+  });
+  document.addEventListener('click', function(e){
+    if (applying) return;
+    var b = e.target.closest && e.target.closest('#m-star, #m-lines, #demo');
+    if (b) { ch.postMessage({t:'btn', id:b.id}); return; }
+    var sw = e.target.closest && e.target.closest('.swatch');
+    if (sw) {
+      var row = sw.closest('.colorrow');
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.colorrow'));
+      var sws = Array.prototype.slice.call(row.querySelectorAll('.swatch'));
+      ch.postMessage({t:'sw', r: rows.indexOf(row), i: sws.indexOf(sw)});
+    }
+  }, true);
+  ch.onmessage = function(ev){
+    var m = ev.data; applying = true;
+    try {
+      if (m.t === 'in') {
+        var el = document.getElementById(m.id);
+        if (el && el.value !== m.v) { el.value = m.v; el.dispatchEvent(new Event('input')); }
+      } else if (m.t === 'btn') {
+        var b = document.getElementById(m.id); if (b) b.click();
+      } else if (m.t === 'sw') {
+        var rows = document.querySelectorAll('.colorrow');
+        var sws = rows[m.r] && rows[m.r].querySelectorAll('.swatch');
+        if (sws && sws[m.i]) sws[m.i].click();
+      }
+    } finally { applying = false; }
+  };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TWINEM × Ibiza Boat Rave — Mitchell Edwards</title>
+<meta name="description" content="A six-loop Y2K VJ pack for twin DJ duo TWINEM's set at Boston Event Guide's Seaport boat rave. Scoped, built, and delivered in a 96-hour sprint, in their exact brand colors, no AI-generated visuals.">
+
+<!-- Open Graph / link preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mitchell Edwards">
+<meta property="og:title" content="TWINEM × Ibiza Boat Rave">
+<meta property="og:description" content="A six-loop Y2K VJ pack for twin DJ duo TWINEM's set at Boston Event Guide's Seaport boat rave. Scoped, built, and delivered in a 96-hour sprint, in their exact brand colors, no AI-generated visuals.">
+<meta property="og:url" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/twinem/">
+<meta property="og:image" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/twinem/assets/og_cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="TWINEM neon pink and teal wordmark over the Y2K VJ pack">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TWINEM × Ibiza Boat Rave">
+<meta name="twitter:description" content="A six-loop Y2K VJ pack, scoped, built, and delivered in a 96-hour sprint. No AI-generated visuals.">
+<meta name="twitter:image" content="https://cravinadventure.github.io/mitchell-edwards-portfolio/work/twinem/assets/og_cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    :root{
+    --bg:#fafaf8; --panel:#f3f3f0; --panel2:#ffffff;
+    --paper:#111112; --text:#2c2c30; --text-soft:#3c3c40; --text-dim:#4a4a4f;
+    --muted:#6f6f74; --muted2:#9b9b9f;
+    --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.18);
+    --accent:#5A6678; --accent-dim:#3e4754; --accent-bright:#7c8aa0;
+    --on-accent:#ffffff; --signal:#3e4754;
+    --accent-glow:rgba(90,102,120,.05);
+    --accent-tint:rgba(90,102,120,.08);
+    --accent-tint-faint:rgba(90,102,120,.04);
+    --nav-bg:rgba(250,250,248,.88);
+    --subnav-bg:rgba(250,250,248,.92);
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(1200px 600px at 70% -10%,var(--accent-glow),transparent 60%);}
+  .wide{max-width:1240px;margin:0 auto;padding-left:48px;padding-right:48px}
+  a{color:inherit}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;
+    padding:14px 28px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .brand{font-weight:800;letter-spacing:.5px}
+  nav .brand span{color:var(--accent)}
+  nav .tag{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:620px){nav .tag{display:none}}
+
+  /* subnav */
+  .subnav{position:sticky;top:51px;z-index:40;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
+    padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .subnav a{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+    text-decoration:none;padding:6px 12px;border-radius:30px;transition:.15s}
+  .subnav a:hover{color:var(--accent);background:var(--accent-tint)}
+  section[id]{scroll-margin-top:104px}
+
+  /* type */
+  .k{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-size:clamp(38px,6vw,76px);line-height:1.02;letter-spacing:-1.5px;font-weight:800}
+  h2{font-size:clamp(26px,3.4vw,40px);line-height:1.08;letter-spacing:-.6px;font-weight:800;margin-bottom:18px}
+  h3{font-size:18px;font-weight:700;margin-bottom:8px}
+  p{color:var(--text);font-size:16.5px;max-width:760px}
+  p+p{margin-top:16px}
+  .lede{font-size:clamp(18px,2vw,21px);color:var(--text-soft)}
+  .em{color:var(--accent)}
+  .sectionhead{margin-bottom:44px}
+  section{padding-top:120px;padding-bottom:120px;border-top:1px solid var(--line)}
+
+  /* hero */
+  .hero{padding-top:96px;padding-bottom:48px;border-top:none}
+  .hero h1{margin:6px 0 22px;max-width:18ch;overflow-wrap:break-word}
+  .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:1px;color:var(--muted);margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+  .meta span{border:1px solid var(--line);border-radius:30px;padding:6px 12px}
+  .rec{color:var(--signal)}
+
+  /* placeholder frames (HUD viewfinder) */
+  .ph{position:relative;width:100%;background:
+      repeating-linear-gradient(45deg,rgba(0,0,0,.015) 0 12px,transparent 12px 24px),var(--panel);
+    border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:26px 22px;gap:9px;overflow:hidden}
+  .ph::before{content:"";position:absolute;top:9px;left:9px;width:20px;height:20px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);opacity:.8}
+  .ph::after{content:"";position:absolute;bottom:9px;right:9px;width:20px;height:20px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent);opacity:.8}
+  .ph .ico{font-size:20px;color:var(--accent);opacity:.85}
+  .ph .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+  .ph .desc{font-size:13.5px;color:var(--text-dim);max-width:92%;line-height:1.5}
+  .ph .fmt{position:absolute;top:10px;right:12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--muted2)}
+  .ph.hero169{aspect-ratio:16/9}
+  .r169{aspect-ratio:16/9}
+  .r916{aspect-ratio:9/16}
+  .r11{aspect-ratio:1/1}
+  .r43{aspect-ratio:4/3}
+  .vid169,.vid916,.img169,.img916{width:100%;display:block;border:1px solid var(--accent-dim);background:#000;object-fit:cover}
+  .vid169,.img169{aspect-ratio:16/9}
+  .vid916,.img916{aspect-ratio:9/16}
+  .moodgrid{column-count:3;column-gap:16px;margin-top:18px}
+  .moodgrid>*{width:100%;display:block;margin:0 0 16px;break-inside:avoid;border:1px solid var(--accent-dim);background:#000}
+
+  /* layout helpers */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .stack-sm{display:grid;gap:18px}
+  .mt{margin-top:40px}
+  .narrow{max-width:300px}
+  .center{margin-left:auto;margin-right:auto}
+  .cap{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:10px}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--accent);border:1px solid var(--accent-dim);border-radius:30px;padding:5px 11px;margin:0 6px 8px 0}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .card h3{color:var(--accent)}
+  .roles div{padding:14px 0;border-bottom:1px solid var(--line)}
+  .roles b{color:var(--paper)}
+  .roles a,.roles a b{color:var(--accent);text-decoration:none}
+  .roles a:hover,.roles a:hover b{color:var(--accent-bright);text-decoration:underline}
+  .toolflow{font-family:var(--mono);font-size:13px;line-height:2;color:var(--text-soft)}
+  .stat{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-1px;color:var(--accent);font-family:var(--mono)}
+
+  /* before/after drag slider */
+  .baslider{position:relative;overflow:hidden;border:1px solid var(--accent-dim);background:#000;
+    aspect-ratio:16/9;cursor:ew-resize;touch-action:none;user-select:none;--pos:50%}
+  .baslider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border:none;pointer-events:none}
+  .baslider .ba-top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+  .baslider .ba-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--accent);
+    transform:translateX(-1px);pointer-events:none;box-shadow:0 0 12px rgba(228,23,94,.6)}
+  .baslider .ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:44px;height:44px;border-radius:50%;background:rgba(10,11,14,.8);border:2px solid var(--accent);
+    color:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px}
+  .baslider .ba-tag{position:absolute;top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;
+    text-transform:uppercase;background:rgba(10,11,14,.75);border:1px solid var(--line);border-radius:20px;
+    padding:4px 11px;pointer-events:none}
+  .baslider .ba-tag-l{left:12px;color:var(--paper)}
+  .baslider .ba-tag-r{right:12px;color:var(--accent)}
+
+  .strobewrap{position:relative;cursor:pointer}
+  .strobewrap .playbtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:rgba(10,11,14,.25);transition:.15s}
+  .strobewrap .playbtn span{width:74px;height:74px;border-radius:50%;background:rgba(10,11,14,.75);
+    border:2px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;
+    font-size:26px;padding-left:6px}
+  .strobewrap:hover .playbtn span{background:var(--accent);color:var(--on-accent)}
+  .strobewrap.playing .playbtn{display:none}
+  .epilepsy{margin-top:14px;font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;
+    color:#febc2e;border:1px solid rgba(254,188,46,.35);background:rgba(254,188,46,.06);
+    border-radius:10px;padding:10px 14px}
+  .cta2{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto}
+  .bigbtn{display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:var(--mono);font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
+    font-size:clamp(15px,2vw,21px);color:var(--accent);text-decoration:none;
+    border:1px solid var(--accent-dim);border-radius:16px;padding:44px 24px;min-height:120px;
+    background:var(--accent-tint-faint);transition:.16s}
+  .bigbtn:hover{background:var(--accent);color:var(--on-accent);border-color:var(--accent);transform:translateY(-2px)}
+  @media(max-width:620px){.cta2{grid-template-columns:1fr}}
+  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;text-align:center}
+
+  .cap-mobile{display:none}
+  @media(max-width:820px){
+    .mossgrid{grid-template-columns:1fr 1fr !important}
+    .mossgrid > div:nth-child(n+3){display:none}
+    .cap-desktop{display:none}
+    .cap-mobile{display:inline}
+
+    .wide{padding-left:22px;padding-right:22px}
+    .split,.grid2,.grid3,.grid4,.twocol{grid-template-columns:1fr}
+    .moodgrid{column-count:2}
+    .hero h1{white-space:normal}
+    .subnav{justify-content:flex-start;overflow-x:auto}
+  }
+
+  /* portfolio header, matches the main site */
+  .pnav{position:fixed;top:0;left:0;right:0;z-index:60;height:52px;display:flex;justify-content:space-between;
+    align-items:center;padding:0 28px;background:var(--bg);border-bottom:1px solid var(--line);
+    font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  .pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;letter-spacing:.12em;font-size:13px;text-transform:uppercase;color:#111112;text-decoration:none}
+  .pnav .plinks{display:flex;gap:26px}
+  .pnav .plinks a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f6f74;text-decoration:none;transition:color .3s}
+  .pnav .plinks a:hover{color:#111112}
+  @media(max-width:760px){.pnav .plinks{display:none}}
+
+  /* match the portfolio typography */
+  body{font-family:"Montserrat",Helvetica,Arial,sans-serif}
+  h1,h2,h3,h4,.bigbtn,.pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%}
+  h1{letter-spacing:-.4px}
+  h2{letter-spacing:-.2px}
+</style>
+</head>
+<body>
+
+<div class="pnav">
+  <a class="pname" href="../../">Mitchell Edwards</a>
+  <span class="plinks">
+    <a href="../../#work">Work</a>
+    <a href="../../#pipeline">How I work</a>
+    <a href="../../#about">About</a>
+    <a href="../../#skills">Skills</a>
+    <a href="../../#contact">Contact</a>
+  </span>
+</div>
+<div class="subnav">
+  <a href="#artist">Duo</a>
+  <a href="#brief">Brief</a>
+  <a href="#build">Build</a>
+  <a href="#chrome">Chrome</a>
+  <a href="#chat">Chat</a>
+  <a href="#dialin">Dial-In</a>
+  <a href="#cherries">Cherries</a>
+  <a href="#moss">Electricity</a>
+  <a href="#dither">Dither</a>
+  <a href="#faces">Pixels</a>
+  <a href="#delivery">Handoff</a>
+  <a href="#bonus">Bonuses</a>
+  <a href="#credits">Credits</a>
+</div>
+
+<main><!-- HERO -->
+<section class="hero wide">
+  <div class="k">Case Study · VJ Pack</div>
+  <h1>TWINEM × Ibiza Boat Rave</h1>
+  <p class="lede">I made a Y2K visual pack of six loops for TWINEM, a twin DJ duo, for their set at Boston Event Guide's Seaport boat rave. I scoped it, built it, and delivered it in a 96-hour sprint. Every loop uses their exact brand colors. Zero AI-generated visuals.</p>
+  <div class="meta">
+    <span><span class="rec">●</span> Seaport Summer Cruise Series</span>
+    <span>August 8, 2026</span>
+    <span>6 seamless loops</span>
+    <span>3840 × 2160</span>
+    <span>96-hour sprint</span>
+  </div>
+  <div class="mt">
+    <video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/hero_montage.mp4?v=1" type="video/mp4"></video>
+    <div class="cap">Everything delivered: 12 pieces</div>
+  </div>
+</section>
+
+<!-- THE DUO -->
+<section id="artist" class="wide">
+  <div class="sectionhead">
+    <div class="k">The Duo</div>
+    <h2>Who is TWINEM?</h2>
+  </div>
+  <div class="split">
+    <div class="narrow center">
+      <img src="assets/twinem_duo_portrait.jpg" alt="The TWINEM twins with white headphones on a dark studio backdrop" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000">
+      <div class="cap"><span style="color:var(--accent);text-decoration:none">@twinemmusic</span></div>
+    </div>
+    <div>
+      <p>TWINEM (<span style="color:var(--accent)">@twinemmusic</span>) is a twin-sister DJ duo on the East Coast playing house, bass, and EDM. The twin thing is the brand: <b>matched but distinct</b>. Y2K nightlife, neon pink and teal on black, chrome, cherries. My job was to turn that into moving visuals for their boat-rave set.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE BRIEF -->
+<section id="brief" class="wide">
+  <div class="sectionhead">
+    <div class="k">01 — The Brief</div>
+    <h2>We walked into the call already sharing the same world.</h2>
+  </div>
+  <div class="split">
+    <div>
+      <p>I start with a <b>branding questionnaire</b> I built. It asks an artist to describe their own world in their own words and colors. TWINEM filled it out the same evening, so the call went straight to the work. We locked six visuals. Face-forward shots were out, so heavy Y2K distortion became the fix.</p>
+      <p>One question before any pixels: <b>what screen is on that boat?</b> A standard 4K TV. <b>3840×2160</b>, locked.</p>
+    </div>
+    <div class="narrow center">
+      <img src="assets/twinem_wordmark_world.jpg" alt="TWINEM's Y2K wordmark: pink letters, teal outline, sparkle stars on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000">
+    </div>
+  </div>
+  <div class="mt">
+    <span class="pill">Y2K</span><span class="pill">Neon pink #E4175E</span><span class="pill">Teal #3AC0C3</span><span class="pill">Chrome</span><span class="pill">Twin mirroring</span><span class="pill">Panther energy</span><span class="pill">3840×2160</span><span class="pill">No AI visuals</span>
+  </div>
+</section>
+
+<!-- THE BUILD -->
+<section id="build" class="wide">
+  <div class="sectionhead">
+    <div class="k">02 — The Build</div>
+    <h2>Six loops, one sprint, zero AI imagery.</h2>
+  </div>
+  <p>Six seamless 4K loops in their exact colors, <b>pink #E4175E and teal #3AC0C3, pulled straight from their brand's source files, never eyeballed</b>: <b>chrome logo</b>, <b>twin silhouettes</b>, <b>TV-lines cherries</b>, <b>dithered headphones</b>, <b>twin telekinesis</b>, and <b>logo tile wall</b>. They play around 128 BPM, so the loops are cut for that speed.</p>
+  <p>The porch footage was too dark to pull a clean matte, so I exported a blown-out copy as a guide and <b>cut the silhouettes out of the original</b>. The two twins are really <b>one twin, duplicated in post</b> with a time offset. Their boots, a brand signature, stay in their exact pink.</p>
+  <div class="grid3 mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop01_chrome.mp4?v=1" type="video/mp4"></video><div class="cap">Chrome logo wobble</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop02_logo_walk.mp4?v=1" type="video/mp4"></video><div class="cap">Twin silhouettes</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop03_cherries.mp4?v=2" type="video/mp4"></video><div class="cap">TV-lines cherries</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop04_headphones.mp4?v=1" type="video/mp4"></video><div class="cap">Headphones</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop05_telekinesis.mp4?v=1" type="video/mp4"></video><div class="cap">Twin telekinesis</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop06_logo_grid.mp4?v=2" type="video/mp4"></video><div class="cap">Logo wall</div></div>
+  </div>
+</section>
+
+<!-- THE CHROME WOBBLE -->
+<section id="chrome" class="wide">
+  <div class="sectionhead">
+    <div class="k">03 — The Chrome Wobble</div>
+    <h2>Their logo, dipped in chrome.</h2>
+  </div>
+  <p>I built the 3D logo in <b>Blender</b> from their true logo vector. Slow wobble, still camera, seamless loop. Chrome mirrors whatever is around it, so I built a <b>pink-and-teal liquid-swirl world out of their own merch colors</b>. The logo reflects their brand as it turns.</p>
+  <div class="mt">
+    <video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/chrome_full_4k.mp4?v=1" type="video/mp4"></video>
+    <div class="cap">The final chrome loop, full frame, native 4K</div>
+  </div>
+</section>
+
+<!-- BEAT: process — THE GROUP CHAT -->
+<section id="chat" class="wide">
+  <div class="sectionhead">
+    <div class="k">04 — The Group Chat</div>
+    <h2>I directed. They filmed. Nobody was in the same room.</h2>
+  </div>
+  <p><b>I directed every shot from the other end of the phone:</b> which lens, where the camera sat (propped on a soda can), the framing take by take. The group chat became a remote film set.</p>
+  <p>I did not describe the silhouette look in words. I sent a link to <b>Apple's old iPod silhouette ads</b>. It was <b>exactly what they had been hunting for</b>.</p>
+  <div class="grid2 mt">
+    <div><img class="img169" src="assets/ref_ipod_silhouettes.jpg" alt="Apple iPod silhouette ads: dancing black silhouettes on flat neon panels" style="object-fit:contain"><div class="cap">The reference I sent: Apple's iPod silhouette ads (credit: Apple)</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop02_logo_walk.mp4?v=1" type="video/mp4"></video><div class="cap">What it became: the twin silhouettes</div></div>
+  </div>
+</section>
+
+<!-- BEAT: revision — DIALING IT IN -->
+<section id="dialin" class="wide">
+  <div class="sectionhead">
+    <div class="k">05 — Dialing It In</div>
+    <h2>Client notes, turned around the same day.</h2>
+  </div>
+  <p>Every note came back solved the same day. They wanted stronger scanlines on the logo walk (the thin horizontal lines old TVs drew). My heavier version just read as darker, so I went thinner-but-more. Their verdict on v3: <b>one word, perfect.</b></p>
+  <div class="baslider mt" id="scanslider">
+    <img src="assets/scanlines_v3_final.jpg" alt="Scanlines version 3, the approved version">
+    <img class="ba-top" src="assets/scanlines_before_v1.jpg" alt="Scanlines version 1, the starting point">
+    <div class="ba-line"><span class="ba-knob">⟷</span></div>
+    <div class="ba-tag ba-tag-l">v1 · before</div>
+    <div class="ba-tag ba-tag-r">v3 · approved</div>
+  </div>
+  <div class="cap">Drag the line: v1 on the left, the approved v3 on the right. Same frame, same timecode.</div>
+</section>
+
+<!-- THE CHERRIES, TWICE -->
+<section id="cherries" class="wide">
+  <div class="sectionhead">
+    <div class="k">06 — The Cherries, Twice</div>
+    <h2>Same cherries, two decades apart.</h2>
+  </div>
+  <p>The cherries came from their own merch art. They bounce like the old DVD screensaver, driven by <b>After Effects expressions</b>, small rules of code, not hand animation.</p>
+  <p>That is why the revision was instant. They picked the retro treatment on sight, then asked for the flash to hit <b>every third bounce instead of every fifth</b>. Because the animation is code, that was a one-number change.</p>
+  <div class="grid2 mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/cherries_plain.mp4?v=2" type="video/mp4"></video><div class="cap">Clean: the version that wasn't chosen</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/cherries_shipped.mp4?v=1" type="video/mp4"></video><div class="cap">Shipped: TV lines, dither, strobe</div></div>
+  </div>
+</section>
+
+<!-- BEAT: artifact — THE ELECTRICITY (SPANISH MOSS) -->
+<section id="moss" class="wide">
+  <div class="sectionhead">
+    <div class="k">07 — The Electricity</div>
+    <h2>The electricity is Spanish moss from a morning walk.</h2>
+  </div>
+  <p>The telekinesis shot needed electricity between the twins. I planned to draw squiggles on paper and flip them stop-motion style. Then on a morning walk I saw <b>Spanish moss</b>, already drawn. I shot it that way instead: <b>eight frames, rearranged by hand between each one</b>, white on black, cycled as a flicker.</p>
+  <p>It works because <b>moss strands and electricity share the same fractal structure.</b> Nature drew the effect.</p>
+    <div class="grid2 mt">
+    <div><img class="img169" src="assets/moss_tree.jpg" alt="Spanish moss hanging in long strands from an oak tree" style="object-fit:cover"><div class="cap">Spanish moss, doing what it does</div></div>
+    <div><img class="img169" src="assets/moss_closeup.jpg" alt="Spanish moss strands up close, thin curling silver-green threads" style="object-fit:cover"><div class="cap">The strands, up close</div></div>
+  </div>
+  <div class="grid4 mossgrid mt">
+    <div><img src="assets/moss_frame_1.jpg" alt="Spanish moss stop-motion frame 1 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_2.jpg" alt="Spanish moss stop-motion frame 2 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_3.jpg" alt="Spanish moss stop-motion frame 3 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_4.jpg" alt="Spanish moss stop-motion frame 4 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_5.jpg" alt="Spanish moss stop-motion frame 5 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_6.jpg" alt="Spanish moss stop-motion frame 6 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_7.jpg" alt="Spanish moss stop-motion frame 7 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+    <div><img src="assets/moss_frame_8.jpg" alt="Spanish moss stop-motion frame 8 of 8, white on black" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000"></div>
+  </div>
+  <div class="cap"><span class="cap-desktop">All eight frames: the moss laid out, rearranged by hand between every shot</span><span class="cap-mobile">Two of the eight frames: the moss rearranged by hand between every shot</span></div>
+  <div class="mt">
+    <video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop05_telekinesis.mp4?v=1" type="video/mp4"></video>
+    <div class="cap">The final loop: moss, reading as electricity</div>
+  </div>
+</section>
+
+<!-- BEAT: artifact — DITHER LAB -->
+<section id="dither" class="wide">
+  <div class="sectionhead">
+    <div class="k">08 — The Dither Lab</div>
+    <h2>A custom coded tool, built mid-sprint.</h2>
+  </div>
+  <p><b>Dithering</b> is the chunky dot-pattern pixelation old screens used to fake shades of color. The plugins that do it well were too expensive, so I wrote my own tool in about an hour and tuned it to their palette. AI helped write the code. What it puts on screen is their real footage, dithered. Never AI imagery.</p>
+  <div class="grid2 mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/dither_before_raw.mp4?v=1" type="video/mp4"></video><div class="cap">Before: their raw phone footage</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/dither_after_bayer.mp4?v=1" type="video/mp4"></video><div class="cap">After: through my dither tool</div></div>
+  </div>
+  <div class="mt">
+    <img src="assets/dither_lab_ui.jpg" alt="The dither-lab tool: live dither preview with algorithm picker and sliders for diffusion, scale, contrast, midtones, threshold, palette, and frame hold" style="width:100%;display:block;border:1px solid var(--accent-dim);background:#000">
+    <div class="cap">The tool itself: every slider is a decision a preset couldn't make</div>
+  </div>
+  <p class="mt">I built <b>a wrapper on this tool just for the TWINEM brand</b> and gave it to them for free. Their wordmark on the chassis, their colors on the keys, both signature looks from the pack. Their song loops while you work, and any video captured comes out with the music in the file.</p>
+  <div style="margin-top:24px">
+    <iframe src="dither-demo/" scrolling="no" title="TWINEM visualizer, live demo: knobs for scale, contrast, midtones and threshold, star and TV-line looks, three dot colors, load your own file or camera" loading="lazy" style="width:100%;aspect-ratio:16/10;display:block;border:1px solid var(--accent-dim);background:#000" allow="camera"></iframe>
+    <div class="cap">The TWINEM wrapper, live: turn the knobs, switch the look, load your own footage. This demo runs silent; theirs plays their song and embeds it in every recording</div>
+  <div class="mt" style="display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:0 1 400px;min-width:300px;display:flex;flex-direction:column">
+      <iframe src="dither-demo/" scrolling="no" title="TWINEM MOBILE, live demo: the same visualizer reshaped as a phone for portrait screens" loading="lazy" style="width:100%;aspect-ratio:9/16.5;display:block;border:1px solid var(--accent-dim);background:#000" allow="camera"></iframe>
+      <div class="cap">The same machine on a phone: portrait screens get TWINEM MOBILE, the chassis reshapes itself</div>
+    </div>
+    <div style="flex:1 1 300px">
+  <p style="margin-top:0">The pixel itself went through a revision. The first build drew square pixels. Then I traced their four-point star into a vector and made it <b>the unit the whole picture gets drawn from.</b> Every frame is TWINEM at every scale.</p>
+  <div class="mt" style="display:flex;gap:20px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
+    <div style="text-align:center">
+      <div style="display:grid;grid-template-columns:repeat(3,56px);gap:5px;padding:26px;border:1px solid var(--accent-dim);background:#000;justify-content:center"><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div><div style="width:56px;height:56px;background:#fff"></div></div>
+      <div class="cap">Before: square pixels</div>
+    </div>
+    <div style="text-align:center">
+      <div style="display:grid;grid-template-columns:repeat(3,56px);gap:5px;padding:26px;border:1px solid var(--accent-dim);background:#000;justify-content:center"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"><img src="assets/twinem_star.png" alt="" style="width:56px;height:56px"></div>
+      <div class="cap">After: their mark</div>
+    </div>
+  </div>
+
+<p class="mt">The deeper purpose: <b>they and their fans now own a camera that makes TWINEM visuals in real time</b>. It is audio reactive, so the picture pulses to their music. Their aesthetic became an instrument anyone can play.</p>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>
+
+<!-- BEAT: decision — FACES TO PIXELS -->
+<section id="faces" class="wide">
+  <div class="sectionhead">
+    <div class="k">09 — Faces → Pixels</div>
+    <h2>Their face-shyness became the aesthetic.</h2>
+  </div>
+  <p>They were not comfortable with their faces huge on a venue screen, and there was no time to reshoot. The fix came from their own brief: they asked for Y2K, so I pushed hard into pixelation and dithering, <strong>which made them unidentifiable AND more on-brand at once.</strong></p>
+  <div class="mt">
+    <video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/faces_pixel_turn_2s.mp4?v=1" type="video/mp4"></video>
+    <div class="cap">The head turn: two seconds of the pixelation doing exactly its job</div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section id="delivery" class="wide">
+  <div class="sectionhead">
+    <div class="k">10 — The Handoff</div>
+    <h2>One folder, built like I was the one receiving it.</h2>
+  </div>
+  <p>The pack was complete Saturday morning, hours before soundcheck. Every loop came in multiple formats, named so a stranger could tell which is which, in one shared folder.</p>
+  <p><b>I VJ myself</b> (a VJ runs visuals live at shows), <b>so I built the folder I would want handed to me.</b> Everything is <b>pre-keyed</b> with transparent backgrounds. I included <b>DXV3</b> copies, the native format of Resolume, the software VJs run, so the 4K loops play smooth live.</p>
+  
+  <div class="mt">
+    <img class="img169" src="assets/delivery_folder.jpg" alt="The shared delivery folder: every loop cleanly named with sizes, DXV3, MOV alpha, and static logo subfolders" style="object-fit:cover">
+    <div class="cap">The shared folder, exactly as delivered: real names, real sizes, one link</div>
+  </div>
+</section>
+
+<!-- BONUSES -->
+<section id="bonus" class="wide">
+  <div class="sectionhead">
+    <div class="k">11 — The Bonuses</div>
+    <h2>A few extra gifts, to round out the pack.</h2>
+  </div>
+  <p>They paid for six loops. I kept dropping extras into their folder at no charge: two more logo walls, a stainless-steel spin on the chrome, and two dancing loops cut from footage too good to waste. The walls and the spin came out of <b>my own custom software</b>.</p>
+  <div class="grid3 mt">
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop06b_rings.mp4?v=1" type="video/mp4"></video><div class="cap">Logo wall: rings</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/loop06c_scroll.mp4?v=1" type="video/mp4"></video><div class="cap">Logo wall: scroll</div></div>
+    <div><video class="vid169" autoplay loop muted playsinline preload="auto"><source src="assets/bonus_stainless_spin.mp4?v=1" type="video/mp4"></video><div class="cap">Stainless spin, made as a thank-you</div></div>
+  </div>
+  
+  <div class="grid2 mt">
+    <div>
+      <div class="strobewrap" data-strobe>
+        <video class="vid169" muted playsinline preload="none" poster="assets/result_dancing_strobe_poster.jpg"><source src="assets/result_dancing_strobe.mp4?v=1" type="video/mp4"></video>
+        <div class="playbtn"><span>▶</span></div>
+      </div>
+      <div class="cap">Bonus: dancing twin pair, strobe</div>
+    </div>
+    <div>
+      <div class="strobewrap" data-strobe>
+        <video class="vid169" muted playsinline preload="none" poster="assets/result_kaleidoscope_poster.jpg"><source src="assets/result_kaleidoscope.mp4?v=1" type="video/mp4"></video>
+        <div class="playbtn"><span>▶</span></div>
+      </div>
+      <div class="cap">Bonus: kaleidoscope, built for a peak moment</div>
+    </div>
+  </div>
+  <div class="epilepsy">⚠ Photosensitivity warning: these two loops strobe rapidly. Click a frame to play its 10-second loop; click again to stop.</div>
+</section>
+
+<!-- SCOPE -->
+<section class="wide">
+  <div class="sectionhead">
+    <div class="k">12 — Scope</div>
+    <h2>What shipped, and what's next.</h2>
+  </div>
+  <div class="twocol">
+    <div class="card">
+      <h3>Shipped</h3>
+      <p><b>Twelve pieces</b> from a six-loop brief: the six core loops in TWINEM's official colors, two bonus dancing loops, a third logo-wall variant, and a stainless-steel spinning logo. Every clip in three formats (mp4, alpha MOV, DXV3), plus a static logo kit and their own passcode-locked copy of the dither tool. First contact to pack-complete in 96 hours.</p>
+    </div>
+    <div class="card">
+      <h3>Locked for the next show</h3>
+      <p>The 3D logo has more moves in it, and every project file is archived, so the next build starts fast. The whole set can also render as one long video that runs itself.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits" class="wide">
+  <div class="sectionhead">
+    <div class="k">13 — Credits, Tools & Timeline</div>
+    <h2>Four days, three people, one world.</h2>
+  </div>
+  <div class="twocol">
+    <div>
+      <h3 style="color:var(--accent)">Who did what</h3>
+      <div class="roles">
+        <div><b>Mitch</b> — Scoped it on one call, directed the twins' phone shoot live in the group chat, built all six loops plus the custom dither tool, and ran the whole 96-hour sprint.</div>
+        <div><b>The AI agent system</b> — auto-onboarded the questionnaire into a full client folder system, tracked and named every asset, and kept the process log this page is written from. (The agents run the paperwork; the visuals are hand-made.)</div>
+        <div><span><b>TWINEM</b> (@twinemmusic)</span> — Filled the questionnaire, shot their own footage on phones at night with live direction, sent every brand asset within hours, and gave feedback until 2 AM.</div>
+        <div><b>Two good friends</b> — each spotted TWINEM's story and forwarded it to me within minutes of each other.</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--accent)">Tool chain</h3>
+      <div class="toolflow">
+        Branding questionnaire <span style="color:var(--muted2)">(their world, in their words)</span><br>↓<br>
+        Scoped call <span style="color:var(--muted2)">(screen specs first, six loops locked)</span><br>↓<br>
+        Blender <span style="color:var(--muted2)">(the 3D chrome logo)</span><br>↓<br>
+        Premiere <span style="color:var(--muted2)">(cutting the silhouettes out of night footage)</span><br>↓<br>
+        After Effects <span style="color:var(--muted2)">(composites, scanlines, seamless loops)</span><br>↓<br>
+        dither-lab, my own tool <span style="color:var(--muted2)">(TWINEM-tuned Y2K pixelation)</span><br>↓<br>
+        My own custom software <span style="color:var(--muted2)">(the logo walls + stainless spin)</span><br>↓<br>
+        Spanish moss, photographed <span style="color:var(--muted2)">(became the electricity)</span><br>↓<br>
+        Resolume Alley <span style="color:var(--muted2)">(DXV3 encodes for the VJ)</span><br>↓<br>
+        Shared-folder delivery <span style="color:var(--muted2)">(named, labeled, confirmed)</span>
+      </div>
+      <div class="mt" style="margin-top:34px">
+        <div class="stat">96 hrs</div>
+        <p style="color:var(--muted)">First contact Monday evening → pack complete Saturday 9:42 AM. August 4-8, 2026.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="wide">
+  <div class="cta2">
+    <a class="bigbtn" href="../../#work">All Work</a>
+    <a class="bigbtn" href="mailto:cravinadventure@gmail.com">Contact</a>
+  </div>
+</section></main>
+
+<footer class="wide">
+  Mitchell Edwards · VJ Pack · TWINEM × Seaport Ibiza Boat Rave, August 2026.<br>
+  <a href="mailto:cravinadventure@gmail.com" style="color:var(--accent);text-decoration:none">cravinadventure@gmail.com</a>
+</footer>
+
+<script>
+(function(){
+  // Strobe clips are the one exception to always-loop: click-to-play, stop at end.
+  [].slice.call(document.querySelectorAll('.strobewrap')).forEach(function(w){
+    var v=w.querySelector('video');
+    w.addEventListener('click',function(){
+      if(v.paused){ w.classList.add('playing'); v.currentTime=0; v.play(); }
+      else { v.pause(); v.load(); w.classList.remove('playing'); }
+    });
+    v.addEventListener('ended',function(){ v.load(); w.classList.remove('playing'); });
+  });
+
+  
+  // before/after drag sliders
+  [].slice.call(document.querySelectorAll('.baslider')).forEach(function(el){
+    function setPos(clientX){
+      var r=el.getBoundingClientRect();
+      var pct=Math.max(2,Math.min(98,(clientX-r.left)/r.width*100));
+      el.style.setProperty('--pos',pct+'%');
+    }
+    el.addEventListener('pointerdown',function(e){
+      el.setPointerCapture(e.pointerId); setPos(e.clientX);
+      function mv(ev){ setPos(ev.clientX); }
+      function up(ev){ el.removeEventListener('pointermove',mv); el.removeEventListener('pointerup',up); }
+      el.addEventListener('pointermove',mv); el.addEventListener('pointerup',up);
+    });
+  });
+
+  var vids=[].slice.call(document.querySelectorAll('video')).filter(function(v){return !v.closest('[data-strobe]');});
+  vids.forEach(function(v){v.muted=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('webkit-playsinline','');});
+  function play(v){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){play(e.target);} else {e.target.pause();} });
+    },{threshold:0.2});
+    vids.forEach(function(v){io.observe(v);});
+  } else { vids.forEach(play); }
+})();
+</script>
+</body>
+</html>
