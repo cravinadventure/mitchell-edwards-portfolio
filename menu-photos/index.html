@@ -3,405 +3,505 @@
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cravin' Flavors - Menu photos from your phone</title>
-<meta name="description" content="A remote menu photo service for restaurants: send phone photos of your dishes and your menu, get back a consistent, delivery-app-ready photo set for the whole menu.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cravin' Flavors - From your kitchen to your digital storefront</title>
+<meta name="description" content="Snap every dish on your phone. We turn it into menu photography that sells on Uber Eats, DoorDash, Grubhub, your website and social.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Cravin' Flavors">
-<meta property="og:title" content="Upgrade your menu photos">
-<meta property="og:description" content="Your phone photos and your menu in, a full delivery-app-ready menu set out.">
+<meta property="og:title" content="From your kitchen to your digital storefront">
+<meta property="og:description" content="Snap every dish on your phone. We turn it into menu photography that sells.">
 <meta property="og:url" content="https://cravinadventure.com/menu-photos/">
-<meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://cravinadventure.com/menu-photos/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-    :root{
-    --bg:#fafaf8; --panel:#f3f3f0; --panel2:#ffffff;
-    --paper:#111112; --text:#2c2c30; --text-soft:#3c3c40; --text-dim:#4a4a4f;
-    --muted:#6f6f74; --muted2:#9b9b9f;
-    --line:rgba(0,0,0,.10); --line2:rgba(0,0,0,.18);
-    --accent:#5A6678; --accent-dim:#3e4754; --accent-bright:#7c8aa0;
-    --on-accent:#ffffff; --signal:#3e4754;
-    --accent-glow:rgba(90,102,120,.05);
-    --accent-tint:rgba(90,102,120,.08);
-    --accent-tint-faint:rgba(90,102,120,.04);
-    --nav-bg:rgba(250,250,248,.88);
-    --subnav-bg:rgba(250,250,248,.92);
-    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  :root{
+    --ink:#141210; --ink2:#1d1a17; --cream:#f7f2ea; --paper:#fffdf9;
+    --text:#2a2622; --soft:#6d655c; --line:rgba(20,18,16,.12);
+    --tomato:#ff5a36; --tomato-d:#e0431f; --basil:#2f8f5b;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--paper);font-family:var(--sans);line-height:1.6;
-    background-image:radial-gradient(1200px 600px at 70% -10%,var(--accent-glow),transparent 60%);}
-  .wide{max-width:1240px;margin:0 auto;padding-left:48px;padding-right:48px}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--ink);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
   a{color:inherit}
+  .wrap{width:min(1180px,100% - 40px);margin:0 auto}
+  h1,h2,h3{font-family:var(--serif);font-weight:800;letter-spacing:-.02em;line-height:1.02}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--tomato)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:16px;text-decoration:none;
+    padding:17px 28px;border-radius:999px;background:var(--tomato);color:#fff;border:0;transition:transform .15s,background .15s}
+  .btn:hover{background:var(--tomato-d);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5)}
+  .btn.ghost:hover{background:rgba(255,255,255,.08)}
+  .btn.dark{background:var(--ink);color:#fff}
 
-  /* nav */
-  nav{position:sticky;top:0;z-index:50;display:flex;justify-content:center;align-items:center;
-    padding:14px 28px;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  nav .brand{font-weight:800;letter-spacing:.5px}
-  nav .brand span{color:var(--accent)}
-  nav .tag{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
-  @media(max-width:620px){nav .tag{display:none}}
+  /* top bar */
+  .bar{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;padding-top:max(14px,env(safe-area-inset-top));transition:background .25s,box-shadow .25s}
+  .bar.solid{background:rgba(20,18,16,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+  .logo{font-family:var(--serif);font-weight:800;font-size:20px;color:#fff;text-decoration:none;letter-spacing:-.01em}
+  .bar .btn{padding:11px 18px;font-size:14px}
 
-  /* subnav */
-  .subnav{position:sticky;top:51px;z-index:40;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;
-    padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
-  .subnav a{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
-    text-decoration:none;padding:6px 12px;border-radius:30px;transition:.15s}
-  .subnav a:hover{color:var(--accent);background:var(--accent-tint)}
-  section[id]{scroll-margin-top:104px}
+  /* 1. hero: full-frame explainer video */
+  .hero{position:relative;height:100svh;min-height:560px;color:#fff;overflow:hidden;background:#0e0b09}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,7,.92) 0%,rgba(10,8,7,.78) 34%,rgba(10,8,7,0) 62%)}
+  .hero .inner{position:absolute;left:0;right:0;bottom:0;top:0;display:flex;flex-direction:column;justify-content:center;
+    width:min(1320px,100% - 40px);margin:0 auto;padding-top:60px}
+  .hero .copy{max-width:600px}
+  .hero h1{font-size:clamp(44px,5.8vw,92px)}
+  .hero h1 em{font-style:normal;color:var(--tomato)}
+  .hero p{font-size:clamp(17px,1.5vw,21px);max-width:34ch;margin:20px 0 22px;color:rgba(255,255,255,.88)}
+  .hero .statchip{display:inline-flex;gap:12px;align-items:baseline;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    border-radius:14px;padding:12px 16px;margin-bottom:24px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .hero .statchip b{font-family:var(--serif);font-size:30px;color:var(--tomato);line-height:1}
+  .hero .statchip span{font-size:14.5px;line-height:1.35;color:rgba(255,255,255,.9)}
+  .hero .statchip small{display:block;font-size:11.5px;color:rgba(255,255,255,.55);margin-top:2px}
+  .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+  /* 2. story (sticky) */
+  .story{background:var(--ink);color:#fff;position:relative}
+  .story .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;width:min(1180px,100% - 40px);margin:0 auto}
+  .stage{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center}
+  .phone{position:relative;height:min(680px,80vh);aspect-ratio:9/19.5;border-radius:44px;background:#0b0b0b;padding:11px;
+    box-shadow:0 0 0 2px #2c2c2c,0 40px 90px rgba(0,0,0,.6)}
+  .phone .notch{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:34%;height:24px;background:#000;border-radius:20px;z-index:5}
+  .screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#000}
+  .layer{position:absolute;inset:0;opacity:0;transition:opacity .7s ease}
+  .layer.on{opacity:1}
+  .l-cam img{width:100%;height:100%;object-fit:cover}
+  .l-cam .camui{position:absolute;inset:auto 0 0 0;height:22%;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center}
+  .l-cam .shutter{width:58px;height:58px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px #000,0 0 0 7px #fff}
+  .l-cam .mode{position:absolute;top:10px;left:0;right:0;text-align:center;font:600 10px/1 var(--sans);letter-spacing:.16em;color:#ffd24a}
+  .l-cam .cam-top{position:absolute;top:0;left:0;right:0;height:9%;background:rgba(0,0,0,.72)}
+  .l-send{background:#f2f2f7;display:flex;flex-direction:column}
+  .l-send .hd{padding:48px 16px 10px;font:700 15px/1.2 var(--sans);color:#111;text-align:center;border-bottom:1px solid #ddd;background:#fafafa}
+  .l-send .thread{flex:1;padding:14px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end}
+  .bub{max-width:78%;border-radius:18px;padding:9px 13px;font-size:13.5px;line-height:1.35}
+  .bub.me{align-self:flex-end;background:#0a84ff;color:#fff}
+  .bub.them{align-self:flex-start;background:#e5e5ea;color:#111}
+  .bub.img{padding:4px;background:#0a84ff}.bub.img img{border-radius:14px;width:120px;height:120px;object-fit:cover}
+  .bub.them.img{background:#e5e5ea}
+  .l-app{background:#fff;display:flex;flex-direction:column}
+  .l-app .banner{height:24%;background:url(assets/bonu_spaghetto_di_bonu.jpg) center/cover}
+  .l-app .ah{padding:12px 14px 4px}.l-app .ah b{display:block;font:700 16px/1.2 var(--sans);color:#111}.l-app .ah span{font-size:11px;color:#777}
+  .l-app .sec{padding:8px 14px 4px;font:700 12.5px/1 var(--sans);color:#111}
+  .l-app .rows{flex:1;overflow:hidden;position:relative}
+  .l-app .roll{animation:roll 16s linear infinite}
+  @keyframes roll{to{transform:translateY(-50%)}}
+  .mrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 14px;border-top:1px solid #eee}
+  .mrow b{display:block;font:700 13px/1.25 var(--sans);color:#111}.mrow span{font-size:11px;color:#777;line-height:1.3;display:block}
+  .mrow img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none}
+  .steps{padding:0}
+  .step{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+  .step .n{font-family:var(--serif);font-size:18px;color:var(--tomato);margin-bottom:12px}
+  .step h2{font-size:clamp(36px,5vw,64px);margin-bottom:16px}
+  .step p{font-size:18px;color:rgba(255,255,255,.78);max-width:30ch}
 
-  /* type */
-  .k{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-  h1{font-size:clamp(38px,6vw,76px);line-height:1.02;letter-spacing:-1.5px;font-weight:800}
-  h2{font-size:clamp(26px,3.4vw,40px);line-height:1.08;letter-spacing:-.6px;font-weight:800;margin-bottom:18px}
-  h3{font-size:18px;font-weight:700;margin-bottom:8px}
-  p{color:var(--text);font-size:16.5px;max-width:760px}
-  p+p{margin-top:16px}
-  .lede{font-size:clamp(18px,2vw,21px);color:var(--text-soft)}
-  .em{color:var(--accent)}
-  .sectionhead{margin-bottom:44px}
-  section{padding-top:120px;padding-bottom:120px;border-top:1px solid var(--line)}
+  /* 2b. who we work with */
+  .who{background:var(--cream);padding:0}
+  .who .g{display:grid;grid-template-columns:1fr 1fr;min-height:92svh}
+  .who .pic{background:url(assets/hero_kitchen.jpg) center 40%/cover no-repeat;min-height:420px}
+  .who .txt{display:flex;flex-direction:column;justify-content:center;padding:90px clamp(24px,6vw,96px)}
+  .who h2{font-size:clamp(38px,4.8vw,70px);margin:12px 0 22px}
+  .who p{font-size:19px;color:var(--text);max-width:38ch;margin-bottom:16px}
+  .who p.soft{color:var(--soft)}
+  .who .sig{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--tomato);margin-top:10px}
+  @media (max-width:900px){.who .g{grid-template-columns:1fr;min-height:0}.who .pic{min-height:56svh}.who .txt{padding:60px 20px 70px}}
 
-  /* hero */
-  .hero{padding-top:96px;padding-bottom:48px;border-top:none}
-  .hero h1{margin:6px 0 22px;max-width:18ch;overflow-wrap:break-word}
-  .meta{font-family:var(--mono);font-size:12.5px;letter-spacing:1px;color:var(--muted);margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
-  .meta span{border:1px solid var(--line);border-radius:30px;padding:6px 12px}
-  .rec{color:var(--signal)}
+  /* 3. before/after */
+  .ba{background:var(--cream);padding:110px 0}
+  .ba h2{font-size:clamp(36px,5.4vw,72px);max-width:14ch}
+  .ba .lead{font-size:19px;color:var(--soft);max-width:44ch;margin:16px 0 34px}
+  .slider{position:relative;width:min(760px,100%);aspect-ratio:1/1;border-radius:22px;overflow:hidden;touch-action:none;cursor:ew-resize;--pos:50%;
+    box-shadow:0 30px 70px rgba(40,25,10,.18);user-select:none;-webkit-user-select:none;background:#fff}
+  .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .slider .after{clip-path:inset(0 0 0 var(--pos))}
+  .slider .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;background:#fff;transform:translateX(-50%);box-shadow:0 0 12px rgba(0,0,0,.3)}
+  .slider .handle:after{content:"";position:absolute;top:50%;left:50%;width:46px;height:46px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);
+    box-shadow:0 6px 18px rgba(0,0,0,.25);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141210' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E");background-size:24px;background-repeat:no-repeat;background-position:center}
+  .tag{position:absolute;top:14px;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:8px 11px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
+  .tag.l{left:14px}.tag.r{right:14px;background:var(--tomato)}
+  .thumbs{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .thumbs button{width:68px;height:68px;border-radius:14px;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:#fff}
+  .thumbs button.on{border-color:var(--tomato)}
+  .thumbs img{width:100%;height:100%;object-fit:cover}
+  .ba-grid{display:grid;grid-template-columns:minmax(0,760px) 1fr;gap:56px;align-items:center}
+  .ba-note{font-size:16px;color:var(--soft)}
+  .ba-note b{color:var(--text)}
 
-  /* placeholder frames (HUD viewfinder) */
-  .ph{position:relative;width:100%;background:
-      repeating-linear-gradient(45deg,rgba(0,0,0,.015) 0 12px,transparent 12px 24px),var(--panel);
-    border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:26px 22px;gap:9px;overflow:hidden}
-  .ph::before{content:"";position:absolute;top:9px;left:9px;width:20px;height:20px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);opacity:.8}
-  .ph::after{content:"";position:absolute;bottom:9px;right:9px;width:20px;height:20px;border-bottom:2px solid var(--accent);border-right:2px solid var(--accent);opacity:.8}
-  .ph .ico{font-size:20px;color:var(--accent);opacity:.85}
-  .ph .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
-  .ph .desc{font-size:13.5px;color:var(--text-dim);max-width:92%;line-height:1.5}
-  .ph .fmt{position:absolute;top:10px;right:12px;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--muted2)}
-  .ph.hero169{aspect-ratio:16/9}
-  .r169{aspect-ratio:16/9}
-  .r916{aspect-ratio:9/16}
-  .r11{aspect-ratio:1/1}
-  .r43{aspect-ratio:4/3}
-  .vid169,.vid916,.img169,.img916{width:100%;display:block;border:1px solid var(--accent-dim);background:#000;object-fit:cover}
-  .vid169,.img169{aspect-ratio:16/9}
-  .vid916,.img916{aspect-ratio:9/16}
-  .moodgrid{column-count:3;column-gap:16px;margin-top:18px}
-  .moodgrid>*{width:100%;display:block;margin:0 0 16px;break-inside:avoid;border:1px solid var(--accent-dim);background:#000}
+  /* 4. speed */
+  .speed{background:var(--tomato);color:#fff;padding:110px 0}
+  .speed .big{font-family:var(--serif);font-weight:800;font-size:clamp(84px,17vw,230px);line-height:.9;letter-spacing:-.04em}
+  .speed h2{font-size:clamp(30px,4vw,52px);margin:18px 0 18px;max-width:18ch}
+  .speed p{font-size:19px;max-width:46ch;color:rgba(255,255,255,.92)}
+  .speed .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:54px;border-top:1px solid rgba(255,255,255,.35);padding-top:30px}
+  .speed .cols b{display:block;font-family:var(--serif);font-size:24px;margin-bottom:6px}
+  .speed .cols p{font-size:16px}
 
-  /* layout helpers */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .stack-sm{display:grid;gap:18px}
-  .mt{margin-top:40px}
-  .narrow{max-width:300px}
-  .center{margin-left:auto;margin-right:auto}
-  .cap{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:10px}
+  /* 5. tracker */
+  .track{background:var(--paper);padding:110px 0}
+  .track .g{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+  .track h2{font-size:clamp(36px,5vw,64px)}
+  .track .lead{font-size:19px;color:var(--soft);margin:16px 0 22px;max-width:40ch}
+  .track ul{list-style:none;display:grid;gap:12px}
+  .track li{display:flex;gap:12px;align-items:flex-start;font-size:16.5px}
+  .track li:before{content:"";flex:none;width:22px;height:22px;border-radius:50%;margin-top:2px;background:var(--basil) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/14px no-repeat}
+  .dash{background:#fff;border-radius:20px;box-shadow:0 30px 70px rgba(40,25,10,.14),0 0 0 1px var(--line);overflow:hidden}
+  .dash .top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+  .dash .top b{font:700 15px/1.2 var(--sans)}.dash .top span{font-size:12.5px;color:var(--soft)}
+  .prog{height:8px;background:#efe9e0;margin:0 20px 6px;border-radius:99px;overflow:hidden}
+  .prog i{display:block;height:100%;width:0;background:var(--basil);border-radius:99px;transition:width 1.4s ease}
+  .dash .meta{display:flex;justify-content:space-between;padding:14px 20px 4px;font-size:12.5px;color:var(--soft)}
+  .drow{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:10px 20px;border-top:1px solid var(--line)}
+  .drow .th{width:44px;height:44px;border-radius:10px;background:#f1ece4;overflow:hidden}.drow .th img{width:100%;height:100%;object-fit:cover}
+  .drow b{font:600 14px/1.2 var(--sans)}.drow small{display:block;font-size:12px;color:var(--soft)}
+  .pill{font:700 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:7px 10px;border-radius:999px;white-space:nowrap}
+  .p-done{background:#e3f3ea;color:#1f6b43}.p-work{background:#fff1d6;color:#8a5a00}.p-need{background:#ffe5de;color:#b3321a}
 
-  .pill{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-    color:var(--accent);border:1px solid var(--accent-dim);border-radius:30px;padding:5px 11px;margin:0 6px 8px 0}
+  /* 6. stats */
+  .stats{background:var(--ink);color:#fff;padding:110px 0}
+  .stats h2{font-size:clamp(36px,5.4vw,72px);max-width:16ch}
+  .stats .lead{font-size:19px;color:rgba(255,255,255,.72);max-width:46ch;margin:16px 0 50px}
+  .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .stat{border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:28px}
+  .stat .num{font-family:var(--serif);font-weight:800;font-size:clamp(52px,6vw,78px);line-height:1;color:var(--tomato);letter-spacing:-.03em}
+  .stat p{margin-top:14px;font-size:16.5px;color:rgba(255,255,255,.88)}
+  .stat small{display:block;margin-top:12px;font-size:12.5px;color:rgba(255,255,255,.5)}
+  .fine{margin-top:26px;font-size:13px;color:rgba(255,255,255,.45);max-width:70ch}
 
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px}
-  .card h3{color:var(--accent)}
-  .roles div{padding:14px 0;border-bottom:1px solid var(--line)}
-  .roles b{color:var(--paper)}
-  .roles a,.roles a b{color:var(--accent);text-decoration:none}
-  .roles a:hover,.roles a:hover b{color:var(--accent-bright);text-decoration:underline}
-  .toolflow{font-family:var(--mono);font-size:13px;line-height:2;color:var(--text-soft)}
-  .stat{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-1px;color:var(--accent);font-family:var(--mono)}
+  /* 7. wall */
+  .wall{background:#fff;padding:100px 0 0}
+  .wall h2{font-size:clamp(36px,5.4vw,72px);text-align:center}
+  .wall .lead{text-align:center;font-size:19px;color:var(--soft);margin:14px auto 44px;max-width:40ch}
+  .tiles{display:grid;grid-template-columns:repeat(8,1fr)}
+  .tiles img{width:100%;aspect-ratio:1/1;object-fit:cover}
 
-  /* before/after drag slider */
-  .baslider{position:relative;overflow:hidden;border:1px solid var(--accent-dim);background:#000;
-    aspect-ratio:16/9;cursor:ew-resize;touch-action:none;user-select:none;--pos:50%}
-  .baslider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border:none;pointer-events:none}
-  .baslider .ba-top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
-  .baslider .ba-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--accent);
-    transform:translateX(-1px);pointer-events:none;box-shadow:0 0 12px rgba(228,23,94,.6)}
-  .baslider .ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:44px;height:44px;border-radius:50%;background:rgba(10,11,14,.8);border:2px solid var(--accent);
-    color:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:15px}
-  .baslider .ba-tag{position:absolute;top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;
-    text-transform:uppercase;background:rgba(10,11,14,.75);border:1px solid var(--line);border-radius:20px;
-    padding:4px 11px;pointer-events:none}
-  .baslider .ba-tag-l{left:12px;color:var(--paper)}
-  .baslider .ba-tag-r{right:12px;color:var(--accent)}
+  /* 8. needs */
+  .needs{background:var(--cream);padding:110px 0}
+  .needs h2{font-size:clamp(36px,5.4vw,72px);max-width:14ch;margin-bottom:40px}
+  .ncols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ncol{background:#fff;border-radius:20px;padding:28px;box-shadow:0 0 0 1px var(--line)}
+  .ncol h3{font-size:24px;margin-bottom:14px}
+  .ncol ul{list-style:none;display:grid;gap:10px;font-size:16.5px}
+  .ncol li{padding-left:22px;position:relative}.ncol li:before{content:"";position:absolute;left:0;top:10px;width:9px;height:9px;border-radius:50%;background:var(--tomato)}
+  .ncol.no li:before{background:#c9c0b4}
 
-  .strobewrap{position:relative;cursor:pointer}
-  .strobewrap .playbtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    background:rgba(10,11,14,.25);transition:.15s}
-  .strobewrap .playbtn span{width:74px;height:74px;border-radius:50%;background:rgba(10,11,14,.75);
-    border:2px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;
-    font-size:26px;padding-left:6px}
-  .strobewrap:hover .playbtn span{background:var(--accent);color:var(--on-accent)}
-  .strobewrap.playing .playbtn{display:none}
-  .epilepsy{margin-top:14px;font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;
-    color:#febc2e;border:1px solid rgba(254,188,46,.35);background:rgba(254,188,46,.06);
-    border-radius:10px;padding:10px 14px}
-  .cta2{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto}
-  .bigbtn{display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:var(--mono);font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
-    font-size:clamp(15px,2vw,21px);color:var(--accent);text-decoration:none;
-    border:1px solid var(--accent-dim);border-radius:16px;padding:44px 24px;min-height:120px;
-    background:var(--accent-tint-faint);transition:.16s}
-  .bigbtn:hover{background:var(--accent);color:var(--on-accent);border-color:var(--accent);transform:translateY(-2px)}
-  @media(max-width:620px){.cta2{grid-template-columns:1fr}}
-  footer{padding:50px 0 70px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;text-align:center}
+  /* 9. faq */
+  .faq{background:var(--paper);padding:110px 0}
+  .faq h2{font-size:clamp(36px,5.4vw,72px);margin-bottom:30px}
+  details{border-top:1px solid var(--line);padding:22px 0}
+  details:last-of-type{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;list-style:none;font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,26px);display:flex;justify-content:space-between;gap:20px}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+";font-family:var(--sans);font-weight:400;color:var(--tomato);font-size:28px;line-height:1}
+  details[open] summary:after{content:"\2212"}
+  details p{margin-top:12px;font-size:17px;color:var(--soft);max-width:62ch}
 
-  .cap-mobile{display:none}
-  @media(max-width:820px){
-    .mossgrid{grid-template-columns:1fr 1fr !important}
-    .mossgrid > div:nth-child(n+3){display:none}
-    .cap-desktop{display:none}
-    .cap-mobile{display:inline}
+  /* 10. final cta */
+  .final{position:relative;min-height:92svh;display:flex;align-items:center;color:#fff;overflow:hidden;background:#000}
+  .final .bg{position:absolute;inset:0;background:url(assets/bonu_linguine.jpg) center/cover;filter:brightness(.42)}
+  .final .inner{position:relative;width:min(1180px,100% - 40px);margin:0 auto;padding:80px 0}
+  .final h2{font-size:clamp(48px,8vw,110px);max-width:11ch}
+  .final p{font-size:20px;max-width:38ch;margin:18px 0 30px;color:rgba(255,255,255,.88)}
+  .final .ctas{display:flex;gap:12px;flex-wrap:wrap}
+  footer{background:var(--ink);color:rgba(255,255,255,.55);font-size:13.5px;padding:34px 20px max(34px,env(safe-area-inset-bottom));text-align:center}
+  footer a{color:rgba(255,255,255,.8);text-decoration:none}
 
-    .wide{padding-left:22px;padding-right:22px}
-    .split,.grid2,.grid3,.grid4,.twocol{grid-template-columns:1fr}
-    .moodgrid{column-count:2}
-    .hero h1{white-space:normal}
-    .subnav{justify-content:flex-start;overflow-x:auto}
+  /* sticky mobile CTA */
+  .mcta{display:none}
+
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media (max-width:900px){
+    body{font-size:16.5px}
+    .story .grid{grid-template-columns:1fr;gap:0}
+    .stage{height:62svh;top:56px;z-index:2;background:linear-gradient(var(--ink) 85%,rgba(20,18,16,0))}
+    .phone{width:auto;height:54svh}
+    .step{min-height:80svh;justify-content:flex-start;padding-top:8svh;position:relative;z-index:3}
+    .step .card{background:rgba(29,26,23,.94);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px 20px 22px}
+    .step h2{font-size:32px}.step p{font-size:16.5px}
+    .ba-grid,.track .g{grid-template-columns:1fr;gap:34px}
+    .speed .cols,.sgrid,.ncols{grid-template-columns:1fr}
+    .tiles{grid-template-columns:repeat(4,1fr)}
+    .ba,.speed,.track,.stats,.needs,.faq{padding:80px 0}
+    .hero .shade{background:linear-gradient(180deg,rgba(10,8,7,0) 38%,rgba(10,8,7,.86) 58%,rgba(10,8,7,.96) 100%)}
+    .hero .inner{justify-content:flex-end;padding:0 0 max(28px,env(safe-area-inset-bottom))}
+    .hero h1{font-size:clamp(36px,10vw,54px)}
+    .hero p{margin:12px 0 14px;font-size:16px}
+    .hero .eyebrow,.hero .btn.ghost{display:none}
+    .hero .shade{background:linear-gradient(180deg,rgba(10,8,7,0) 46%,rgba(10,8,7,.9) 60%,rgba(10,8,7,.97) 100%)}
+    .hero .statchip{margin-bottom:16px;padding:10px 12px}.hero .statchip b{font-size:24px}.hero .statchip span{font-size:13px}
+    .mcta{display:flex;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:60;transform:translateY(140%);transition:transform .3s}
+    .mcta.show{transform:none}
+    .mcta .btn{flex:1;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+    .bar .btn{display:none}
   }
-
-  /* portfolio header, matches the main site */
-  .pnav{position:fixed;top:0;left:0;right:0;z-index:60;height:52px;display:flex;justify-content:space-between;
-    align-items:center;padding:0 28px;background:var(--bg);border-bottom:1px solid var(--line);
-    font-family:"Montserrat",Helvetica,Arial,sans-serif}
-  .pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;letter-spacing:.12em;font-size:13px;text-transform:uppercase;color:#111112;text-decoration:none}
-  .pnav .plinks{display:flex;gap:26px}
-  .pnav .plinks a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f6f74;text-decoration:none;transition:color .3s}
-  .pnav .plinks a:hover{color:#111112}
-  @media(max-width:760px){.pnav .plinks{display:none}}
-
-  /* match the portfolio typography */
-  body{font-family:"Montserrat",Helvetica,Arial,sans-serif}
-  h1,h2,h3,h4,.bigbtn,.pnav .pname{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%}
-  h1{letter-spacing:-.4px}
-  h2{letter-spacing:-.2px}
-
-  /* business outcome box */
-  .biz{margin-top:34px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
-    border-radius:12px;padding:24px 26px;max-width:800px}
-  .biz b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
-    color:var(--accent);margin-bottom:10px}
-  .biz p{max-width:none}
-
-  /* quoted machine output */
-  .out{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:24px 26px;max-width:820px;margin-top:22px}
-  .out .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);
-    display:block;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-  .out p{font-size:15.5px;color:var(--text-soft);max-width:none}
-  .out .mono{font-family:var(--mono);font-size:13px;line-height:1.9;color:var(--text-dim)}
-
-  /* numbered chain */
-  .chain{display:grid;gap:2px;margin-top:26px;max-width:900px}
-  .chain div{background:var(--panel);border:1px solid var(--line);padding:18px 22px;display:flex;gap:18px;align-items:baseline}
-  .chain div:first-child{border-radius:12px 12px 0 0}
-  .chain div:last-child{border-radius:0 0 12px 12px}
-  .chain em{font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:1.5px;color:var(--accent);flex:0 0 26px}
-  .chain p{margin:0;font-size:15.5px}
-  @media(max-width:620px){.chain div{flex-direction:column;gap:8px}}
-
-  .imgp{width:100%;display:block;border:1px solid var(--accent-dim);background:#000;aspect-ratio:3/4;object-fit:cover}
-  .imgd{width:100%;display:block;border:1px solid var(--accent-dim);background:#000}
-
-  /* result mockups */
-  .imgp.bonu{background:#fff;border-color:var(--line2);aspect-ratio:1/1;object-fit:cover}
-  .ba{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-  .balabel{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:12px}
-  .balabel.on{color:var(--accent)}
-  .bacap{margin-top:18px;font-size:15px;color:var(--text-dim)}
-  .phone{max-width:300px;margin:0 auto;border:9px solid #111;border-radius:40px;background:#111;box-shadow:0 18px 40px rgba(0,0,0,.14)}
-  .phone .scr{background:#fff;border-radius:31px;overflow:hidden;aspect-ratio:9/19.5;display:flex;flex-direction:column}
-  .banner{height:120px;background-size:cover;background-position:center}
-  .apphead{padding:12px 16px 6px}.apphead b{display:block;font-size:17px;color:#111}.apphead span{font-size:12px;color:#666}
-  .appsec{padding:10px 16px 4px;font-size:13px;font-weight:700;color:#111}
-  .mrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid #eee;min-height:86px}
-  .mtxt b{display:block;font-size:14px;color:#111}.mtxt span{font-size:12px;color:#777;line-height:1.35;display:block}
-  .mrow img{width:72px;height:72px;object-fit:cover;border-radius:10px;flex:none;background:#f4f4f4}
-  .mapbg{height:230px;position:relative;background:#e8eee9;background-image:linear-gradient(90deg,rgba(255,255,255,.9) 2px,transparent 2px),linear-gradient(rgba(255,255,255,.9) 2px,transparent 2px),linear-gradient(35deg,transparent 48%,#f6e7b8 48%,#f6e7b8 53%,transparent 53%);background-size:60px 60px,60px 60px,100% 100%}
-  .pin{position:absolute;left:50%;top:48%;width:22px;height:22px;background:#d9423a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:translate(-50%,-50%) rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.3)}
-  .place{padding:14px 16px}.place b{display:block;font-size:17px;color:#111}.place span{font-size:12px;color:#666}
-  .pbtns{display:flex;gap:8px;margin:12px 0}.pbtns i{font-style:normal;font-size:12px;padding:6px 12px;border-radius:20px;background:#eef2f7;color:#2c4a7a}
-  .pstrip{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4px}.pstrip img{width:100%;height:118px;object-fit:cover;border-radius:6px}
-  .browser{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.10)}
-  .bbar{height:28px;background:#f1f1ef;display:flex;gap:6px;align-items:center;padding:0 12px}.bbar i{width:9px;height:9px;border-radius:50%;background:#d6d6d3}
-  .shero{height:190px;background-size:cover;background-position:center;display:flex;align-items:flex-end}
-  .shero div{width:100%;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.55));display:flex;justify-content:space-between;align-items:center}
-  .shero b{color:#fff;font-size:17px}.shero em{font-style:normal;font-size:12px;background:#fff;color:#111;padding:6px 12px;border-radius:20px}
-  .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px}.sgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
-  @media(max-width:760px){.ba{grid-template-columns:1fr}}
-
-  .dapp{background:#fff}.dbanner{height:130px;background-size:cover;background-position:center}
-  .dhead{padding:12px 16px 4px}.dhead b{display:block;font-size:16px;color:#111}.dhead span{font-size:11.5px;color:#666}
-  .dsec{padding:8px 16px 6px;font-size:12.5px;font-weight:700;color:#111}
-  .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px 16px}
-  .dcard{border:1px solid #eee;border-radius:10px;overflow:hidden;background:#fff;min-height:96px}
-  .dcard img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f4f4f4}
-  .dtxt{padding:8px 10px}.dtxt b{display:block;font-size:12.5px;color:#111}.dtxt span{font-size:11px;color:#777;line-height:1.3;display:block}
-  .nophoto{background:#ececea}
-  .dph{width:100%;aspect-ratio:4/3;background:#f6f6f4}
-  .mph{width:72px;height:72px;border-radius:10px;flex:none;background:#f6f6f4}
-
-  /* auto-scrolling menus: header static, list scrolls down then snaps back */
-  .pscroll{flex:1;overflow:hidden;position:relative}
-  .dscroll{height:230px;overflow:hidden;position:relative}
-  .scroller{will-change:transform}
-  .auto .scroller{animation:menuscroll var(--dur,12s) linear infinite}
-  @keyframes menuscroll{from{transform:translateY(0)}to{transform:translateY(calc(-1 * var(--dist,0px)))}}
-  @media (prefers-reduced-motion:reduce){.auto .scroller{animation:none}}
-
-  .hx .scroller{width:max-content}
-  .drow{display:flex;gap:10px;padding:0 16px 16px}
-  .drow .dcard{flex:0 0 160px}
-  .hx .scroller{animation-name:menuscrollx}
-  @keyframes menuscrollx{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--dist,0px)))}}
-  .rname{font-size:clamp(32px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:96px 0 0;padding-top:32px;border-top:1px solid var(--line)}
-  .rname+.cap{font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:10px 0 14px}
-  .ba>div{min-width:0}
-  .browser,.dapp,.dscroll{min-width:0;max-width:100%}
-
-  .flow{list-style:none;margin:28px 0 0;padding:0;counter-reset:f}
-  .flow li{counter-increment:f;display:grid;grid-template-columns:72px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line)}
-  .flow li:last-child{border-bottom:1px solid var(--line)}
-  .flow li:before{content:counter(f,decimal-leading-zero);font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;font-size:34px;line-height:1;color:var(--accent)}
-  .flow b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;font-size:20px;color:var(--paper);margin-bottom:6px}
-  .flow .when{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .flow p{margin:0}
-  .pairs{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 32px}
-  .pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .pair img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border:1px solid var(--line2);background:#fff}
-  .pair .cap{grid-column:1/-1}
-  .plab{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .plab.on{color:var(--accent)}
-  .lists{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}
-  .lists div{border:1px solid var(--line);padding:22px}
-  .lists b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;font-size:17px;color:var(--paper);margin-bottom:10px}
-  .lists ul{margin:0;padding-left:18px}.lists li{margin:6px 0}
-  .faq dt{font-family:"Archivo",sans-serif;font-weight:900;font-stretch:125%;font-size:18px;color:var(--paper);margin-top:26px}
-  .faq dd{margin:8px 0 0}
-  .fgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}.fgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border:1px solid var(--line2);background:#fff}
-  @media(max-width:760px){.fgrid{grid-template-columns:repeat(4,1fr)}}
-  @media(max-width:760px){.pairs,.lists{grid-template-columns:1fr}.flow li{grid-template-columns:52px 1fr}.flow li:before{font-size:26px}}
+  @media (prefers-reduced-motion:reduce){.layer,.rv{transition:none}.l-app .roll{animation:none}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<div class="pnav">
-  <a class="pname" href="#top">Cravin' Flavors</a>
-  <span class="plinks">
-    <a href="#how">How it works</a>
-    <a href="#examples">Examples</a>
-    <a href="#faq">Questions</a>
-    <a href="#start">Get started</a>
-  </span>
-</div>
+<header class="bar" id="bar">
+  <a class="logo" href="#top">Cravin' Flavors</a>
+  <a class="btn" href="#start">Get started</a>
+</header>
 
-<main>
-
-<section id="top" class="hero wide">
-  <div class="k">Menu photos for restaurants</div>
-  <h1>Your phone photos.<br>Your whole menu.</h1>
-  <p class="lede">Want better food photos without a photo shoot? Snap each dish on a phone during a normal service, send it in with your menu, and get back a clean, consistent photo set for the whole menu, ready for Uber Eats, DoorDash, Grubhub, your website and social.</p>
-  <div class="meta">
-    <span>Fully remote</span><span>No shoot day</span><span>Whole menu, one look</span>
-  </div>
-  <div class="mt"><a class="bigbtn" href="#start" style="display:inline-flex;min-height:0;padding:16px 40px">Get started</a></div>
-  <div class="pair mt"><div><div class="plab">What you send</div><img src="assets/bonu_before_spaghetto_di_bonu.jpg" alt="Phone photo of a pasta dish on the kitchen pass"></div><div><div class="plab on">What you get back</div><img src="assets/bonu_spaghetto_di_bonu.jpg" alt="Finished menu photo of the same pasta dish"></div></div>
+<!-- 1. HERO -->
+<section class="hero" id="top">
+  <video id="hv" autoplay muted loop playsinline preload="auto" poster="assets/explainer_wide_poster.jpg"></video>
+  <div class="shade"></div>
+  <div class="inner"><div class="copy">
+    <div class="eyebrow">Menu photos for restaurants</div>
+    <h1>From your kitchen to your <em>digital storefront.</em></h1>
+    <p>There&#39;s untapped money, and people waiting to be happy and nourished by your food. The gateway is your phone.</p>
+    <div class="statchip"><b>44%</b><span>Up to 44% more monthly sales for menus with item photos<small>DoorDash data from 15,000+ merchants</small></span></div>
+    <div class="ctas">
+      <a class="btn" href="#start">Get started</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+  </div></div>
 </section>
 
-<section id="how" class="wide">
-  <div class="sectionhead">
-    <div class="k">01 &mdash; How it works</div>
-    <h2>One week, start to finish.</h2>
-  </div>
-  <p>Most menus come together over about a week of normal service. Nobody closes the kitchen, and nobody needs to know anything about photography.</p>
-  <ol class="flow">
-    <li><div><div class="when">Day 1</div><b>Send your menu.</b><p>Your current menu is all it takes to start. It becomes the shot list: every dish, organized by menu section, so nothing gets missed.</p></div></li>
-    <li><div><div class="when">Days 1 to 5</div><b>Shoot as you go.</b><p>Whoever is on the pass, the chef or anyone on staff, snaps one phone photo of each dish before it goes out. Any phone, any lighting, straight from the kitchen. Send them in as you take them.</p></div></li>
-    <li><div><div class="when">As they come in</div><b>We finish each photo.</b><p>The angle and lighting are adjusted and every dish lands on the same clean background. The chef&#39;s plating is never changed. Each finished image is checked against your original photo and your menu before it&#39;s approved.</p></div></li>
-    <li><div><div class="when">Midweek</div><b>You get the missing list.</b><p>We send back a short list of the dishes still needed to complete the menu, plus any photo worth retaking. You shoot those during the next service or two.</p></div></li>
-    <li><div><div class="when">End of the week</div><b>Your full menu set.</b><p>Every dish, one consistent look, organized by menu section and sized for each delivery app, your website and social. The files are yours to use anywhere.</p></div></li>
-  </ol>
-</section>
-
-<section class="wide">
-  <div class="sectionhead">
-    <div class="k">02 &mdash; What it takes</div>
-    <h2>A phone and a menu.</h2>
-  </div>
-  <div class="lists">
-    <div><b>You send</b><ul><li>One phone photo of each dish</li><li>Your menu</li><li>Retakes from the missing list</li></ul></div>
-    <div><b>You don&#39;t need</b><ul><li>A photographer</li><li>A shoot day</li><li>Special lighting or props</li><li>To close the kitchen</li></ul></div>
-    <div><b>You get</b><ul><li>A photo for every dish on the menu</li><li>One consistent look across the menu</li><li>Files organized by menu section</li><li>Sizes for delivery apps, web and social</li></ul></div>
-  </div>
-</section>
-
-<section id="examples" class="wide">
-  <div class="sectionhead">
-    <div class="k">03 &mdash; Examples</div>
-    <h2>From the kitchen to the menu.</h2>
-  </div>
-  <p>Phone photos taken on the pass at Bonu&#39; Taverna Italiana in St. Petersburg, next to the finished menu images.</p>
-  <div class="pairs mt"><div class="pair"><div><div class="plab">Phone photo</div><img loading="lazy" src="assets/bonu_before_burrata.jpg" alt="Burrata, phone photo from the kitchen"></div><div><div class="plab on">Finished</div><img loading="lazy" src="assets/bonu_burrata.jpg" alt="Burrata, finished menu photo"></div><div class="cap">Burrata, Bonu&#39; Taverna Italiana</div></div><div class="pair"><div><div class="plab">Phone photo</div><img loading="lazy" src="assets/bonu_before_spaghetto_di_bonu.jpg" alt="Spaghetto di Bonu&#39;, phone photo from the kitchen"></div><div><div class="plab on">Finished</div><img loading="lazy" src="assets/bonu_spaghetto_di_bonu.jpg" alt="Spaghetto di Bonu&#39;, finished menu photo"></div><div class="cap">Spaghetto di Bonu&#39;, Bonu&#39; Taverna Italiana</div></div><div class="pair"><div><div class="plab">Phone photo</div><img loading="lazy" src="assets/bonu_before_linguine.jpg" alt="Linguine, phone photo from the kitchen"></div><div><div class="plab on">Finished</div><img loading="lazy" src="assets/bonu_linguine.jpg" alt="Linguine, finished menu photo"></div><div class="cap">Linguine, Bonu&#39; Taverna Italiana</div></div><div class="pair"><div><div class="plab">Phone photo</div><img loading="lazy" src="assets/bonu_before_polpo.jpg" alt="Polpo, phone photo from the kitchen"></div><div><div class="plab on">Finished</div><img loading="lazy" src="assets/bonu_polpo.jpg" alt="Polpo, finished menu photo"></div><div class="cap">Polpo, Bonu&#39; Taverna Italiana</div></div></div>
-  <p class="mt">One menu, one look:</p>
-  <div class="fgrid mt"><img loading="lazy" src="assets/bonu_burrata.jpg" alt=""><img loading="lazy" src="assets/bonu_calamari.jpg" alt=""><img loading="lazy" src="assets/bonu_polpo.jpg" alt=""><img loading="lazy" src="assets/bonu_carpaccio.jpg" alt=""><img loading="lazy" src="assets/bonu_gnocchi.jpg" alt=""><img loading="lazy" src="assets/bonu_linguine.jpg" alt=""><img loading="lazy" src="assets/bonu_rucola.jpg" alt=""><img loading="lazy" src="assets/bonu_spaghetto_di_bonu.jpg" alt=""><img loading="lazy" src="assets/bonu_bolognese.jpg" alt=""><img loading="lazy" src="assets/bonu_polpette.jpg" alt=""><img loading="lazy" src="assets/bonu_porcini.jpg" alt=""><img loading="lazy" src="assets/bonu_cesare.jpg" alt=""><img loading="lazy" src="assets/bonu_tiramisu.jpg" alt=""><img loading="lazy" src="assets/bonu_cannoli.jpg" alt=""><img loading="lazy" src="assets/bonu_gelato_pistacchio.jpg" alt=""><img loading="lazy" src="assets/bonu_torta_limone.jpg" alt=""></div>
-</section>
-
-<section class="wide">
-  <div class="sectionhead">
-    <div class="k">04 &mdash; Why the whole menu</div>
-    <h2>The photo is the storefront.</h2>
-  </div>
-  <p>On a delivery app, nobody walks past the kitchen or sees the plate at the next table. The photo is what they order from. DoorDash&#39;s own data on more than 15,000 merchants found menus with item photos get up to 44% more monthly sales.</p>
-  <p>Chains already run one consistent look across every item. Most independent restaurants have a few photos, a few gaps and a mix of styles. A full, matching menu closes that gap.</p>
-</section>
-
-<section id="faq" class="wide">
-  <div class="sectionhead">
-    <div class="k">05 &mdash; Questions</div>
-    <h2>Good to know.</h2>
-  </div>
-  <dl class="faq">
-    <dt>Do you change the food?</dt>
-    <dd>No. The angle and lighting are adjusted. The chef&#39;s plating stays exactly as it&#39;s served, and every finished image is checked against your original photo before it&#39;s delivered.</dd>
-    <dt>What if our photos aren&#39;t very good?</dt>
-    <dd>That&#39;s expected. Kitchen lighting and a quick phone shot are fine. If a photo can&#39;t be used, it goes on the missing list with a note on what to retake.</dd>
-    <dt>Who takes the photos?</dt>
-    <dd>Anyone on staff. It takes a few seconds per plate while the dish is on the pass.</dd>
-    <dt>How do we send them?</dt>
-    <dd>A shared folder or a text thread, whatever is easiest for the kitchen.</dd>
-    <dt>What about new dishes later?</dt>
-    <dd>Send them the same way whenever the menu changes, and they&#39;re finished to match the rest of the set.</dd>
-    <dt>Do you need to be local?</dt>
-    <dd>No. The whole service runs remotely, so it works for restaurants anywhere, including new openings that need a full menu set before launch.</dd>
-  </dl>
-</section>
-
-<section id="start" class="wide">
-  <div class="sectionhead">
-    <div class="k">06 &mdash; Get started</div>
-    <h2>Send us your menu.</h2>
-  </div>
-  <p>Message us with your restaurant name and a link to your menu. We&#39;ll send back the shot list and everything you need to start snapping.</p>
-  <div class="cta2 mt">
-    <a class="bigbtn" href="https://ig.me/m/cravinflavors">DM us on Instagram</a>
-    <a class="bigbtn" href="mailto:cravinadventure@gmail.com?subject=Menu%20photos">Email us</a>
+<!-- 2. STORY -->
+<section class="story" id="how">
+  <div class="grid">
+    <div class="stage">
+      <div class="phone"><div class="notch"></div>
+        <div class="screen">
+          <div class="layer l-cam on" data-l="0">
+            <div class="cam-top"></div>
+            <img src="assets/bonu_before_spaghetto_di_bonu.jpg" alt="">
+            <div class="camui"><span class="mode">PHOTO</span><div class="shutter"></div></div>
+          </div>
+          <div class="layer l-send" data-l="1">
+            <div class="hd">Cravin' Flavors</div>
+            <div class="thread">
+              <div class="bub me img"><img src="assets/bonu_before_spaghetto_di_bonu.jpg" alt=""></div>
+              <div class="bub me">Spaghetto, polpo and the burrata. More tonight!</div>
+              <div class="bub them img"><img src="assets/bonu_spaghetto_di_bonu.jpg" alt=""></div>
+              <div class="bub them">Spaghetto is done. 3 of 24 dishes finished, checklist updated.</div>
+            </div>
+          </div>
+          <div class="layer l-app" data-l="2">
+            <div class="banner"></div>
+            <div class="ah"><b>Your restaurant</b><span>Delivery &middot; Pickup</span></div>
+            <div class="sec">Most popular</div>
+            <div class="rows"><div class="roll" id="roll"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" data-s="0"><div class="card rv">
+        <div class="n">01</div>
+        <h2>Snap it.</h2>
+        <p>Whoever&#39;s on the pass takes one phone photo of each dish before it goes out. Any phone, any kitchen lighting. It takes seconds.</p>
+      </div></div>
+      <div class="step" data-s="1"><div class="card rv">
+        <div class="n">02</div>
+        <h2>Send it.</h2>
+        <p>Text or upload your photos as you go, along with your menu. We finish the angle and lighting on every dish. Your plating stays exactly as you serve it.</p>
+      </div></div>
+      <div class="step" data-s="2"><div class="card rv">
+        <div class="n">03</div>
+        <h2>Sell it.</h2>
+        <p>Your whole menu, one clean, consistent look, sized and ready for every delivery app, your website and your socials.</p>
+      </div></div>
+    </div>
   </div>
 </section>
 
-</main>
+<!-- 2b. WHO -->
+<section class="who">
+  <div class="g">
+    <div class="pic" role="img" aria-label="A plate being handed across a restaurant kitchen"></div>
+    <div class="txt">
+      <div class="eyebrow rv">Who we work with</div>
+      <h2 class="rv">Your food tastes better than it looks online.</h2>
+      <p class="rv">We love working with restaurants that care about people and about their community. Great food, great reviews, and photos that don&#39;t come close to how good it really is.</p>
+      <p class="soft rv">You put real care into every plate. The people scrolling past you tonight can&#39;t taste that. They can only see it. We make sure what they see matches what you serve.</p>
+      <div class="sig rv">Real kitchens. Real plates. Shown right.</div>
+    </div>
+  </div>
+</section>
 
-<footer class="wide">
+<!-- 3. BEFORE / AFTER -->
+<section class="ba">
+  <div class="wrap ba-grid">
+    <div>
+      <div class="eyebrow rv">Drag to compare</div>
+      <h2 class="rv">Same dish. Same plate. Better picture.</h2>
+      <div class="slider rv mt" id="slider" style="margin-top:30px">
+        <img class="before" id="sb" src="assets/bonu_before_spaghetto_di_bonu.jpg" alt="Phone photo from the kitchen">
+        <img class="after" id="sa" src="assets/bonu_spaghetto_di_bonu.jpg" alt="Finished menu photo">
+        <span class="tag l">Your phone</span><span class="tag r">Finished</span>
+        <div class="handle"></div>
+      </div>
+      <div class="thumbs" id="thumbs">
+        <button class="on" data-d="spaghetto_di_bonu" aria-label="Spaghetto"><img src="assets/bonu_spaghetto_di_bonu.jpg" alt=""></button>
+        <button data-d="linguine" aria-label="Linguine"><img src="assets/bonu_linguine.jpg" alt=""></button>
+        <button data-d="polpo" aria-label="Octopus"><img src="assets/bonu_polpo.jpg" alt=""></button>
+        <button data-d="burrata" aria-label="Burrata"><img src="assets/bonu_burrata.jpg" alt=""></button>
+      </div>
+    </div>
+    <div class="ba-note rv">
+      <p class="lead" style="margin-top:0">The left side is a real phone photo taken on a kitchen pass in the middle of service. The right side is what went on the menu.</p>
+      <p><b>What changes:</b> the angle, the lighting and the background, so every dish reads clearly on a small screen.</p>
+      <p style="margin-top:12px"><b>What doesn&#39;t:</b> the chef&#39;s plating. Every finished photo is checked against your original before it&#39;s delivered.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SPEED -->
+<section class="speed">
+  <div class="wrap">
+    <div class="big rv">1 day</div>
+    <h2 class="rv">for an entire menu, once we have the photos.</h2>
+    <p class="rv">We go as fast as you go. Send every dish in one batch and we can finish the whole menu the same day. Rather shoot a few plates a night over the week? That works too.</p>
+    <div class="cols">
+      <div class="rv"><b>All at once</b><p>Shoot everything in one service, send it over, get your full menu back in about a day.</p></div>
+      <div class="rv"><b>As you go</b><p>Send dishes whenever they come up. Each one is finished and added to your set as it arrives.</p></div>
+      <div class="rv"><b>Nothing missed</b><p>We send you a checklist of every dish still needed, so the set ends up complete.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. TRACKER -->
+<section class="track">
+  <div class="wrap g">
+    <div>
+      <div class="eyebrow rv">Your dashboard</div>
+      <h2 class="rv">Know exactly where your menu stands.</h2>
+      <p class="lead rv">Every dish on your menu, tracked in one place and updated in real time as photos come in and get finished.</p>
+      <ul class="rv">
+        <li>See what you&#39;ve shot, what&#39;s finished and what&#39;s left</li>
+        <li>A checklist of the dishes we still need from you</li>
+        <li>Finished photos ready to download, organized by menu section</li>
+      </ul>
+    </div>
+    <div class="dash rv" id="dash">
+      <div class="top"><b>Your menu</b><span>Updated just now</span></div>
+      <div class="meta"><span>18 of 24 dishes finished</span><span>75%</span></div>
+      <div class="prog"><i id="progbar"></i></div>
+      <div class="drow"><div class="th"><img src="assets/bonu_burrata.jpg" alt=""></div><div><b>Burrata</b><small>Starters</small></div><span class="pill p-done">Finished</span></div>
+      <div class="drow"><div class="th"><img src="assets/bonu_calamari.jpg" alt=""></div><div><b>Calamari</b><small>Starters</small></div><span class="pill p-done">Finished</span></div>
+      <div class="drow"><div class="th"><img src="assets/bonu_before_polpo.jpg" alt=""></div><div><b>Grilled octopus</b><small>Starters</small></div><span class="pill p-work">In progress</span></div>
+      <div class="drow"><div class="th"><img src="assets/bonu_gnocchi.jpg" alt=""></div><div><b>Gnocchi</b><small>Pasta</small></div><span class="pill p-done">Finished</span></div>
+      <div class="drow"><div class="th"></div><div><b>Lasagna</b><small>Pasta</small></div><span class="pill p-need">Photo needed</span></div>
+      <div class="drow"><div class="th"></div><div><b>Chicken parm</b><small>Mains</small></div><span class="pill p-need">Photo needed</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="eyebrow rv">Why it matters</div>
+    <h2 class="rv">On an app, the photo is the storefront.</h2>
+    <p class="lead rv">Nobody walks past your kitchen or sees the plate at the next table. They decide from a picture on a phone. Here&#39;s what the delivery apps report from their own merchants.</p>
+    <div class="sgrid">
+      <div class="stat rv"><div class="num">44%</div><p>Up to 44% more monthly sales for menus with item photos.</p><small>DoorDash, data from 15,000+ merchants</small></div>
+      <div class="stat rv"><div class="num">$330</div><p>More per week, on average, for merchants with photos and descriptions on 70%+ of their menu.</p><small>Uber Eats</small></div>
+      <div class="stat rv"><div class="num">55%</div><p>Of first-time orders at new restaurants come from browsing, not searching.</p><small>DoorDash</small></div>
+    </div>
+    <p class="fine rv">Figures are reported by the platforms about their own merchants. They show what photos can do across a lot of restaurants, not a promise for any single one.</p>
+  </div>
+</section>
+
+<!-- 7. WALL -->
+<section class="wall">
+  <div class="wrap">
+    <h2 class="rv">One menu. One look.</h2>
+    <p class="lead rv">Chains have looked this consistent for years. Now your menu can too.</p>
+  </div>
+  <div class="tiles" id="tiles"></div>
+</section>
+
+<!-- 8. NEEDS -->
+<section class="needs">
+  <div class="wrap">
+    <h2 class="rv">All it takes is a phone.</h2>
+    <div class="ncols">
+      <div class="ncol rv"><h3>You send</h3><ul><li>One photo of each dish</li><li>Your current menu</li><li>Any retakes on the checklist</li></ul></div>
+      <div class="ncol no rv"><h3>You skip</h3><ul><li>The photographer</li><li>The shoot day</li><li>Lights, props and setup</li><li>Closing the kitchen</li></ul></div>
+      <div class="ncol rv"><h3>You get</h3><ul><li>A photo for every dish</li><li>One consistent look</li><li>Files organized by menu section</li><li>Sizes for apps, web and social</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="rv">Questions</h2>
+    <details><summary>Do you change the food?</summary><p>No. We adjust the angle, the lighting and the background. The plating stays exactly how you serve it, and every finished photo is checked against your original before it&#39;s delivered.</p></details>
+    <details><summary>Our photos aren&#39;t very good. Is that a problem?</summary><p>That&#39;s expected. Kitchen lighting and a quick phone shot are fine. If a photo can&#39;t be used, it goes on your checklist with a note on what to retake.</p></details>
+    <details><summary>How fast is it?</summary><p>Once we have your photos, a full menu takes about a day. Send them all at once for same-day turnaround, or send dishes as they come up and we&#39;ll keep pace.</p></details>
+    <details><summary>Who takes the photos?</summary><p>Anyone on staff. It takes a few seconds per plate while the dish is on the pass.</p></details>
+    <details><summary>How do we send them?</summary><p>Text them, DM them or drop them in a shared folder, whatever is easiest for your kitchen.</p></details>
+    <details><summary>What about new dishes later?</summary><p>Send them the same way whenever your menu changes. They&#39;re finished to match the rest of your set.</p></details>
+    <details><summary>Do the files belong to us?</summary><p>Yes. Use them on every delivery app, your website, Google, social and print.</p></details>
+  </div>
+</section>
+
+<!-- 10. FINAL CTA -->
+<section class="final" id="start">
+  <div class="bg"></div>
+  <div class="inner">
+    <div class="eyebrow">Get started</div>
+    <h2 class="rv">Send us your menu.</h2>
+    <p class="rv">Message us your restaurant name and a link to your menu. We&#39;ll send your checklist and you can start snapping tonight.</p>
+    <div class="ctas rv">
+      <a class="btn" href="https://ig.me/m/cravinflavors">DM us on Instagram</a>
+      <a class="btn ghost" href="mailto:cravinadventure@gmail.com?subject=Menu%20photos">Email us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
   Cravin&#39; Flavors &middot; A Cravin&#39; Adventure Studios service &middot; St. Petersburg, FL<br>
-  <a href="https://instagram.com/cravinflavors" style="color:var(--accent);text-decoration:none">@cravinflavors</a> &middot; <a href="mailto:cravinadventure@gmail.com" style="color:var(--accent);text-decoration:none">cravinadventure@gmail.com</a>
+  <a href="https://instagram.com/cravinflavors">@cravinflavors</a> &middot; <a href="mailto:cravinadventure@gmail.com">cravinadventure@gmail.com</a>
 </footer>
+
+<div class="mcta" id="mcta"><a class="btn" href="#start">Get started</a></div>
+
+<script>
+(function(){
+  var hv=document.getElementById('hv');var tall=window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+  hv.poster='assets/'+(tall?'explainer_tall':'explainer_wide')+'_poster.jpg';hv.src='assets/'+(tall?'explainer_tall':'explainer_wide')+'.mp4';hv.play&&hv.play().catch(function(){});
+  var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
+  var roll=document.getElementById('roll'),h='';
+  for(var k=0;k<2;k++)dishes.slice(0,8).forEach(function(d){h+='<div class="mrow"><div><b>'+d[1]+'</b><span>'+d[2]+'</span></div><img src="assets/bonu_'+d[0]+'.jpg" alt=""></div>';});
+  roll.innerHTML=h;
+  var t='';dishes.forEach(function(d){t+='<img loading="lazy" src="assets/bonu_'+d[0]+'.jpg" alt="'+d[1]+'">';});
+  document.getElementById('tiles').innerHTML=t;
+
+  var layers=document.querySelectorAll('.layer');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var s=e.target.getAttribute('data-s');layers.forEach(function(l){l.classList.toggle('on',l.getAttribute('data-l')===s);});}});},{rootMargin:'-45% 0px -45% 0px'});
+  document.querySelectorAll('.step').forEach(function(s){io.observe(s);});
+
+  var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){rv.observe(el);});
+
+  var dash=document.getElementById('dash');
+  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){document.getElementById('progbar').style.width='75%';o.disconnect();}},{threshold:.4}).observe(dash);
+
+  var sl=document.getElementById('slider'),on=false;
+  function set(e){var r=sl.getBoundingClientRect();var x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;sl.style.setProperty('--pos',Math.max(0,Math.min(r.width,x))+'px');}
+  sl.addEventListener('pointerdown',function(e){on=true;sl.setPointerCapture(e.pointerId);set(e);});
+  sl.addEventListener('pointermove',function(e){if(on)set(e);});
+  sl.addEventListener('pointerup',function(){on=false;});sl.addEventListener('pointercancel',function(){on=false;});
+  document.querySelectorAll('#thumbs button').forEach(function(b){b.addEventListener('click',function(){
+    var d=b.getAttribute('data-d');document.getElementById('sb').src='assets/bonu_before_'+d+'.jpg';document.getElementById('sa').src='assets/bonu_'+d+'.jpg';
+    document.querySelectorAll('#thumbs button').forEach(function(x){x.classList.toggle('on',x===b);});sl.style.setProperty('--pos','50%');});});
+
+  var bar=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('start');
+  function onScroll(){var y=window.scrollY;bar.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>window.innerHeight*.8&&sr.top>window.innerHeight*.9);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
 </body>
 </html>
