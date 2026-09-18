@@ -184,6 +184,20 @@
   .tiles{display:grid;grid-template-columns:repeat(8,1fr)}
   .tiles img{width:100%;aspect-ratio:1/1;object-fit:cover}
 
+  /* 7b. other styles */
+  .styles{background:var(--ink);color:#fff;padding:110px 0}
+  .styles .top{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:end;margin-bottom:44px}
+  .styles h2{font-size:clamp(36px,5vw,68px)}
+  .styles p{font-size:18px;color:rgba(255,255,255,.8);max-width:46ch}
+  .styles p+p{margin-top:14px}
+  .styles .honest{margin-top:40px;border-top:1px solid rgba(255,255,255,.14);padding-top:26px;font-family:var(--serif);font-size:clamp(22px,2.6vw,32px);font-weight:600;max-width:30ch;color:#fff}
+  .styles .honest span{color:var(--tomato)}
+  .sgal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .sgal img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px}
+  .sgal figure{position:relative}
+  .sgal figcaption{position:absolute;left:10px;bottom:10px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:7px 9px;border-radius:999px}
+  @media (max-width:900px){.styles{padding:80px 0}.styles .top{grid-template-columns:1fr;gap:18px}.sgal{grid-template-columns:repeat(2,1fr);gap:8px}}
+
   /* 8. needs */
   .needs{background:var(--cream);padding:110px 0}
   .needs h2{font-size:clamp(36px,5.4vw,72px);max-width:14ch;margin-bottom:40px}
@@ -432,6 +446,24 @@
   <div class="tiles" id="tiles"></div>
 </section>
 
+<!-- 7b. OTHER STYLES -->
+<section class="styles">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="eyebrow rv">Beyond the delivery app</div>
+        <h2 class="rv">Want a different look? We shoot that too.</h2>
+      </div>
+      <div>
+        <p class="rv">The clean top-down look is dialed in for delivery apps, where every dish has to read clearly on a small screen. That&#39;s where you&#39;ll get the most bang for your buck.</p>
+        <p class="rv">It&#39;s not the only style we do. Moody, styled shots for Instagram, your website, a new menu or a grand opening, drinks included.</p>
+      </div>
+    </div>
+    <div class="sgal"><figure class="rv"><img loading="lazy" src="assets/style_jeremiahs_01.jpg" alt="Rosemary Bee&#39;s Knees cocktail, shot on location during service"><figcaption>Bee&#39;s Knees</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_jeremiahs_03.jpg" alt="Lobster roll, shot on location during service"><figcaption>Lobster roll</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_the_hallows_05.jpg" alt="Margarita, shot on location during service"><figcaption>Margarita</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_jelous_monk_03.jpg" alt="Burger and sweet potato fries, shot on location during service"><figcaption>Burger</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_jeremiahs_05.jpg" alt="Steak, shot on location during service"><figcaption>Steak</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_the_hallows_01.jpg" alt="Chop suey in cast iron, shot on location during service"><figcaption>Cast iron chop suey</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_jelous_monk_06.jpg" alt="Soft pretzel with three dips, shot on location during service"><figcaption>Soft pretzel</figcaption></figure><figure class="rv"><img loading="lazy" src="assets/style_jeremiahs_07.jpg" alt="Wedge salad, shot on location during service"><figcaption>Wedge salad</figcaption></figure></div>
+    <p class="honest rv">One honest note: <span>this only works if your food is good.</span> We make great food look like what it is. We can&#39;t fake it.</p>
+  </div>
+</section>
+
 <!-- 8. NEEDS -->
 <section class="needs">
   <div class="wrap">
@@ -454,6 +486,7 @@
     <details><summary>Who takes the photos?</summary><p>Anyone on staff. It takes a few seconds per plate while the dish is on the pass.</p></details>
     <details><summary>How do we send them?</summary><p>Text them, DM them or drop them in a shared folder, whatever is easiest for your kitchen.</p></details>
     <details><summary>What about new dishes later?</summary><p>Send them the same way whenever your menu changes. They&#39;re finished to match the rest of your set.</p></details>
+    <details><summary>Do you only do top-down photos?</summary><p>No. Top-down on a clean background is what works best on delivery apps, so that&#39;s where we start. We also do styled, on-location shots for social, your website and print, drinks included.</p></details>
     <details><summary>Do the files belong to us?</summary><p>Yes. Use them on every delivery app, your website, Google, social and print.</p></details>
   </div>
 </section>
