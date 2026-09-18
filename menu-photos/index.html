@@ -404,6 +404,20 @@
   .lcard .lstate.fin{background:var(--basil);color:#fff}
   @media (max-width:1100px){.combo{grid-template-columns:auto 1fr!important}.combo .lcard{grid-column:1/-1;justify-self:center;order:-1}}
   @media (max-width:900px){.combo{grid-template-columns:1fr!important}.combo .clock{width:min(200px,50vw)!important}.hours b{font-size:56px}}
+  /* how fast: three equal columns, full width */
+  .speed{position:relative;overflow:hidden}
+  .speed #confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+  .wrap.wide{width:min(1500px,100% - 48px)}
+  .combo{grid-template-columns:1fr 1fr 1fr!important;gap:clamp(24px,3vw,56px)!important;align-items:center;justify-items:center;width:100%}
+  .combo .clockcol,.combo .lcard,.combo .dash{width:100%;max-width:400px}
+  .combo .clock{width:100%!important;max-width:360px}
+  .combo .lcard{aspect-ratio:1}
+  .speed .dash{justify-self:center;max-width:400px!important}
+  .speed .drow{grid-template-columns:38px 1fr 118px!important}
+  .speed .pill{display:inline-block;width:118px;text-align:center;box-sizing:border-box}
+  .speed .drow b,.speed .drow small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media (max-width:1100px){.combo{grid-template-columns:1fr 1fr!important}.combo .lcard{grid-column:1/-1;order:-1;max-width:460px}}
+  @media (max-width:900px){.combo{grid-template-columns:1fr!important}.combo .clock{max-width:220px}.combo .clockcol{max-width:260px}}
   .mcta{display:none}
   .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .rv.in{opacity:1;transform:none}
@@ -503,7 +517,8 @@
 
 <!-- 3. HOW FAST -->
 <section class="speed" id="speed">
-  <div class="wrap">
+  <canvas id="confetti"></canvas>
+  <div class="wrap wide">
     <div class="shead">
       <h2 class="rv">About a day for your whole menu.</h2>
       <p class="rv">Watch it come to life.</p>
@@ -537,7 +552,6 @@
         <div class="ck"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></div>
         <b>Menu complete.</b><span>Every dish, ready to sell.</span>
       </div>
-      <canvas id="confetti"></canvas>
     </div>
     </div>
     <div class="chips">
@@ -702,10 +716,10 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     if(st==='work'){r.classList.add('has');p.className='pill p-work';p.textContent='In progress';b.classList.add('on');a.classList.remove('on');}
     if(st==='done'){r.classList.add('has');p.className='pill p-done';p.textContent='Finished';a.classList.add('on');b.classList.remove('on');r.classList.remove('flashrow');void r.offsetWidth;r.classList.add('flashrow');}}
   var live=document.getElementById('live'),lvb=document.getElementById('lvb'),lva=document.getElementById('lva'),lvw=document.getElementById('lvw'),lvtag=document.getElementById('lvtag'),lvst=document.getElementById('lvst'),liveJ=-1;
-  var RUN=9600,HOLD=3200,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
+  var RUN=9000,HOLD=3400,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
   new IntersectionObserver(function(es){cvis=es[0].isIntersecting;if(cvis){spd.classList.add('go');if(cstart===null)cstart=performance.now();}},{threshold:.2}).observe(spd);
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
-    var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),p=Math.min(1,t/RUN);
+    var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),p=Math.pow(Math.min(1,t/RUN),2.3);
     if(cyc!==lastCycle){lastCycle=cyc;celebrated=false;banner.classList.remove('show');}
     carc.style.strokeDashoffset=CC*(1-p);hh.setAttribute('transform','rotate('+(720*p)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*p)+' 190 190)');
     hrs.textContent=Math.floor(24*p);
@@ -718,10 +732,11 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   if(!reduce)requestAnimationFrame(tick);else{carc.style.strokeDashoffset=0;hrs.textContent='24';for(var j=0;j<8;j++)setRow(j,'done');cnt.textContent='8';pct.textContent='100%';pbar.style.width='100%';}
 
   var cv=document.getElementById('confetti'),cx=cv.getContext('2d');
-  function confetti(){if(reduce)return;var W=cv.width=cv.offsetWidth*2,H=cv.height=cv.offsetHeight*2,ps=[],cols=['#ff5a36','#2f8f5b','#ffc94a','#0a84ff','#ff9ec4'];
-    for(var i=0;i<140;i++)ps.push({x:W/2,y:H*.45,vx:(Math.random()-.5)*28,vy:-Math.random()*30-8,s:6+Math.random()*10,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%5]});
-    var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=1.1;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
-      if(++f<110)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
+  function confetti(){if(reduce)return;var W=cv.width=cv.offsetWidth,H=cv.height=cv.offsetHeight,ps=[],cols=['#ffffff','#2f8f5b','#ffc94a','#0a84ff','#ff9ec4','#141210'];
+    [0.12,0.5,0.88].forEach(function(ox){for(var i=0;i<120;i++)ps.push({x:W*ox,y:H*.62,vx:(Math.random()-.5)*22,vy:-Math.random()*26-10,s:7+Math.random()*9,r:Math.random()*6,vr:(Math.random()-.5)*.35,c:cols[i%6]});});
+    for(var i=0;i<140;i++)ps.push({x:Math.random()*W,y:-20-Math.random()*H*.4,vx:(Math.random()-.5)*3,vy:Math.random()*3,s:7+Math.random()*8,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%6]});
+    var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=.55;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
+      if(++f<190)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
 
   // questionnaire
   var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),prog=document.querySelectorAll('#qprog i'),q=0;
