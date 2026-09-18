@@ -356,6 +356,15 @@
   .lcard .ltag,.lcard .lstate{display:none!important}
   .cardcol .lcard{order:0!important}.cardcol .clabel{order:-1}
   @media (min-width:901px){.gsec .eyebrow{font-size:17px!important;letter-spacing:.14em}}
+  .ready{margin-top:34px;width:min(760px,90vw);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .ready .rlabel{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  .ready .rtrack{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .ready .rrow{display:flex;width:max-content;animation:rmarq 28s linear infinite}
+  .ready .rrow span{font-family:var(--serif);font-weight:800;font-size:clamp(20px,2vw,28px);color:rgba(255,255,255,.88);padding:0 26px;white-space:nowrap;position:relative}
+  .ready .rrow span:after{content:"";position:absolute;right:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:#ff5a36;transform:translateY(-50%)}
+  @keyframes rmarq{to{transform:translateX(-50%)}}
+  @media (max-width:700px){.ready{margin-top:22px}.ready .rrow span{font-size:17px;padding:0 16px}}
+  @media (prefers-reduced-motion:reduce){.ready .rrow{animation:none}}
   .mcta{display:flex!important;position:fixed;right:24px;bottom:24px;left:auto;z-index:60;transform:translateY(160%);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
   .mcta.show{transform:none}
   .mcta .btn{padding:14px 24px;font-size:15px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.3)}
@@ -503,6 +512,7 @@
       <p class="gline rv">You snap the photos. We do the rest.</p>
       <div class="stats rv"><div class="stat"><div class="snum">44%</div><div class="stxt">Up to 44% more monthly sales for menus with photos</div><span class="ssrc">DoorDash data, 15,000+ merchants, checked 2026</span></div><div class="stat"><div class="snum">$330</div><div class="stxt">More per week with photos on 70%+ of items</div><span class="ssrc">Uber Eats merchant data, checked 2026</span></div><div class="stat"><div class="snum">55%</div><div class="stxt">Of first orders at new restaurants come from browsing</div><span class="ssrc">DoorDash data, checked 2026</span></div></div>
       <button class="btn big rv" data-open>Get started</button>
+      <div class="ready rv"><div class="rlabel">Ready for</div><div class="rtrack"><div class="rrow"><span>DoorDash</span><span>Uber Eats</span><span>Grubhub</span><span>Toast</span><span>Your website</span><span>Google</span><span>Instagram</span><span>DoorDash</span><span>Uber Eats</span><span>Grubhub</span><span>Toast</span><span>Your website</span><span>Google</span><span>Instagram</span></div></div></div>
     </div>
     <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
   </div>
