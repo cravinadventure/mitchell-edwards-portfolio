@@ -103,11 +103,16 @@
   /* 2b. who we work with */
   .who{background:var(--cream);padding:0}
   .who .g{display:grid;grid-template-columns:1fr 1fr;min-height:92svh}
-  .who .pic{background:url(assets/hero_kitchen.jpg) center 40%/cover no-repeat;min-height:420px}
+  .who .pic{background:url(assets/owner_mia.jpg) center 30%/cover no-repeat;min-height:420px}
   .who .txt{display:flex;flex-direction:column;justify-content:center;padding:90px clamp(24px,6vw,96px)}
   .who h2{font-size:clamp(38px,4.8vw,70px);margin:12px 0 22px}
   .who p{font-size:19px;color:var(--text);max-width:38ch;margin-bottom:16px}
   .who p.soft{color:var(--soft)}
+  .meet{border-left:3px solid var(--tomato);padding:4px 0 4px 18px;margin:10px 0 18px}
+  .meet b{display:block;font-family:var(--serif);font-size:22px;margin-bottom:6px}
+  .meet p{font-size:16.5px;margin-bottom:10px}
+  .meet q{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--text)}
+  .meet small{display:block;margin-top:8px;font-size:13px;color:var(--soft)}
   .who .sig{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--tomato);margin-top:10px}
   @media (max-width:900px){.who .g{grid-template-columns:1fr;min-height:0}.who .pic{min-height:56svh}.who .txt{padding:60px 20px 70px}}
 
@@ -318,12 +323,18 @@
 <!-- 2b. WHO -->
 <section class="who">
   <div class="g">
-    <div class="pic" role="img" aria-label="A plate being handed across a restaurant kitchen"></div>
+    <div class="pic" role="img" aria-label="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room"></div>
     <div class="txt">
       <div class="eyebrow rv">Who we do this for</div>
       <h2 class="rv">Behind every plate is a person.</h2>
       <p class="rv">The chef who gets every dish right before it leaves the pass. The cooks who plate it the same way every night. The owner who knows half the dining room by name. They&#39;re who we work for.</p>
       <p class="soft rv">We love restaurants that care about people and about their community. Great food, great reviews, and photos that don&#39;t come close to the care that went into it. The people scrolling past you tonight can&#39;t taste that. They can only see it.</p>
+      <div class="meet rv">
+        <b>Meet Mia.</b>
+        <p>Mia Maccarrone co-owns Bonu&#39; Taverna Italiana on Central Avenue in downtown St. Petersburg. Born in Marrakech, she and her husband Mario ran restaurants in Atlanta for years before falling for St. Pete and opening Bonu&#39; in 2022.</p>
+        <q>You can have a coffee and sit at the bar and be happy, or you can come have the $90 bottle of wine, and we&#39;ll treat you equally.</q>
+        <small>Every dish on this page came out of Bonu&#39;s kitchen.</small>
+      </div>
       <div class="sig rv">Real people. Real plates. Real stories.</div>
     </div>
   </div>
@@ -349,7 +360,7 @@
       </div>
     </div>
     <div class="ba-note rv">
-      <p class="lead" style="margin-top:0">The left side is a real phone photo taken on a kitchen pass in the middle of service. The right side is what went on the menu.</p>
+      <p class="lead" style="margin-top:0">The left side is a real phone photo taken on the pass at Bonu&#39; in the middle of service. The right side is what went on the menu.</p>
       <p><b>What changes:</b> the angle, the lighting and the background, so every dish reads clearly on a small screen.</p>
       <p style="margin-top:12px"><b>What doesn&#39;t:</b> the chef&#39;s plating. Every finished photo is checked against your original before it&#39;s delivered.</p>
     </div>
