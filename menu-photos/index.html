@@ -120,7 +120,7 @@
   .l-send .status{align-self:flex-end;font-size:10.5px;color:#8e8e93;margin-top:-4px;opacity:0;transition:opacity .3s}
   .l-send .status.show{opacity:1}
   .l-app{background:#fff;display:flex;flex-direction:column}
-  .l-app .banner{height:24%;background:url(assets/bonu_spaghetto_di_bonu.jpg) center/cover}
+  .l-app .banner{height:24%;background:url(assets/bonu_interior.jpg) center/cover}
   .l-app .ah{padding:12px 14px 4px}.l-app .ah b{display:block;font:700 16px/1.2 var(--sans);color:#111}.l-app .ah span{font-size:11px;color:#777}
   .l-app .secl{padding:8px 14px 4px;font:700 12.5px/1 var(--sans);color:#111}
   .l-app .rows{flex:1;overflow:hidden;position:relative}
@@ -349,7 +349,7 @@
   .land{position:relative;height:340svh;background:#0e0b09;color:#fff}
   .land .pin{position:sticky;top:0;height:100svh;overflow:hidden}
   .land video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .land .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,7,.94) 0%,rgba(10,8,7,.82) 42%,rgba(10,8,7,.55) 100%)}
+  .land .veil{position:absolute;inset:0;background:radial-gradient(circle at 72% 50%,rgba(255,90,54,.22),transparent 45%),radial-gradient(circle at 15% 85%,rgba(255,201,74,.08),transparent 40%)}
   .lgrid{position:relative;height:100%;width:min(1240px,100% - 40px);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:50px}
   .lcopy h1{font-size:clamp(40px,5vw,78px);max-width:12ch}
   .lcopy h1 em{font-style:normal;color:var(--tomato)}
@@ -389,7 +389,6 @@
     .lsteps li b{font-size:28px}.lsteps li span{font-size:14.5px}
     .lcta{display:none}
     .cue{display:none}
-    .land .veil{background:rgba(10,8,7,.78)}
   }
   .combo{grid-template-columns:auto auto auto!important;gap:40px!important}
   .combo .clock{width:min(260px,60vw)!important}
@@ -418,6 +417,14 @@
   .speed .drow b,.speed .drow small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   @media (max-width:1100px){.combo{grid-template-columns:1fr 1fr!important}.combo .lcard{grid-column:1/-1;order:-1;max-width:460px}}
   @media (max-width:900px){.combo{grid-template-columns:1fr!important}.combo .clock{max-width:220px}.combo .clockcol{max-width:260px}}
+  .gsec{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0e0b09;color:#fff;text-align:center}
+  .gsec video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .gsec .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.86) 0%,rgba(10,8,7,.62) 45%,rgba(10,8,7,.4) 100%)}
+  .gsec .ginner{position:relative;padding:80px 20px;display:flex;flex-direction:column;align-items:center}
+  .gsec h2{font-size:clamp(52px,8vw,120px);margin:10px 0 14px}
+  .gsec p{font-size:clamp(18px,1.8vw,22px);color:rgba(255,255,255,.85);margin-bottom:28px}
+  .gsec small{margin-top:16px;font-size:14px;color:rgba(255,255,255,.65)}
+  .gsec small a{color:#fff}
   .mcta{display:none}
   .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .rv.in{opacity:1;transform:none}
@@ -465,7 +472,6 @@
 <!-- 1. LANDING: headline + scroll-driven snap/send/sell -->
 <section class="land" id="top">
   <div class="pin">
-    <video id="hv" autoplay muted loop playsinline preload="auto" poster="assets/tiles_wide_poster.jpg"></video>
     <div class="veil"></div>
     <div class="lgrid">
       <div class="lcopy">
@@ -503,7 +509,7 @@
           </div>
           <div class="layer l-app" data-l="2">
             <div class="banner"></div>
-            <div class="ah"><b>Your restaurant</b><span>Delivery &middot; Pickup</span></div>
+            <div class="ah"><b>Bonu&#39; Taverna Italiana</b><span>Delivery &middot; Pickup</span></div>
             <div class="secl">Most popular</div>
             <div class="rows"><div class="roll" id="roll"></div></div>
           </div>
@@ -574,12 +580,17 @@
         <small>Mia Maccarrone, co-owner, Bonu&#39; Taverna Italiana, St. Petersburg. Every dish on this page came out of her kitchen.</small>
       </div>
       <div class="sig rv">Real people. Real plates. Real stories.</div>
-      <div class="gs rv">
-        <h3>Send us your menu.</h3>
-        <p>Four quick questions. We&#39;ll email your checklist.</p>
-        <button class="btn big" data-open>Get started</button>
-        <small>Rather message? <a href="https://ig.me/m/cravinflavors">DM @cravinflavors</a></small>
-      </div>
+    </div>
+  </div>
+  <div class="gsec" id="send">
+    <video id="gv" autoplay muted loop playsinline preload="none" poster="assets/tiles_wide_poster.jpg"></video>
+    <div class="gveil"></div>
+    <div class="ginner">
+      <div class="eyebrow rv">Get started</div>
+      <h2 class="rv">Send us your menu.</h2>
+      <p class="rv">Four quick questions. We&#39;ll email your checklist.</p>
+      <button class="btn big rv" data-open>Get started</button>
+      <small class="rv">Rather message? <a href="https://ig.me/m/cravinflavors">DM @cravinflavors</a></small>
     </div>
   </div>
   <div class="wrap"><!-- 10. FAQ -->
@@ -651,8 +662,8 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function when(el,fn,th){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){fn(e.target);o.unobserve(e.target);}});},{threshold:th||.35});o.observe(el);}
 
-  var hv=document.getElementById('hv');var tall=window.matchMedia('(max-aspect-ratio: 1/1)').matches;
-  hv.poster='assets/'+(tall?'tiles_tall':'tiles_wide')+'_poster.jpg';hv.src='assets/'+(tall?'tiles_tall':'tiles_wide')+'.mp4';hv.play&&hv.play().catch(function(){});
+  var hv=document.getElementById('gv');var tall=window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+  hv.poster='assets/'+(tall?'tiles_tall':'tiles_wide')+'_poster.jpg';hv.src='assets/'+(tall?'tiles_tall':'tiles_wide')+'.mp4';new IntersectionObserver(function(es){if(es[0].isIntersecting){hv.play&&hv.play().catch(function(){});}else{hv.pause&&hv.pause();}},{rootMargin:'200px'}).observe(hv);
 
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
 
@@ -716,7 +727,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     if(st==='work'){r.classList.add('has');p.className='pill p-work';p.textContent='In progress';b.classList.add('on');a.classList.remove('on');}
     if(st==='done'){r.classList.add('has');p.className='pill p-done';p.textContent='Finished';a.classList.add('on');b.classList.remove('on');r.classList.remove('flashrow');void r.offsetWidth;r.classList.add('flashrow');}}
   var live=document.getElementById('live'),lvb=document.getElementById('lvb'),lva=document.getElementById('lva'),lvw=document.getElementById('lvw'),lvtag=document.getElementById('lvtag'),lvst=document.getElementById('lvst'),liveJ=-1;
-  var RUN=9000,HOLD=3400,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
+  var RUN=4500,HOLD=6600,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
   new IntersectionObserver(function(es){cvis=es[0].isIntersecting;if(cvis){spd.classList.add('go');if(cstart===null)cstart=performance.now();}},{threshold:.2}).observe(spd);
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
     var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),p=Math.pow(Math.min(1,t/RUN),2.3);
@@ -735,8 +746,8 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   function confetti(){if(reduce)return;var W=cv.width=cv.offsetWidth,H=cv.height=cv.offsetHeight,ps=[],cols=['#ffffff','#2f8f5b','#ffc94a','#0a84ff','#ff9ec4','#141210'];
     [0.12,0.5,0.88].forEach(function(ox){for(var i=0;i<120;i++)ps.push({x:W*ox,y:H*.62,vx:(Math.random()-.5)*22,vy:-Math.random()*26-10,s:7+Math.random()*9,r:Math.random()*6,vr:(Math.random()-.5)*.35,c:cols[i%6]});});
     for(var i=0;i<140;i++)ps.push({x:Math.random()*W,y:-20-Math.random()*H*.4,vx:(Math.random()-.5)*3,vy:Math.random()*3,s:7+Math.random()*8,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[i%6]});
-    var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=.55;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
-      if(++f<190)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
+    var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=.3;p.vy=Math.min(p.vy,6);p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
+      if(++f<380)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
 
   // questionnaire
   var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),prog=document.querySelectorAll('#qprog i'),q=0;
