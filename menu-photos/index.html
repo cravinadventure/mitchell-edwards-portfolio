@@ -66,20 +66,17 @@
   .hero .statchip small{display:block;font-size:11px;color:rgba(255,255,255,.55)}
   .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
 
-  /* 1b. pain */
-  .pain{background:var(--cream);padding:100px 0}
-  .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
-  .pcard{background:#fff;border-radius:20px;padding:24px;box-shadow:0 0 0 1px var(--line);opacity:0;transform:translateY(24px) rotate(-1.5deg);transition:opacity .6s,transform .6s cubic-bezier(.3,1.3,.5,1)}
-  .pain.go .pcard{opacity:1;transform:none}
-  .pain.go .pcard:nth-child(2){transition-delay:.15s}.pain.go .pcard:nth-child(3){transition-delay:.3s}.pain.go .pcard:nth-child(4){transition-delay:.45s}
-  .pcard .ic{width:44px;height:44px;border-radius:12px;background:#ffe5de;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-  .pcard .ic svg{width:22px;height:22px}
-  .pcard b{display:block;font-family:var(--serif);font-size:22px;line-height:1.15}
-  .pcard span{display:block;margin-top:8px;font-size:15px;color:var(--soft);line-height:1.4}
-  .fixed{margin-top:34px;font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.8vw,34px);opacity:0;transition:opacity .6s .8s}
-  .pain.go .fixed{opacity:1}
-  .fixed span{color:var(--tomato)}
-
+  /* 1b. pain: pinned, scroll-driven */
+  .pain{position:relative;height:420svh;background:var(--ink);color:#fff}
+  .pain .pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .pain .glow{position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%,rgba(255,90,54,.16),transparent 55%);opacity:.8}
+  .pain .ask{position:absolute;top:16svh;left:0;right:0;text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .pain .count{position:absolute;bottom:12svh;left:0;right:0;text-align:center;font:600 14px var(--sans);letter-spacing:.2em;color:rgba(255,255,255,.4)}
+  .pline{position:absolute;left:50%;top:50%;width:min(1100px,92vw);text-align:center;transform:translate(-50%,-50%);opacity:0;will-change:transform,opacity}
+  .pline b{position:relative;display:inline;font-family:var(--serif);font-weight:800;font-size:clamp(40px,7.4vw,112px);line-height:1.05;letter-spacing:-.025em}
+  .pline b .x{position:absolute;left:-2%;right:-2%;top:54%;height:.09em;background:var(--tomato);border-radius:9px;transform:scaleX(0);transform-origin:left}
+  .pline span{display:block;margin-top:18px;font-size:clamp(17px,1.8vw,22px);color:rgba(255,255,255,.6)}
+  .pline.final b{color:#fff}.pline.final em{font-style:normal;color:var(--tomato)}
   /* 2. story (sticky) */
   .story{background:var(--ink);color:#fff;position:relative}
   .story .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;width:min(1180px,100% - 40px);margin:0 auto}
@@ -172,8 +169,11 @@
   .speed h2{font-size:clamp(38px,5.4vw,74px);max-width:16ch;margin:0 auto}
   .speed .shead p{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.2vw,28px);margin-top:10px;opacity:.9}
   .combo .clock{width:min(320px,70vw)}
+  .speed .dash{max-width:420px;justify-self:start}
+  .speed .drow{padding:7px 16px;grid-template-columns:38px 1fr auto}.speed .drow .th{width:38px;height:38px}.speed .drow b{font-size:13px}.speed .pill{font-size:10px;padding:6px 8px}
+  .speed .dash .top{padding:14px 16px 8px}.speed .dash .meta{padding:4px 16px 6px}.speed .prog{margin:0 16px 8px}
   .speed .shead{margin-bottom:34px}
-  .combo{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;max-width:1040px;margin:0 auto}
+  .combo{display:grid;grid-template-columns:auto auto;gap:64px;align-items:center;justify-content:center;margin:0 auto}
   .speed .chips{justify-content:center;margin-top:40px}
   .speed .dash{color:var(--text)}
   .chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
@@ -345,6 +345,52 @@
   .qdone .ck{width:70px;height:70px;border-radius:50%;background:var(--basil);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
   .qerr{color:#b3321a;font-size:13.5px;min-height:18px}
 
+  /* landing: pinned, scroll-driven */
+  .land{position:relative;height:340svh;background:#0e0b09;color:#fff}
+  .land .pin{position:sticky;top:0;height:100svh;overflow:hidden}
+  .land video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .land .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,7,.94) 0%,rgba(10,8,7,.82) 42%,rgba(10,8,7,.55) 100%)}
+  .lgrid{position:relative;height:100%;width:min(1240px,100% - 40px);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:50px}
+  .lcopy h1{font-size:clamp(40px,5vw,78px);max-width:12ch}
+  .lcopy h1 em{font-style:normal;color:var(--tomato)}
+  .lsteps{list-style:none;margin:26px 0 28px;display:grid;gap:4px;counter-reset:s}
+  .lsteps li{counter-increment:s;padding:10px 0 10px 18px;border-left:3px solid rgba(255,255,255,.15);transition:border-color .3s,opacity .3s;opacity:.45}
+  .lsteps li b{display:block;font-family:var(--serif);font-weight:800;font-size:clamp(24px,2.6vw,36px);line-height:1.05}
+  .lsteps li b:before{content:attr(data-n);font-size:.5em;color:var(--tomato);vertical-align:.4em;margin-right:6px}
+  .lsteps li span{display:block;max-height:0;overflow:hidden;font-size:16.5px;color:rgba(255,255,255,.78);transition:max-height .35s,margin .35s}
+  .lsteps li.on{opacity:1;border-color:var(--tomato)}
+  .lsteps li.on span{max-height:60px;margin-top:6px}
+  .lcta{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .lcta .stat{font-size:13.5px;color:rgba(255,255,255,.8);max-width:260px;line-height:1.35}
+  .lcta .stat b{font-family:var(--serif);font-size:24px;color:var(--tomato);margin-right:4px}
+  .lcta .stat small{display:block;font-size:11px;color:rgba(255,255,255,.5)}
+  .lstage{display:flex;justify-content:center}
+  .lstage .phone{height:min(660px,78svh)}
+  .cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5);transition:opacity .3s}
+  .cue:after{content:"";display:block;width:1px;height:28px;background:rgba(255,255,255,.4);margin:8px auto 0;animation:cue 1.6s infinite}
+  @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+  /* close */
+  .close{background:var(--cream)}
+  .close .people{height:auto;min-height:100svh}
+  .gs{margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
+  .gs h3{font-size:clamp(28px,3vw,40px)}
+  .gs p{color:var(--soft);margin:8px 0 18px}
+  .gs small{display:block;margin-top:12px;font-size:14px;color:var(--soft)}
+  .faqw{padding:70px 0 90px;max-width:860px;margin:0 auto}
+  .faqh{font-size:clamp(28px,3vw,40px);margin-bottom:18px}
+  @media (max-width:900px){
+    .land{height:330svh}
+    .lgrid{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;gap:10px;padding:74px 0 16px;align-items:start}
+    .lcopy{display:contents}
+    .lcopy .eyebrow{display:none}
+    .lcopy h1{font-size:clamp(28px,8vw,40px);grid-row:1}
+    .lstage{grid-row:2;align-self:center}.lstage .phone{height:44svh}
+    .lsteps{grid-row:3;margin:0}.lsteps li{display:none;padding:4px 0 4px 14px}.lsteps li.on{display:block}
+    .lsteps li b{font-size:28px}.lsteps li span{font-size:14.5px}
+    .lcta{display:none}
+    .cue{display:none}
+    .land .veil{background:rgba(10,8,7,.78)}
+  }
   .mcta{display:none}
   .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .rv.in{opacity:1;transform:none}
@@ -357,7 +403,6 @@
     .hero h1{font-size:clamp(36px,10vw,54px)}
     .hero .tag3{margin:10px 0 14px;font-size:19px}
     .hero .statchip{margin-bottom:16px;padding:9px 12px}.hero .statchip b{font-size:22px}.hero .statchip span{font-size:12.5px}
-    .pain{padding:80px 0}.pgrid{grid-template-columns:1fr 1fr;gap:10px}.pcard{padding:18px}.pcard b{font-size:19px}.pcard span{font-size:13.5px}
     .story .grid{grid-template-columns:1fr;gap:0}
     .stage{height:64svh;top:56px;z-index:2;background:linear-gradient(var(--ink) 88%,rgba(20,18,16,0))}
     .phone{height:56svh}
@@ -380,7 +425,7 @@
     .bar .btn{display:none}
     .modal{align-items:flex-end;padding:0}.qbox{border-radius:24px 24px 0 0;padding-bottom:max(26px,env(safe-area-inset-bottom))}
   }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.pcard{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -390,41 +435,24 @@
   <button class="btn" data-open>Get started</button>
 </header>
 
-<!-- 1. HERO -->
-<section class="hero" id="top">
-  <video id="hv" autoplay muted loop playsinline preload="auto" poster="assets/explainer_wide_poster.jpg"></video>
-  <div class="shade"></div>
-  <div class="inner"><div class="copy">
-    <div class="eyebrow">Menu photos for restaurants</div>
-    <h1>From your kitchen to <em>DoorDash and Uber Eats.</em></h1>
-    <div class="tag3">Snap it. Send it. <span>Sell it.</span></div>
-    <div class="statchip"><b>44%</b><span>more monthly sales, up to, for menus with photos<small>DoorDash data, 15,000+ merchants</small></span></div>
-    <div class="ctas">
-      <button class="btn" data-open>Get started</button>
-      <a class="btn ghost" href="#how">See how it works</a>
-    </div>
-  </div></div>
-</section>
-
-<!-- 1b. PAIN -->
-<section class="pain" id="pain">
-  <div class="wrap">
-    <h2 class="sec-h rv">Sound familiar?</h2>
-    <div class="pgrid" data-par="-0.06">
-      <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><b>No time for a photo shoot.</b><span>You&#39;re running a kitchen.</span></div>
-      <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div><b>Half the menu has no photos.</b><span>Those dishes get scrolled past.</span></div>
-      <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div><b>The photos don&#39;t match the food.</b><span>Great reviews, bad pictures.</span></div>
-      <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div><b>The menu changed. Again.</b><span>And the photos didn&#39;t.</span></div>
-    </div>
-    <p class="fixed">We fixed that with <span>the phone in your pocket.</span></p>
-  </div>
-</section>
-
-<!-- 2. STORY -->
-<section class="story" id="how">
-  <div class="grid">
-    <div class="stage">
-      <div class="phone"><div class="notch"></div>
+<!-- 1. LANDING: headline + scroll-driven snap/send/sell -->
+<section class="land" id="top">
+  <div class="pin">
+    <video id="hv" autoplay muted loop playsinline preload="auto" poster="assets/explainer_wide_poster.jpg"></video>
+    <div class="veil"></div>
+    <div class="lgrid">
+      <div class="lcopy">
+        <div class="eyebrow">Menu photos for restaurants</div>
+        <h1>From your kitchen to <em>DoorDash and Uber Eats.</em></h1>
+        <ol class="lsteps" id="lsteps">
+          <li class="on"><b data-n="01">Snap it.</b><span>One phone photo of each dish. Any phone, any light.</span></li>
+          <li><b data-n="02">Send it.</b><span>Text us your photos and your menu. We finish every dish.</span></li>
+          <li><b data-n="03">Sell it.</b><span>Your whole menu, one clean look, on DoorDash and Uber Eats.</span></li>
+        </ol>
+        <div class="lcta"><button class="btn" data-open>Get started</button><span class="stat"><b>44%</b> more monthly sales, up to, for menus with photos<small>DoorDash data, 15,000+ merchants</small></span></div>
+      </div>
+      <div class="lstage">
+        <div class="phone"><div class="notch"></div>
         <div class="screen">
           <div class="layer l-cam on" data-l="0" id="cam">
             <img class="view" src="assets/bonu_before_spaghetto_di_bonu.jpg" alt="">
@@ -454,30 +482,53 @@
           </div>
         </div>
       </div>
+      </div>
     </div>
-    <div class="steps">
-      <div class="step" data-s="0"><div class="card rv"><div class="n">01</div><h2>Snap it.</h2><p>One phone photo of each dish. Any phone, any light.</p></div></div>
-      <div class="step" data-s="1"><div class="card rv"><div class="n">02</div><h2>Send it.</h2><p>Text us your photos and your menu. We finish every dish.</p></div></div>
-      <div class="step" data-s="2"><div class="card rv"><div class="n">03</div><h2>Sell it.</h2><p>Your whole menu, one clean look, on DoorDash and Uber Eats.</p></div></div>
-    </div>
+    <div class="cue" id="cue">Scroll</div>
   </div>
 </section>
 
-<!-- 3. PEOPLE -->
-<section class="people" id="people">
-  <div class="pic"><img data-par="-0.12" src="assets/owner_mia_crop.jpg" alt="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room" loading="lazy"></div>
-  <div class="txt">
-    <div class="eyebrow rv">Who we do this for</div>
-    <h2 class="rv">Behind every plate is a person.</h2>
-    <div class="mia rv">
-      <q>Food is essential. We need to eat. And so, we&#39;d like to make sure everyone can afford it.</q>
-      <small>Mia Maccarrone, co-owner, Bonu&#39; Taverna Italiana, St. Petersburg. Every dish on this page came out of her kitchen.</small>
+<!-- 2. WHY -->
+<section class="stats" id="stats">
+  <div class="wrap">
+    <div class="eyebrow rv">Why it matters</div>
+    <h2 class="rv">Hungry people are scrolling right now.</h2>
+    <p class="lead rv">They&#39;re picking dinner from photos. Here&#39;s who you miss without them.</p>
+    <div class="fomo rv">
+      <div class="row">
+        <div>
+          <div class="crowd" id="crowd"></div>
+          <div class="legend"><span><i></i>Orders you get now</span><span class="m"><i></i>Orders you could be missing</span></div>
+        </div>
+        <div>
+          <div class="big">+<span class="count" data-to="44">0</span></div>
+          <div class="cap">more for every 100, when the menu has photos.</div>
+          <small>DoorDash: up to 44% more monthly sales, 15,000+ merchants</small>
+        </div>
+      </div>
     </div>
-    <div class="sig rv">Real people. Real plates. Real stories.</div>
+    <div class="money rv">
+      <div>
+        <div class="big"><span>$</span><span class="count" data-to="17160">0</span></div>
+        <p>a year, from $330 more a week with photos on 70%+ of the menu.</p>
+        <small>Uber Eats average</small>
+      </div>
+      <div class="line">
+        <svg viewBox="0 0 600 170" preserveAspectRatio="none">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a36" stop-opacity=".45"/><stop offset="1" stop-color="#ff5a36" stop-opacity="0"/></linearGradient></defs>
+          <line class="grid" x1="0" y1="150" x2="600" y2="150"/><line class="grid" x1="0" y1="100" x2="600" y2="100"/><line class="grid" x1="0" y1="50" x2="600" y2="50"/>
+          <path class="area" d="M0 150 L600 12 L600 150 Z"/>
+          <path class="ln" d="M0 150 L600 12"/>
+          <circle class="dotend" cx="600" cy="12" r="7"/>
+          <text x="0" y="168">Jan</text><text x="285" y="168">Jun</text><text x="570" y="168">Dec</text>
+        </svg>
+      </div>
+    </div>
+    <p class="fine rv">Reported by the platforms about their own merchants. Averages, not a promise for any one restaurant.</p>
   </div>
 </section>
 
-<!-- 4. SPEED -->
+<!-- 3. HOW FAST -->
 <section class="speed" id="speed">
   <div class="wrap">
     <div class="shead">
@@ -518,105 +569,39 @@
   </div>
 </section>
 
-<!-- 6. STATS -->
-<section class="stats" id="stats">
-  <div class="wrap">
-    <div class="eyebrow rv">Why it matters</div>
-    <h2 class="rv">Hungry people are scrolling right now.</h2>
-    <p class="lead rv">They&#39;re picking dinner from photos. Here&#39;s who you miss without them.</p>
-    <div class="fomo rv">
-      <div class="row">
-        <div>
-          <div class="crowd" id="crowd"></div>
-          <div class="legend"><span><i></i>Orders you get now</span><span class="m"><i></i>Orders you could be missing</span></div>
-        </div>
-        <div>
-          <div class="big">+<span class="count" data-to="44">0</span></div>
-          <div class="cap">more for every 100, when the menu has photos.</div>
-          <small>DoorDash: up to 44% more monthly sales, 15,000+ merchants</small>
-        </div>
+<!-- 4. CLOSE: people + get started + questions -->
+<section class="close" id="start">
+  <div class="people" id="people">
+    <div class="pic"><img data-par="-0.12" src="assets/owner_mia_crop.jpg" alt="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room" loading="lazy"></div>
+    <div class="txt">
+      <div class="eyebrow rv">Who we do this for</div>
+      <h2 class="rv">Behind every plate is a person.</h2>
+      <div class="mia rv">
+        <q>Food is essential. We need to eat. And so, we&#39;d like to make sure everyone can afford it.</q>
+        <small>Mia Maccarrone, co-owner, Bonu&#39; Taverna Italiana, St. Petersburg. Every dish on this page came out of her kitchen.</small>
       </div>
-    </div>
-    <div class="money rv">
-      <div>
-        <div class="big"><span>$</span><span class="count" data-to="17160">0</span></div>
-        <p>a year, from $330 more a week with photos on 70%+ of the menu.</p>
-        <small>Uber Eats average</small>
-      </div>
-      <div class="line">
-        <svg viewBox="0 0 600 170" preserveAspectRatio="none">
-          <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a36" stop-opacity=".45"/><stop offset="1" stop-color="#ff5a36" stop-opacity="0"/></linearGradient></defs>
-          <line class="grid" x1="0" y1="150" x2="600" y2="150"/><line class="grid" x1="0" y1="100" x2="600" y2="100"/><line class="grid" x1="0" y1="50" x2="600" y2="50"/>
-          <path class="area" d="M0 150 L600 12 L600 150 Z"/>
-          <path class="ln" d="M0 150 L600 12"/>
-          <circle class="dotend" cx="600" cy="12" r="7"/>
-          <text x="0" y="168">Jan</text><text x="285" y="168">Jun</text><text x="570" y="168">Dec</text>
-        </svg>
-      </div>
-    </div>
-    <p class="fine rv">Reported by the platforms about their own merchants. Averages, not a promise for any one restaurant.</p>
-  </div>
-</section>
-
-<!-- 7. WALL -->
-<section class="wall">
-  <div class="wrap center">
-    <h2 class="sec-h rv">One menu. One look.</h2>
-    <p class="lead rv">The consistency chains pay for, from your own kitchen.</p>
-  </div>
-  <div class="tiles" id="tiles" data-par="-0.04"></div>
-</section>
-
-<!-- 8. STYLES ADD-ON -->
-<section class="styles" id="styles">
-  <div class="wrap top">
-    <div class="eyebrow rv">Add-on &middot; Styled shots</div>
-    <h2 class="rv">Want another look?</h2>
-    <p class="rv">Top-down wins on delivery apps. For social, your site or a new menu, add styled shots, drinks included.</p>
-  </div>
-  <div class="sgal"><div class="strip" id="strip"></div></div>
-  <div class="wrap"><p class="honest rv">This only works if your food is good. <span>We can&#39;t fake it.</span></p></div>
-</section>
-
-<!-- 9. ALL IT TAKES -->
-<section class="takes" id="takes">
-  <div class="wrap">
-    <h2 class="sec-h rv">All it takes is a phone.</h2>
-    <div class="vs">
-      <div class="vcard old"><h3>A photo shoot</h3><ul><li>A photographer</li><li>A shoot day</li><li>Lights and props</li><li>Closing the kitchen</li><li>Weeks of waiting</li></ul></div>
-      <div class="vsx">vs</div>
-      <div class="vcard new">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ff5a36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
-        <b>Your phone.</b><span>Plus your menu. That&#39;s it.</span>
+      <div class="sig rv">Real people. Real plates. Real stories.</div>
+      <div class="gs rv">
+        <h3>Send us your menu.</h3>
+        <p>Four quick questions. We&#39;ll email your checklist.</p>
+        <button class="btn big" data-open>Get started</button>
+        <small>Rather message? <a href="https://ig.me/m/cravinflavors">DM @cravinflavors</a></small>
       </div>
     </div>
   </div>
-</section>
-
-<!-- 10. FAQ -->
-<section class="faq">
-  <div class="wrap">
-    <h2 class="sec-h rv">Common questions</h2>
+  <div class="wrap"><!-- 10. FAQ -->
+<div class="faqw">
+  
+    <h3 class="faqh">Common questions</h3>
     <details><summary>Do you change the food?</summary><p>No. We adjust the angle, lighting and background. The plating stays exactly how you serve it, and every photo is checked against your original.</p></details>
     <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
     <details><summary>How fast is it?</summary><p>About a day for a full menu once we have your photos. Send them all at once, or as you go.</p></details>
     <details><summary>Who takes the photos?</summary><p>Anyone on staff. A few seconds per plate while it&#39;s on the pass.</p></details>
     <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
-    <details><summary>Do you only do top-down photos?</summary><p>Top-down works best on delivery apps, so we start there. Styled shots for social and your website are an add-on.</p></details>
+    <details><summary>Do you only do top-down photos?</summary><p>Top-down works best on delivery apps, so we start there. Styled, moody shots for social, your website or a new menu are an add-on, drinks included.</p></details>
     <details><summary>Do the files belong to us?</summary><p>Yes. Use them on every app, your website, Google, social and print.</p></details>
   </div>
-</section>
-
-<!-- 11. FINAL -->
-<section class="final" id="start">
-  <div class="txt">
-    <div class="eyebrow">Get started</div>
-    <h2 class="rv">Send us your menu.</h2>
-    <p class="rv">Four quick questions. We&#39;ll reach out with your checklist.</p>
-    <button class="btn big rv" data-open>Get started</button>
-    <small class="rv">Rather message? <a href="https://ig.me/m/cravinflavors">DM @cravinflavors</a></small>
-  </div>
-  <div class="pic"><img data-par="-0.12" src="assets/final_steak.jpg" alt="Seared steak with gnocchi and broccolini" loading="lazy"></div>
+</div></div>
 </section>
 
 <footer>
@@ -681,16 +666,20 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   document.getElementById('roll').innerHTML=h;
 
   // story: every animation is scrubbed by scroll position
-  var layers=[].slice.call(document.querySelectorAll('.layer')),cam=document.getElementById('cam'),stepsEl=[].slice.call(document.querySelectorAll('.step'));
+  var layers=[].slice.call(document.querySelectorAll('.layer')),cam=document.getElementById('cam');
   var bubs=[].slice.call(document.querySelectorAll('#thread .bub')),status=document.querySelector('#thread .status');
   var focus=cam.querySelector('.focus'),flash=cam.querySelector('.flash'),snap=cam.querySelector('.snapimg'),thumb=cam.querySelector('.thumb'),shutter=cam.querySelector('.shutter'),roll=document.getElementById('roll');
   function cl(x){return x<0?0:x>1?1:x;}
   function rg(x,a,b){return cl((x-a)/(b-a));}
   function ease(x){return x*x*(3-2*x);}
+  var land=document.getElementById('top'),lsteps=[].slice.call(document.querySelectorAll('#lsteps li')),cue=document.getElementById('cue');
   function story(){
-    var H=innerHeight,loc=stepsEl.map(function(s){var r=s.getBoundingClientRect();return cl((H*0.62-r.top)/(r.height*0.75));});
-    var st=0;stepsEl.forEach(function(s,i){if(s.getBoundingClientRect().top<H*0.62)st=i;});
+    var r=land.getBoundingClientRect(),tot=r.height-innerHeight,P=cl(-r.top/tot);
+    var loc=[0,1,2].map(function(i){return cl((P*3-i)/0.92);});
+    var st=Math.min(2,Math.floor(P*3-0.0001<0?0:P*3));if(P>=1)st=2;
     layers.forEach(function(l,i){l.classList.toggle('on',i===st);});
+    lsteps.forEach(function(l,i){l.classList.toggle('on',i===st);});
+    cue.style.opacity=P>0.05?0:1;
     // 01 snap
     var a=loc[0],fz=ease(rg(a,.05,.3));
     focus.style.opacity=fz*(1-rg(a,.55,.6));focus.style.transform='translate(-50%,-50%) scale('+(1.6-.6*fz)+')';
@@ -705,15 +694,13 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     bubs[2].classList.toggle('show',b>.42&&b<=.62);bubs[2].classList.toggle('gone',b>.62);
     bubs[3].classList.toggle('show',b>.62);bubs[4].classList.toggle('show',b>.78);
     // 03 sell
-    var c=loc[2];roll.style.transform='translateY('+(-48*ease(c))+'%)';
+    roll.style.transform='translateY('+(-48*ease(loc[2]))+'%)';
   }
   window.addEventListener('scroll',story,{passive:true});window.addEventListener('resize',story);story();
 
   var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target);}});},{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el){rv.observe(el);});
 
-  when(document.getElementById('pain'),function(s){s.classList.add('go');},.3);
-  when(document.getElementById('people'),function(s){s.classList.add('go');},.3);
 
   function count(el,to,dur){var t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 
@@ -762,20 +749,6 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     var cs=document.querySelectorAll('.stats .count');count(cs[0],44,3400);setTimeout(function(){count(cs[1],17160,2200);},400);
   },.25);
 
-  var tiles=document.getElementById('tiles'),th='';
-  for(var i=0;i<16;i++){th+='<div class="tile"><img class="f" src="assets/bonu_'+dishes[i][0]+'.jpg" alt="" loading="lazy"><img class="b" src="assets/bonu_'+dishes[(i+5)%16][0]+'.jpg" alt="" loading="lazy"></div>';}
-  tiles.innerHTML=th;var tl=tiles.children,idx=0;
-  if(!reduce)setInterval(function(){var i=Math.floor(Math.random()*tl.length),t=tl[i];var back=t.classList.contains('flip')?t.querySelector('.f'):t.querySelector('.b');
-    back.src='assets/bonu_'+dishes[(idx++*7+i)%16][0]+'.jpg';t.classList.toggle('flip');},450);
-
-  var st=[["jeremiahs_01","Bee&#39;s Knees"],["jeremiahs_03","Lobster roll"],["the_hallows_05","Margarita"],["jelous_monk_03","Burger"],["jeremiahs_05","Steak"],["the_hallows_01","Cast iron chop suey"],["jelous_monk_06","Soft pretzel"],["jeremiahs_07","Wedge salad"]];
-  var sh='';st.concat(st).forEach(function(x){sh+='<figure><img src="assets/style_'+x[0]+'.jpg" alt="'+x[1]+'" loading="lazy"><figcaption>'+x[1]+'</figcaption></figure>';});
-  var strip=document.getElementById('strip'),sty=document.getElementById('styles');strip.innerHTML=sh;
-  function stripScroll(){var r=sty.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;var p=cl((innerHeight-r.top)/(innerHeight+r.height));
-    var max=strip.scrollWidth-sty.clientWidth;strip.style.transform='translate3d('+(-max*p).toFixed(1)+'px,0,0)';}
-  window.addEventListener('scroll',stripScroll,{passive:true});window.addEventListener('resize',stripScroll);stripScroll();
-  when(document.getElementById('takes'),function(s){s.classList.add('go');},.4);
-
   // questionnaire
   var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),prog=document.querySelectorAll('#qprog i'),q=0;
   var back=document.getElementById('qback'),next=document.getElementById('qnext'),nav=document.getElementById('qnav'),err=document.getElementById('qerr'),form=document.getElementById('qform');
@@ -809,7 +782,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   }
 
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('start');
-  function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>innerHeight*.8&&sr.top>innerHeight*.9);}
+  function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
