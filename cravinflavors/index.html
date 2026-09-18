@@ -270,7 +270,8 @@
   .l-send .thread{justify-content:flex-start!important;padding-top:18px}
   .l-send .stamp{align-self:center;font-size:10.5px;color:#8e8e93;margin-bottom:4px}
   @media (max-width:900px){.l-send .thread{justify-content:flex-end!important}.l-send .stamp{display:none}}
-  .proof{display:flex;align-items:center;gap:16px;background:rgba(63,208,127,.1);border:1px solid rgba(63,208,127,.35);border-radius:16px;padding:14px 18px;margin:0 0 20px;max-width:470px}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:min(920px,100%);margin:0 0 26px;text-align:left}.stat{background:rgba(63,208,127,.1);border:1px solid rgba(63,208,127,.35);border-radius:16px;padding:16px 18px}.stat .snum{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-weight:800;font-size:42px;line-height:1;color:#3fd07f;margin-bottom:8px}.stat .snum svg{width:26px;height:26px}.stat .stxt{font-size:15px;line-height:1.35;color:rgba(255,255,255,.85)}.stat .stxt b{color:#fff}.stat .ssrc{display:block;margin-top:8px;font-size:11.5px;color:rgba(255,255,255,.55);text-decoration:underline;text-underline-offset:2px}@media (max-width:700px){.stats{grid-template-columns:1fr;gap:10px}.stat{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;padding:12px 14px}.stat .snum{font-size:32px;margin:0;grid-row:span 2}.stat .ssrc{margin-top:4px}}
+.proof{display:flex;align-items:center;gap:16px;background:rgba(63,208,127,.1);border:1px solid rgba(63,208,127,.35);border-radius:16px;padding:14px 18px;margin:0 0 20px;max-width:470px}
   .proof .pnum{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-weight:800;font-size:40px;line-height:1;color:#3fd07f;white-space:nowrap}
   .proof .pnum svg{width:28px;height:28px}
   .proof .ptxt{font-size:15px;line-height:1.35;color:rgba(255,255,255,.85)}
@@ -318,6 +319,7 @@
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
+<script>if(/[?&]go=1/.test(location.search)){var q=location.search.replace(/([?&])go=1&?/,'$1').replace(/[?&]$/,'');history.replaceState(null,'',location.pathname+q+location.hash);}</script>
 </head>
 <body>
 
@@ -467,7 +469,7 @@
       <div class="eyebrow rv">Hungry people are scrolling right now.</div>
       <h2 class="rv">Let your food sell itself.</h2>
       <p class="gline rv">Text us your dish photos, get back a menu that sells.</p>
-      <div class="proof rv" id="proof"><div class="pnum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg><span id="pn">+44%</span></div><div class="ptxt" id="pt"><b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small></div></div>
+      <div class="stats rv"><div class="stat"><div class="snum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg>44%</div><div class="stxt"><b>More monthly sales</b> for menus with photos</div><a class="ssrc" href="https://merchants.doordash.com/en-us/blog/menu-photography" target="_blank" rel="noopener">DoorDash data, 15,000+ merchants. Source checked 2026</a></div><div class="stat"><div class="snum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg>$330</div><div class="stxt"><b>More per week</b> with photos on 70%+ of items</div><a class="ssrc" href="https://merchants.ubereats.com/us/en/resources/articles/product-highlights/get-discovered/" target="_blank" rel="noopener">Uber Eats merchant data. Source checked 2026</a></div><div class="stat"><div class="snum">55%</div><div class="stxt"><b>Of first orders</b> at new restaurants come from browsing, not search</div><a class="ssrc" href="https://merchants.doordash.com/en-us/blog/how-to-increase-restaurant-sales" target="_blank" rel="noopener">DoorDash data. Source checked 2026</a></div></div>
       <button class="btn big rv" data-open>Get started</button>
     </div>
     <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
@@ -622,8 +624,7 @@ var FORM_FIELDS = {restaurant:"", contact:""};
     document.getElementById('qthanks').textContent='Hit send on the email that just opened and we\u2019ll be in touch soon.';
     show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m);});
 
-  var PS=[["+44%","<b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small>"],["+$330","<b>More per week</b> for menus with photos on 70%+ of items<small>Uber Eats merchant data</small>"],["55%","<b>Of first orders</b> at new restaurants come from browsing, not search<small>DoorDash data</small>"]],pi=0,pr=document.getElementById('proof');
-  if(!reduce)setInterval(function(){pr.classList.add('swap');setTimeout(function(){pi=(pi+1)%PS.length;document.getElementById('pn').textContent=PS[pi][0];document.getElementById('pt').innerHTML=PS[pi][1];pr.classList.remove('swap');},350);},12000);
+  
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('send');
   function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9);}
