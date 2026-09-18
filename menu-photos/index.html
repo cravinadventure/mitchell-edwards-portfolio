@@ -727,10 +727,10 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     if(st==='work'){r.classList.add('has');p.className='pill p-work';p.textContent='In progress';b.classList.add('on');a.classList.remove('on');}
     if(st==='done'){r.classList.add('has');p.className='pill p-done';p.textContent='Finished';a.classList.add('on');b.classList.remove('on');r.classList.remove('flashrow');void r.offsetWidth;r.classList.add('flashrow');}}
   var live=document.getElementById('live'),lvb=document.getElementById('lvb'),lva=document.getElementById('lva'),lvw=document.getElementById('lvw'),lvtag=document.getElementById('lvtag'),lvst=document.getElementById('lvst'),liveJ=-1;
-  var RUN=4500,HOLD=6600,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
+  var RUN=5000,HOLD=6600,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
   new IntersectionObserver(function(es){cvis=es[0].isIntersecting;if(cvis){spd.classList.add('go');if(cstart===null)cstart=performance.now();}},{threshold:.2}).observe(spd);
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
-    var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),p=Math.pow(Math.min(1,t/RUN),2.3);
+    var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),u=Math.min(1,t/RUN),p=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
     if(cyc!==lastCycle){lastCycle=cyc;celebrated=false;banner.classList.remove('show');}
     carc.style.strokeDashoffset=CC*(1-p);hh.setAttribute('transform','rotate('+(720*p)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*p)+' 190 190)');
     hrs.textContent=Math.floor(24*p);
