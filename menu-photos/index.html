@@ -419,10 +419,12 @@
   @media (max-width:1100px){.combo{grid-template-columns:1fr 1fr!important}.combo .colw:first-of-type{grid-column:1/-1;order:-1;max-width:460px}}
   @media (max-width:900px){.combo{grid-template-columns:1fr!important}.combo .clock{max-width:220px}.combo .clockcol{max-width:260px}}
   .gsec{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0e0b09;color:#fff;text-align:center}
-  .gsec video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .tgrid{position:absolute;left:0;top:0;will-change:transform}
+  .tgrid img{position:absolute;display:block;object-fit:cover;transition:transform .22s ease}
+  .tgrid img.fl{transform:scaleX(0)}
   .gsec .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.86) 0%,rgba(10,8,7,.62) 45%,rgba(10,8,7,.4) 100%)}
   .gsec .ginner{position:relative;padding:80px 20px;display:flex;flex-direction:column;align-items:center}
-  .gsec h2{font-size:clamp(52px,8vw,120px);margin:10px 0 14px}
+  .gsec h2{font-size:clamp(52px,8vw,120px);margin:0 0 30px}
   .gsec p{font-size:clamp(18px,1.8vw,22px);color:rgba(255,255,255,.85);margin-bottom:28px}
   .gsec small{margin-top:16px;font-size:14px;color:rgba(255,255,255,.65)}
   .gsec small a{color:#fff}
@@ -582,12 +584,10 @@
 <!-- 4. CLOSE: people + get started + questions -->
 <section class="close" id="start">
   <div class="gsec" id="send">
-    <video id="gv" autoplay muted loop playsinline preload="none" poster="assets/tiles_wide_poster.jpg"></video>
+    <div class="tgrid" id="tgrid"></div>
     <div class="gveil"></div>
     <div class="ginner">
-      <div class="eyebrow rv">Get started</div>
       <h2 class="rv">Send us your menu.</h2>
-      <p class="rv">Four quick questions. We&#39;ll email your checklist.</p>
       <button class="btn big rv" data-open>Get started</button>
     </div>
   </div>
@@ -611,7 +611,7 @@
     <details><summary>How much does it cost?</summary><p>It depends on how many dishes need photos. Hit Get started, tell us about your menu, and we&#39;ll send you a quote. No commitment.</p></details>
     <details><summary>How fast is it?</summary><p>It depends on how fast you send us the photos. Send the whole menu at once and we can turn it around in about a day, or send dishes as you go and we&#39;ll keep pace.</p></details>
     <details><summary>What do we need to send?</summary><p>One phone photo of each dish and a link to your menu. That&#39;s it.</p></details>
-    <details><summary>Who takes the photos?</summary><p>Anyone on staff. A few seconds per plate while it&#39;s on the pass.</p></details>
+    <details><summary>Who takes the photos?</summary><p>You do, with your phone. We never come to your restaurant. Anyone on your staff snaps a quick picture of each dish, the same way you&#39;d take any photo, and texts it to us. That&#39;s your whole part. We handle everything else remotely and send the finished photos back.</p></details>
     <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
     <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
     <details><summary>Do you change the food?</summary><p>No. We adjust the angle, lighting and background. The plating stays exactly how you serve it, and every photo is checked against your original.</p></details>
@@ -679,8 +679,28 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function when(el,fn,th){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){fn(e.target);o.unobserve(e.target);}});},{threshold:th||.35});o.observe(el);}
 
-  var hv=document.getElementById('gv');var tall=window.matchMedia('(max-aspect-ratio: 1/1)').matches;
-  hv.poster='assets/'+(tall?'tiles_tall':'tiles_wide')+'_poster.jpg';hv.src='assets/'+(tall?'tiles_tall':'tiles_wide')+'.mp4';new IntersectionObserver(function(es){if(es[0].isIntersecting){hv.play&&hv.play().catch(function(){});}else{hv.pause&&hv.pause();}},{rootMargin:'200px'}).observe(hv);
+  // live tile grid: continuous flips + slow diagonal drift, no dish next to itself
+  (function(){
+    var sec=document.getElementById('send'),grid=document.getElementById('tgrid');
+    var names='burrata calamari polpo carpaccio gnocchi linguine rucola spaghetto_di_bonu bolognese polpette porcini cesare tiramisu cannoli gelato_pistacchio torta_limone'.split(' '),N=names.length,ts,cols,rows,g=[],els=[],ox=0,oy=0,vis=false,last=0;
+    function nb(r,c){var o=[];for(var dr=-1;dr<=1;dr++)for(var dc=-1;dc<=1;dc++){if(!dr&&!dc)continue;var rr=r+dr,cc=c+dc;if(g[rr]&&g[rr][cc]!=null)o.push(g[rr][cc]);}return o;}
+    function pick(r,c){var bad=nb(r,c);if(g[r]&&g[r][c]!=null)bad.push(g[r][c]);var ok=[];for(var k=0;k<N;k++)if(bad.indexOf(k)<0)ok.push(k);return ok[Math.floor(Math.random()*ok.length)];}
+    function build(){var W=sec.clientWidth,H=sec.clientHeight;ts=Math.ceil(W/(W>900?8:4));cols=Math.ceil(W/ts)+2;rows=Math.ceil(H/ts)+2;
+      g=[];for(var r=0;r<rows;r++){g[r]=[];for(var c=0;c<cols;c++){g[r][c]=null;}}
+      for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)g[r][c]=pick(r,c);
+      grid.innerHTML='';els=[];for(var r=0;r<rows;r++){els[r]=[];for(var c=0;c<cols;c++){var im=new Image();im.alt='';im.style.cssText='left:'+(c*ts)+'px;top:'+(r*ts)+'px;width:'+ts+'px;height:'+ts+'px';grid.appendChild(im);els[r][c]=im;}}
+      paint();}
+    function paint(){for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var s='assets/bonu_'+names[g[r][c]]+'.jpg';if(els[r][c].getAttribute('src')!==s)els[r][c].src=s;}}
+    function flip(){var r=Math.floor(Math.random()*rows),c=Math.floor(Math.random()*cols),im=els[r][c];if(!im)return;im.classList.add('fl');
+      setTimeout(function(){g[r][c]=pick(r,c);im.src='assets/bonu_'+names[g[r][c]]+'.jpg';im.classList.remove('fl');},220);}
+    function frame(t){requestAnimationFrame(frame);if(!vis)return;var dt=Math.min(50,t-(last||t));last=t;ox+=dt*.018;oy+=dt*.018;
+      if(ox>=ts){ox-=ts;for(var r=0;r<rows;r++){g[r].shift();g[r].push(null);}for(var r=0;r<rows;r++)g[r][cols-1]=pick(r,cols-1);paint();}
+      if(oy>=ts){oy-=ts;g.shift();var row=[];for(var c=0;c<cols;c++)row.push(null);g.push(row);for(var c=0;c<cols;c++)g[rows-1][c]=pick(rows-1,c);paint();}
+      grid.style.transform='translate3d('+(-ts-ox).toFixed(1)+'px,'+(-ts-oy).toFixed(1)+'px,0)';}
+    build();window.addEventListener('resize',build);
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting;last=0;},{rootMargin:'100px'}).observe(sec);
+    if(!reduce){requestAnimationFrame(frame);setInterval(function(){if(vis){flip();flip();}},90);}
+  })();
 
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
 
