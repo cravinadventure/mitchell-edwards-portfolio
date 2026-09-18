@@ -284,6 +284,11 @@
   @media (max-width:900px){.gsec .gline{white-space:normal;max-width:30ch}.lcopy .slogan{display:none}}
   .bar{position:fixed!important;pointer-events:none;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:28px clamp(20px,4vw,56px)!important}
   .bar .logo{font-size:18px;letter-spacing:.01em;color:#fff;pointer-events:auto;text-shadow:0 1px 10px rgba(0,0,0,.45),0 0 2px rgba(0,0,0,.35)}
+  .more{display:none}
+  .more.open{display:block}
+  .morebtn{margin-top:22px;background:none;border:1.5px solid var(--line);border-radius:999px;padding:13px 22px;font-weight:700;font-size:15px;color:var(--text);display:inline-flex;gap:10px;align-items:center}
+  .morebtn span{color:var(--tomato);font-size:20px;line-height:1}
+  .morebtn:hover{border-color:var(--tomato)}
   .mcta{display:flex!important;position:fixed;right:24px;bottom:24px;left:auto;z-index:60;transform:translateY(160%);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
   .mcta.show{transform:none}
   .mcta .btn{padding:14px 24px;font-size:15px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.3)}
@@ -430,19 +435,22 @@
   
     <h3 class="faqh">Common questions</h3>
     <details><summary>How much does it cost?</summary><p>It depends on how many dishes need photos. Hit Get started, tell us about your menu, and we&#39;ll send you a quote. No commitment.</p></details>
-    <details><summary>How fast is it?</summary><p>It depends on how fast you send us the photos. Send the whole menu at once and we can turn it around in about a day, or send dishes as you go and we&#39;ll keep pace.</p></details>
-    <details><summary>What do we need to send?</summary><p>One phone photo of each dish and a link to your menu. That&#39;s it.</p></details>
     <details><summary>Who takes the photos?</summary><p>You do, with your phone. We never come to your restaurant. We recommend having a chef or food runner snap each dish right before it goes out during a normal day of service. Save them up, then text them all to us at once, or share a folder, whatever&#39;s easiest. That&#39;s your whole part. From there, a real person on our team works on every photo and sends the finished set back to you.</p></details>
-    <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
-    <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
+    <details><summary>How fast is it?</summary><p>It depends on how fast you send us the photos. Send the whole menu at once and we can turn it around in about a day, or send dishes as you go and we&#39;ll keep pace.</p></details>
     <details><summary>Do you change the food?</summary><p>No. We adjust the angle, lighting and background. The plating stays exactly how you serve it, and every photo is checked against your original.</p></details>
     <details><summary>Do you use AI?</summary><p>Yes, as one part of the process. We use a series of editing tools, and some of the enhancement steps use AI. We never change your food or how it&#39;s plated. Small cleanups, like a stray crumb or a misplaced garnish, are included. Bigger changes you ask for are quoted separately. Every image starts from a photo of your real dish, a person checks it against your original, and you approve every photo before it goes live.</p></details>
+    <div class="more" id="more">
+    <details><summary>What do we need to send?</summary><p>One phone photo of each dish and a link to your menu. That&#39;s it.</p></details>
+    <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
+    <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
     <details><summary>Will they work on DoorDash, Uber Eats and Grubhub?</summary><p>We size and format every photo for each app. Each platform reviews photos on its own, so approval is up to them, and we&#39;ll help fix any photo that gets flagged.</p></details>
     <details><summary>What if we don&#39;t like a photo?</summary><p>Tell us what&#39;s off and we&#39;ll do our best to fix it. Nothing goes live until you approve it.</p></details>
     <details><summary>What about new dishes later?</summary><p>Send them the same way whenever your menu changes, and they&#39;re finished to match the rest of your set.</p></details>
     <details><summary>Do you only do top-down photos?</summary><p>Top-down works best on delivery apps, so we start there. Styled, moody shots for social, your website or a new menu are an add-on, drinks included.</p></details>
     <details><summary>Do the files belong to us?</summary><p>Yes. Use them on every app, your website, Google, social and print.</p></details>
     <details><summary>Do you need to be local?</summary><p>No. The whole service runs remotely, so it works for restaurants anywhere.</p></details>
+    </div>
+    <button class="morebtn" id="morebtn" aria-expanded="false">See all questions <span>+</span></button>
   </div>
 </div>
   <div class="gsec" id="send">
@@ -609,6 +617,7 @@ var FORM_FIELDS = {restaurant:"", contact:""};
 
   var PS=[["+44%","<b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small>"],["+$330","<b>More per week</b> for menus with photos on 70%+ of items<small>Uber Eats merchant data</small>"],["55%","<b>Of first orders</b> at new restaurants come from browsing, not search<small>DoorDash data</small>"]],pi=0,pr=document.getElementById('proof');
   if(!reduce)setInterval(function(){pr.classList.add('swap');setTimeout(function(){pi=(pi+1)%PS.length;document.getElementById('pn').textContent=PS[pi][0];document.getElementById('pt').innerHTML=PS[pi][1];pr.classList.remove('swap');},350);},12000);
+  var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('send');
   function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
