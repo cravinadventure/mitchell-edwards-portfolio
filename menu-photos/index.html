@@ -171,9 +171,6 @@
   .qbox{position:relative;width:min(520px,100%);background:var(--paper);border-radius:24px;padding:30px 28px 26px;box-shadow:0 40px 90px rgba(0,0,0,.45);transform:translateY(20px);transition:transform .3s}
   .modal.open .qbox{transform:none}
   .qx{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;border:0;background:#f1ece4;font-size:20px;line-height:1;color:var(--text)}
-  .qprog{display:flex;gap:6px;margin-bottom:22px;padding-right:48px}
-  .qprog i{flex:1;height:5px;border-radius:9px;background:#ece5da;transition:background .3s}
-  .qprog i.on{background:var(--tomato)}
   .qstep{display:none;animation:qin .35s ease}
   .qstep.on{display:block}
   @keyframes qin{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
@@ -181,12 +178,7 @@
   .qstep .qs{font-size:15px;color:var(--soft);margin-bottom:18px}
   .qin{width:100%;font:500 17px var(--sans);padding:15px 16px;border-radius:14px;border:1.5px solid #ddd3c6;background:#fff;margin-bottom:10px;color:var(--text)}
   .qin:focus{outline:0;border-color:var(--tomato)}
-  .opts{display:grid;gap:10px}
-  .opt{text-align:left;padding:16px 18px;border-radius:14px;border:1.5px solid #ddd3c6;background:#fff;font-weight:600;font-size:16.5px;color:var(--text);transition:border-color .15s,background .15s}
   .opt:hover{border-color:var(--tomato)}
-  .opt.sel{border-color:var(--tomato);background:#fff1ec}
-  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-  .qback{border:0;background:none;color:var(--soft);font-weight:600;padding:8px 0}
   .qnext{padding:15px 26px}
   .qnext[disabled]{opacity:.4;pointer-events:none}
   .qdone{text-align:center;padding:10px 0}
@@ -477,41 +469,27 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="qtitle">
   <div class="qbox">
     <button class="qx" id="qx" aria-label="Close">&times;</button>
-    <div class="qprog" id="qprog"><i class="on"></i><i></i><i></i><i></i></div>
     <form id="qform" novalidate>
       <div class="qstep on" data-q="0">
-        <h3 id="qtitle">What&#39;s your restaurant?</h3><p class="qs">Name and city.</p>
+        <h3 id="qtitle">Let&#39;s get started.</h3><p class="qs">We&#39;ll email you the next steps.</p>
         <input class="qin" name="restaurant" placeholder="Restaurant name" autocomplete="organization">
-        <input class="qin" name="city" placeholder="City" autocomplete="address-level2">
+        <input class="qin" name="contact" type="email" inputmode="email" placeholder="Your email" autocomplete="email">
+        <div class="qerr" id="qerr"></div>
+        <button type="submit" class="btn qnext" id="qnext" style="width:100%">Get started</button>
       </div>
       <div class="qstep" data-q="1">
-        <h3>How many locations?</h3><p class="qs">Tap one.</p>
-        <div class="opts" data-name="locations"><button type="button" class="opt">Just one</button><button type="button" class="opt">2 to 5</button><button type="button" class="opt">6 or more</button></div>
-      </div>
-      <div class="qstep" data-q="2">
-        <h3>How many dishes need photos?</h3><p class="qs">A rough guess is fine.</p>
-        <div class="opts" data-name="dishes"><button type="button" class="opt">Under 15</button><button type="button" class="opt">15 to 40</button><button type="button" class="opt">40 or more</button><button type="button" class="opt">Not sure yet</button></div>
-      </div>
-      <div class="qstep" data-q="3">
-        <h3>How do we reach you?</h3><p class="qs">We&#39;ll email your checklist here.</p>
-        <input class="qin" name="name" placeholder="Your name" autocomplete="name">
-        <input class="qin" name="contact" type="email" inputmode="email" placeholder="Email" autocomplete="email">
-      </div>
-      <div class="qstep" data-q="4">
         <div class="qdone">
           <div class="ck"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></div>
-          <h3>Got it!</h3><p class="qs" id="qthanks">We&#39;ll reach out with your checklist soon.</p>
+          <h3>Got it!</h3><p class="qs" id="qthanks">We&#39;ll be in touch soon.</p>
         </div>
       </div>
-      <div class="qerr" id="qerr"></div>
-      <div class="qnav" id="qnav"><button type="button" class="qback" id="qback">Back</button><button type="button" class="btn qnext" id="qnext">Next</button></div>
     </form>
   </div>
 </div>
 
 <script>
 var FORM_ENDPOINT = "";
-var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", contact:""};
+var FORM_FIELDS = {restaurant:"", contact:""};
 
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -613,36 +591,21 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=.3;p.vy=Math.min(p.vy,6);p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
       if(++f<380)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
 
-  var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),prog=document.querySelectorAll('#qprog i'),q=0;
-  var back=document.getElementById('qback'),next=document.getElementById('qnext'),nav=document.getElementById('qnav'),err=document.getElementById('qerr'),form=document.getElementById('qform');
-  var ans={};
-  function show(n){q=n;steps.forEach(function(s,i){s.classList.toggle('on',i===n);});prog.forEach(function(p,i){p.classList.toggle('on',i<=n);});
-    back.style.visibility=n>0&&n<4?'visible':'hidden';next.textContent=n===3?'Send':'Next';nav.style.display=n===4?'none':'flex';err.textContent='';
-    var f=steps[n].querySelector('input');if(f&&window.innerWidth>900)setTimeout(function(){f.focus();},50);}
-  function open(){modal.classList.add('open');document.body.classList.add('lock');show(0);}
+  var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),form=document.getElementById('qform'),err=document.getElementById('qerr');
+  function show(n){steps.forEach(function(s,i){s.classList.toggle('on',i===n);});}
+  function open(){modal.classList.add('open');document.body.classList.add('lock');show(0);err.textContent='';if(window.innerWidth>900)setTimeout(function(){form.elements.restaurant.focus();},60);}
   function close(){modal.classList.remove('open');document.body.classList.remove('lock');}
   document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open();});});
   document.getElementById('qx').addEventListener('click',close);
   modal.addEventListener('click',function(e){if(e.target===modal)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
-  document.querySelectorAll('.opts').forEach(function(g){g.querySelectorAll('.opt').forEach(function(o){o.addEventListener('click',function(){
-    g.querySelectorAll('.opt').forEach(function(x){x.classList.toggle('sel',x===o);});ans[g.getAttribute('data-name')]=o.textContent;setTimeout(function(){show(q+1);},220);});});});
-  function val(n){return (form.elements[n].value||'').trim();}
-  back.addEventListener('click',function(){if(q>0)show(q-1);});
-  next.addEventListener('click',function(){
-    if(q===0){if(!val('restaurant')){err.textContent='Add your restaurant name.';return;}ans.restaurant=val('restaurant');ans.city=val('city');}
-    if(q===1&&!ans.locations){err.textContent='Tap one to continue.';return;}
-    if(q===2&&!ans.dishes){err.textContent='Tap one to continue.';return;}
-    if(q===3){if(!val('name')){err.textContent='Add your name.';return;}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('contact'))){err.textContent='Add a valid email.';return;}ans.name=val('name');ans.contact=val('contact');submit();return;}
-    show(q+1);});
-  form.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next.click();}});
-  function submit(){
-    if(FORM_ENDPOINT){var fd=new FormData();Object.keys(FORM_FIELDS).forEach(function(k){if(FORM_FIELDS[k])fd.append(FORM_FIELDS[k],ans[k]||'');});
-      fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(4);return;}
-    var body='Restaurant: '+ans.restaurant+'\nCity: '+ans.city+'\nLocations: '+ans.locations+'\nDishes needing photos: '+ans.dishes+'\nName: '+ans.name+'\nEmail: '+ans.contact;
-    document.getElementById('qthanks').textContent='Hit send on the email that just opened and we’ll reach out with your checklist.';
-    show(4);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+ans.restaurant)+'&body='+encodeURIComponent(body);
-  }
+  form.addEventListener('submit',function(e){e.preventDefault();
+    var r=(form.elements.restaurant.value||'').trim(),m=(form.elements.contact.value||'').trim();
+    if(!r){err.textContent='Add your restaurant name.';return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){err.textContent='Add a valid email.';return;}
+    if(FORM_ENDPOINT){var fd=new FormData();if(FORM_FIELDS.restaurant)fd.append(FORM_FIELDS.restaurant,r);if(FORM_FIELDS.contact)fd.append(FORM_FIELDS.contact,m);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);return;}
+    document.getElementById('qthanks').textContent='Hit send on the email that just opened and we\u2019ll be in touch soon.';
+    show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m);});
 
   var PS=[["+44%","<b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small>"],["+$330","<b>More per week</b> for menus with photos on 70%+ of items<small>Uber Eats merchant data</small>"],["55%","<b>Of first orders</b> at new restaurants come from browsing, not search<small>DoorDash data</small>"]],pi=0,pr=document.getElementById('proof');
   if(!reduce)setInterval(function(){pr.classList.add('swap');setTimeout(function(){pi=(pi+1)%PS.length;document.getElementById('pn').textContent=PS[pi][0];document.getElementById('pt').innerHTML=PS[pi][1];pr.classList.remove('swap');},350);},12000);
