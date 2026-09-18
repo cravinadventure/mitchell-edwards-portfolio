@@ -162,11 +162,10 @@
   .qprog i{display:block;height:100%;width:50%;border-radius:6px;background:var(--tomato);transition:width .6s cubic-bezier(.3,.7,.2,1)}
   .qhp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   .qdone .qs a{color:var(--tomato);font-weight:600}
-  .qnext{padding:15px 26px}
+  .qnext{padding:15px 26px;margin-top:10px}
   .qnext[disabled]{opacity:.4;pointer-events:none}
   .qdone{text-align:center;padding:10px 0}
   .qdone .ck{width:70px;height:70px;border-radius:50%;background:var(--basil);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-  .qerr{color:#b3321a;font-size:13.5px;min-height:18px}
   .land{position:relative;height:340svh;background:#0e0b09;color:#fff}
   .land .pin{position:sticky;top:0;height:100svh;overflow:hidden}
   .land video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -489,10 +488,9 @@
         <h3 id="qtitle">Let&#39;s get started.</h3><p class="qs">Tell us a little and we&#39;ll email you the next steps.</p>
         <input class="qin" name="restaurant" placeholder="Restaurant name" autocomplete="organization">
         <input class="qin" name="contact" type="email" inputmode="email" placeholder="Your email" autocomplete="email">
-        <select class="qin qsel" name="dishes" aria-label="About how many dishes?"><option value="">How many dishes? (optional)</option><option>Under 15</option><option>15 to 40</option><option>40 to 60</option><option>60+</option></select>
+        <select class="qin qsel" name="dishes" aria-label="How many dishes?"><option value="">How many dishes?</option><option>Under 15</option><option>15 to 40</option><option>40 to 60</option><option>60+</option></select>
         <input class="qhp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="qerr" id="qerr"></div>
-        <button type="submit" class="btn qnext" id="qnext" style="width:100%">Next</button>
+        <button type="submit" class="btn qnext" id="qnext" style="width:100%" disabled>Next</button>
       </div>
       <div class="qstep" data-q="1">
         <div class="qdone">
@@ -606,21 +604,22 @@ var FORM_ENDPOINT = "";
     var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=.3;p.vy=Math.min(p.vy,6);p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
       if(++f<200)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
 
-  var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),form=document.getElementById('qform'),err=document.getElementById('qerr');
+  var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),form=document.getElementById('qform');
   function show(n){steps.forEach(function(s,i){s.classList.toggle('on',i===n);});document.getElementById('qbar').style.width=(n?100:50)+'%';}
-  function open(){modal.classList.add('open');document.body.classList.add('lock');show(0);err.textContent='';if(window.innerWidth>900)setTimeout(function(){form.elements.restaurant.focus();},60);}
+  function open(){modal.classList.add('open');document.body.classList.add('lock');show(0);if(window.innerWidth>900)setTimeout(function(){form.elements.restaurant.focus();},60);}
   function close(){modal.classList.remove('open');document.body.classList.remove('lock');}
   document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open();});});
   document.getElementById('qx').addEventListener('click',close);
   modal.addEventListener('click',function(e){if(e.target===modal)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  var qn=document.getElementById('qnext');function gate(){qn.disabled=!((form.elements.restaurant.value||'').trim()&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((form.elements.contact.value||'').trim()));}
+  form.addEventListener('input',gate);form.addEventListener('change',gate);
   form.addEventListener('submit',function(e){e.preventDefault();
     var r=(form.elements.restaurant.value||'').trim(),m=(form.elements.contact.value||'').trim();
-    if(!r){err.textContent='Add your restaurant name.';return;}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){err.textContent='Add a valid email.';return;}
+    if(!r||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m))return;
     var d=form.elements.dishes.value;
     if(form.elements.website.value){show(1);return;}
-    if(FORM_ENDPOINT){var fd=new FormData();fd.append('restaurant',r);fd.append('email',m);fd.append('dishes',d);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);form.reset();return;}
+    if(FORM_ENDPOINT){var fd=new FormData();fd.append('restaurant',r);fd.append('email',m);fd.append('dishes',d);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);form.reset();gate();return;}
     document.getElementById('qthanks').textContent='Hit send on the email that just opened and we\u2019ll reach back out today or soon.';
     show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m+(d?'\nDishes: '+d:''));});
 
