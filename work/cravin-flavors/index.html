@@ -209,6 +209,33 @@
 
   .imgp{width:100%;display:block;border:1px solid var(--accent-dim);background:#000;aspect-ratio:3/4;object-fit:cover}
   .imgd{width:100%;display:block;border:1px solid var(--accent-dim);background:#000}
+
+  /* result mockups */
+  .imgp.bonu{background:#fff;border-color:var(--line2)}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .balabel{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:12px}
+  .balabel.on{color:var(--accent)}
+  .bacap{margin-top:18px;font-size:15px;color:var(--text-dim)}
+  .phone{max-width:320px;margin:0 auto;border:9px solid #111;border-radius:40px;background:#111;box-shadow:0 18px 40px rgba(0,0,0,.14)}
+  .phone .scr{background:#fff;border-radius:31px;overflow:hidden;height:560px;display:flex;flex-direction:column}
+  .banner{height:120px;background-size:cover;background-position:center}
+  .apphead{padding:12px 16px 6px}.apphead b{display:block;font-size:17px;color:#111}.apphead span{font-size:12px;color:#666}
+  .appsec{padding:10px 16px 4px;font-size:13px;font-weight:700;color:#111}
+  .mrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid #eee;min-height:86px}
+  .mtxt b{display:block;font-size:14px;color:#111}.mtxt span{font-size:12px;color:#777;line-height:1.35;display:block}
+  .mrow img{width:72px;height:72px;object-fit:cover;border-radius:10px;flex:none;background:#f4f4f4}
+  .mapbg{height:230px;position:relative;background:#e8eee9;background-image:linear-gradient(90deg,rgba(255,255,255,.9) 2px,transparent 2px),linear-gradient(rgba(255,255,255,.9) 2px,transparent 2px),linear-gradient(35deg,transparent 48%,#f6e7b8 48%,#f6e7b8 53%,transparent 53%);background-size:60px 60px,60px 60px,100% 100%}
+  .pin{position:absolute;left:50%;top:48%;width:22px;height:22px;background:#d9423a;border:3px solid #fff;border-radius:50% 50% 50% 0;transform:translate(-50%,-50%) rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.3)}
+  .place{padding:14px 16px}.place b{display:block;font-size:17px;color:#111}.place span{font-size:12px;color:#666}
+  .pbtns{display:flex;gap:8px;margin:12px 0}.pbtns i{font-style:normal;font-size:12px;padding:6px 12px;border-radius:20px;background:#eef2f7;color:#2c4a7a}
+  .pstrip{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4px}.pstrip img{width:100%;height:118px;object-fit:cover;border-radius:6px}
+  .browser{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.10)}
+  .bbar{height:28px;background:#f1f1ef;display:flex;gap:6px;align-items:center;padding:0 12px}.bbar i{width:9px;height:9px;border-radius:50%;background:#d6d6d3}
+  .shero{height:190px;background-size:cover;background-position:center;display:flex;align-items:flex-end}
+  .shero div{width:100%;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,.55));display:flex;justify-content:space-between;align-items:center}
+  .shero b{color:#fff;font-size:17px}.shero em{font-style:normal;font-size:12px;background:#fff;color:#111;padding:6px 12px;border-radius:20px}
+  .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px}.sgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  @media(max-width:760px){.ba{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -234,10 +261,10 @@
 
 <section class="hero wide">
   <div class="k">Case study &middot; Food photography</div>
-  <h1>Food and beverage photography for four restaurants.</h1>
-  <p class="lede">Menu and social photography shot on location at four restaurants, in available light, during service. Each visit produced a full set the restaurant could use across menus, social, delivery apps and print.</p>
+  <h1>Food and beverage photography for restaurants.</h1>
+  <p class="lede">Menu and social photography for restaurants, from on-location shoots during service to clean top-down menu sets. Each visit produced a full set the restaurant could use across menus, social, delivery apps and print.</p>
   <div class="meta">
-    <span>Four restaurants</span><span>Available light, no crew</span><span>Shot during service</span>
+    <span>Menus and social</span><span>Delivery apps</span><span>On location, no crew</span>
   </div>
   <div class="mt"><img class="imgd" style="aspect-ratio:16/9;object-fit:cover" src="assets/jeremiahs_03.jpg" alt="Lobster roll and fries"></div>
   <div class="cap">Lobster roll, Jeremiah's</div>
@@ -256,7 +283,7 @@
 <section id="work" class="wide">
   <div class="sectionhead">
     <div class="k">02 &mdash; The work</div>
-    <h2>Four restaurants.</h2>
+    <h2>The restaurants.</h2>
   </div>
 
   <h3 style="margin-top:34px">Jeremiah's</h3>
@@ -273,18 +300,40 @@
 
   <h3 style="margin-top:44px">Rio Salado</h3>
   <div class="grid2 mt"><div><img class="imgp" style="aspect-ratio:4/5" src="assets/rio_salado_01.jpg" alt="Plated entree"><div class="cap">Plated entree</div></div><div><img class="imgp" style="aspect-ratio:4/5" src="assets/rio_salado_02.jpg" alt="Plated entree, second angle"><div class="cap">Plated entree, second angle</div></div></div>
+
+  <h3 style="margin-top:44px">Bonu' Taverna Italiana</h3>
+  <p>A top-down menu set on a clean white background, made for delivery apps and online menus. Every dish on its own plate, centered and consistent across the whole menu.</p>
+  <div class="grid4 mt"><div><img class="imgp bonu" loading="lazy" src="assets/bonu_burrata.jpg" alt="Burrata, Bonu' Taverna Italiana"><div class="cap">Burrata</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_calamari.jpg" alt="Calamari, Bonu' Taverna Italiana"><div class="cap">Calamari</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_polpo.jpg" alt="Polpo, Bonu' Taverna Italiana"><div class="cap">Polpo</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_carpaccio.jpg" alt="Carpaccio, Bonu' Taverna Italiana"><div class="cap">Carpaccio</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_lasagne.jpg" alt="Lasagne, Bonu' Taverna Italiana"><div class="cap">Lasagne</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_linguine.jpg" alt="Linguine, Bonu' Taverna Italiana"><div class="cap">Linguine</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_genovese.jpg" alt="Genovese, Bonu' Taverna Italiana"><div class="cap">Genovese</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_spaghetto_di_bonu.jpg" alt="Spaghetto di Bonu', Bonu' Taverna Italiana"><div class="cap">Spaghetto di Bonu'</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_bolognese.jpg" alt="Bolognese, Bonu' Taverna Italiana"><div class="cap">Bolognese</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_polpette.jpg" alt="Polpette, Bonu' Taverna Italiana"><div class="cap">Polpette</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_porcini.jpg" alt="Porcini, Bonu' Taverna Italiana"><div class="cap">Porcini</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_cesare.jpg" alt="Cesare, Bonu' Taverna Italiana"><div class="cap">Cesare</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_tiramisu.jpg" alt="Tiramisu, Bonu' Taverna Italiana"><div class="cap">Tiramisu</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_cannoli.jpg" alt="Cannoli, Bonu' Taverna Italiana"><div class="cap">Cannoli</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_gelato_pistacchio.jpg" alt="Pistachio gelato, Bonu' Taverna Italiana"><div class="cap">Pistachio gelato</div></div><div><img class="imgp bonu" loading="lazy" src="assets/bonu_torta_limone.jpg" alt="Torta al limone, Bonu' Taverna Italiana"><div class="cap">Torta al limone</div></div></div>
 </section>
 
 <section id="result" class="wide">
   <div class="sectionhead">
     <div class="k">03 &mdash; Result</div>
-    <h2>A full set from a single visit.</h2>
+    <h2>Where the photos get seen.</h2>
   </div>
-  <p>Each restaurant received a complete set for menu boards, social, delivery apps and print, shot in one visit without interrupting service.</p>
-  <div class="biz">
-    <b>What it demonstrates</b>
-    <p>Working quickly in someone else's space, on their schedule, with the light that's available. The same planning that keeps any shoot day on time and on budget.</p>
-  </div>
+  <p>The same restaurant, before and after. These mockups show the places a guest actually decides what to order: the delivery app, the maps listing, and the restaurant's own website.</p>
+
+  <h3 style="margin-top:44px">Delivery app menu</h3>
+  <div class="ba mt"><div><div class="balabel">Before</div><div class="phone"><div class="scr"><div class="banner" style="background-image:url(assets/bonu_before_linguine.jpg)"></div>
+<div class="apphead"><b>Bonu' Taverna Italiana</b><span>Italian &middot; 25&ndash;35 min &middot; Delivery</span></div>
+<div class="appsec">Most popular</div><div class="mrow"><div class="mtxt"><b>Burrata</b><span>Tomato, basil pesto, olive oil</span></div></div><div class="mrow"><div class="mtxt"><b>Lasagne</b><span>Bolognese, besciamella, parmigiano</span></div></div><div class="mrow"><div class="mtxt"><b>Spaghetto di Bonu'</b><span>Tomato vellutata, burrata, basil</span></div></div><div class="mrow"><div class="mtxt"><b>Tiramisu</b><span>Espresso, mascarpone, cocoa</span></div></div></div></div></div><div><div class="balabel on">After</div><div class="phone"><div class="scr"><div class="banner" style="background-image:url(assets/bonu_linguine.jpg)"></div>
+<div class="apphead"><b>Bonu' Taverna Italiana</b><span>Italian &middot; 25&ndash;35 min &middot; Delivery</span></div>
+<div class="appsec">Most popular</div><div class="mrow"><div class="mtxt"><b>Burrata</b><span>Tomato, basil pesto, olive oil</span></div><img src="assets/bonu_burrata.jpg" alt=""></div><div class="mrow"><div class="mtxt"><b>Lasagne</b><span>Bolognese, besciamella, parmigiano</span></div><img src="assets/bonu_lasagne.jpg" alt=""></div><div class="mrow"><div class="mtxt"><b>Spaghetto di Bonu'</b><span>Tomato vellutata, burrata, basil</span></div><img src="assets/bonu_spaghetto_di_bonu.jpg" alt=""></div><div class="mrow"><div class="mtxt"><b>Tiramisu</b><span>Espresso, mascarpone, cocoa</span></div><img src="assets/bonu_tiramisu.jpg" alt=""></div></div></div></div></div>
+  <p class="bacap">Without photos, every dish is just a line of text. With them, the menu sells itself.</p>
+
+  <h3 style="margin-top:56px">Maps listing</h3>
+  <div class="ba mt"><div><div class="balabel">Before</div><div class="phone"><div class="scr"><div class="mapbg"><div class="pin"></div></div>
+<div class="place"><b>Bonu' Taverna Italiana</b><span>Italian restaurant &middot; 601 Central Ave</span>
+<div class="pbtns"><i>Directions</i><i>Call</i><i>Menu</i></div><div class="pstrip"><img src="assets/bonu_before_linguine.jpg" alt=""><img src="assets/bonu_before_burrata.jpg" alt=""><img src="assets/bonu_before_lasagne.jpg" alt=""></div></div></div></div></div><div><div class="balabel on">After</div><div class="phone"><div class="scr"><div class="mapbg"><div class="pin"></div></div>
+<div class="place"><b>Bonu' Taverna Italiana</b><span>Italian restaurant &middot; 601 Central Ave</span>
+<div class="pbtns"><i>Directions</i><i>Call</i><i>Menu</i></div><div class="pstrip"><img src="assets/bonu_linguine.jpg" alt=""><img src="assets/bonu_burrata.jpg" alt=""><img src="assets/bonu_lasagne.jpg" alt=""></div></div></div></div></div></div>
+  <p class="bacap">Phone photos from the kitchen next to the finished set. This is often the first look a guest gets.</p>
+
+  <h3 style="margin-top:56px">Restaurant website</h3>
+  <div class="ba mt"><div><div class="balabel">Before</div><div class="browser"><div class="bbar"><i></i><i></i><i></i></div>
+<div class="site"><div class="shero" style="background-image:url(assets/bonu_before_spaghetto_di_bonu.jpg)"><div><b>Bonu' Taverna Italiana</b><em>Order online</em></div></div><div class="sgrid"><img src="assets/bonu_before_linguine.jpg" alt=""><img src="assets/bonu_before_burrata.jpg" alt=""><img src="assets/bonu_before_lasagne.jpg" alt=""></div></div></div></div><div><div class="balabel on">After</div><div class="browser"><div class="bbar"><i></i><i></i><i></i></div>
+<div class="site"><div class="shero" style="background-image:url(assets/bonu_spaghetto_di_bonu.jpg)"><div><b>Bonu' Taverna Italiana</b><em>Order online</em></div></div><div class="sgrid"><img src="assets/bonu_linguine.jpg" alt=""><img src="assets/bonu_burrata.jpg" alt=""><img src="assets/bonu_lasagne.jpg" alt=""></div></div></div></div></div>
+  <p class="bacap">Same layout, new photos.</p>
 </section>
 
 <section class="wide">
