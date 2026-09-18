@@ -415,8 +415,8 @@
     <div class="tgrid" id="tgrid"></div>
     <div class="gveil"></div>
     <div class="ginner">
-      <h2 class="rv">Send us your menu.</h2>
-      <p class="gline rv">Text us a phone photo of each dish. We send back finished, ready-to-post photos for your whole menu.</p>
+      <h2 class="rv">Let your food sell itself.</h2>
+      <p class="gline rv">Text us your dish photos, get back a menu that sells.</p>
       <div class="proof rv" id="proof"><div class="pnum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg><span id="pn">+44%</span></div><div class="ptxt" id="pt"><b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small></div></div>
       <button class="btn big rv" data-open>Get started</button>
     </div>
@@ -633,7 +633,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   }
 
   var PS=[["+44%","<b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small>"],["+$330","<b>More per week</b> for menus with photos on 70%+ of items<small>Uber Eats merchant data</small>"],["55%","<b>Of first orders</b> at new restaurants come from browsing, not search<small>DoorDash data</small>"]],pi=0,pr=document.getElementById('proof');
-  if(!reduce)setInterval(function(){pr.classList.add('swap');setTimeout(function(){pi=(pi+1)%PS.length;document.getElementById('pn').textContent=PS[pi][0];document.getElementById('pt').innerHTML=PS[pi][1];pr.classList.remove('swap');},350);},4000);
+  if(!reduce)setInterval(function(){pr.classList.add('swap');setTimeout(function(){pi=(pi+1)%PS.length;document.getElementById('pn').textContent=PS[pi][0];document.getElementById('pt').innerHTML=PS[pi][1];pr.classList.remove('swap');},350);},7000);
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('start');
   function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
