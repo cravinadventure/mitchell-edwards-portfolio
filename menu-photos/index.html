@@ -391,6 +391,19 @@
     .cue{display:none}
     .land .veil{background:rgba(10,8,7,.78)}
   }
+  .combo{grid-template-columns:auto auto auto!important;gap:40px!important}
+  .combo .clock{width:min(260px,60vw)!important}
+  .speed .dash{max-width:350px}
+  .lcard{position:relative;width:min(380px,84vw);aspect-ratio:1;border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 30px 70px rgba(80,20,5,.35);--w:0%}
+  .lcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .lcard .la{clip-path:inset(0 calc(100% - var(--w)) 0 0)}
+  .lcard .wipe{position:absolute;top:0;bottom:0;left:var(--w);width:4px;margin-left:-2px;background:#fff;box-shadow:0 0 18px 4px rgba(255,255,255,.8);opacity:0}
+  .lcard .ltag,.lcard .lstate{position:absolute;top:14px;font:700 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:8px 11px;border-radius:999px}
+  .lcard .ltag{left:14px;background:rgba(0,0,0,.6);color:#fff}
+  .lcard .lstate{right:14px;background:#fff;color:var(--text);transition:background .3s,color .3s}
+  .lcard .lstate.fin{background:var(--basil);color:#fff}
+  @media (max-width:1100px){.combo{grid-template-columns:auto 1fr!important}.combo .lcard{grid-column:1/-1;justify-self:center;order:-1}}
+  @media (max-width:900px){.combo{grid-template-columns:1fr!important}.combo .clock{width:min(200px,50vw)!important}.hours b{font-size:56px}}
   .mcta{display:none}
   .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .rv.in{opacity:1;transform:none}
@@ -438,7 +451,7 @@
 <!-- 1. LANDING: headline + scroll-driven snap/send/sell -->
 <section class="land" id="top">
   <div class="pin">
-    <video id="hv" autoplay muted loop playsinline preload="auto" poster="assets/explainer_wide_poster.jpg"></video>
+    <video id="hv" autoplay muted loop playsinline preload="auto" poster="assets/tiles_wide_poster.jpg"></video>
     <div class="veil"></div>
     <div class="lgrid">
       <div class="lcopy">
@@ -509,6 +522,12 @@
         </div>
         <div class="hours"><b id="hrs">0</b><span>hours</span></div>
       </div>
+      <div class="lcard" id="live">
+        <img class="lb" id="lvb" src="assets/bonu_before_burrata.jpg" alt="">
+        <img class="la" id="lva" src="assets/bonu_burrata.jpg" alt="">
+        <i class="wipe" id="lvw"></i>
+        <span class="ltag" id="lvtag">Burrata</span><span class="lstate" id="lvst">Your photo</span>
+      </div>
       <div class="dash" id="dash">
       <div class="top"><b>Your menu</b><span class="live"><i></i>Live</span></div>
       <div class="meta"><span><b id="cnt">0</b> of 8 finished</span><span id="pct">0%</span></div>
@@ -554,8 +573,9 @@
   
     <h3 class="faqh">Common questions</h3>
     <details><summary>Do you change the food?</summary><p>No. We adjust the angle, lighting and background. The plating stays exactly how you serve it, and every photo is checked against your original.</p></details>
+    <details><summary>Do you use AI?</summary><p>Yes, as one part of the process. We use a series of editing tools, and some of the enhancement steps use AI. Every image starts from a photo of your real dish, and a person checks each one against your original before it&#39;s delivered, so what customers see is what you serve.</p></details>
     <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
-    <details><summary>How fast is it?</summary><p>About a day for a full menu once we have your photos. Send them all at once, or as you go.</p></details>
+    <details><summary>How fast is it?</summary><p>It depends on how fast you send us the photos. Send the whole menu at once and we can turn it around in about a day, or send dishes as you go and we&#39;ll keep pace.</p></details>
     <details><summary>Who takes the photos?</summary><p>Anyone on staff. A few seconds per plate while it&#39;s on the pass.</p></details>
     <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
     <details><summary>Do you only do top-down photos?</summary><p>Top-down works best on delivery apps, so we start there. Styled, moody shots for social, your website or a new menu are an add-on, drinks included.</p></details>
@@ -618,7 +638,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   function when(el,fn,th){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){fn(e.target);o.unobserve(e.target);}});},{threshold:th||.35});o.observe(el);}
 
   var hv=document.getElementById('hv');var tall=window.matchMedia('(max-aspect-ratio: 1/1)').matches;
-  hv.poster='assets/'+(tall?'explainer_tall':'explainer_wide')+'_poster.jpg';hv.src='assets/'+(tall?'explainer_tall':'explainer_wide')+'.mp4';hv.play&&hv.play().catch(function(){});
+  hv.poster='assets/'+(tall?'tiles_tall':'tiles_wide')+'_poster.jpg';hv.src='assets/'+(tall?'tiles_tall':'tiles_wide')+'.mp4';hv.play&&hv.play().catch(function(){});
 
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
 
@@ -671,8 +691,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
 
   // clock + dashboard: one forward loop. 0h to 24h, dishes finish along the way, celebrate, restart.
   var tdishes=dishes.slice(0,8),secs=['Starters','Starters','Starters','Starters','Pasta','Pasta','Salads','Pasta'],rh='';
-  var hasBefore={burrata:1,polpo:1,linguine:1,spaghetto_di_bonu:1};
-  tdishes.forEach(function(d,i){var b=hasBefore[d[0]]?'bonu_before_'+d[0]:'bonu_'+d[0];
+  tdishes.forEach(function(d,i){var b='bonu_before_'+d[0];
     rh+='<div class="drow" id="r'+i+'"><div class="th"><img class="b" src="assets/'+b+'.jpg" alt=""><img class="a" src="assets/bonu_'+d[0]+'.jpg" alt=""></div><div><b>'+d[1]+'</b><small>'+secs[i]+'</small></div><span class="pill p-need">Photo needed</span></div>';});
   document.getElementById('drows').innerHTML=rh;
   var cnt=document.getElementById('cnt'),pct=document.getElementById('pct'),pbar=document.getElementById('progbar'),banner=document.getElementById('donebanner');
@@ -682,15 +701,19 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     if(st==='need'){r.classList.remove('has');p.className='pill p-need';p.textContent='Photo needed';b.classList.remove('on');a.classList.remove('on');}
     if(st==='work'){r.classList.add('has');p.className='pill p-work';p.textContent='In progress';b.classList.add('on');a.classList.remove('on');}
     if(st==='done'){r.classList.add('has');p.className='pill p-done';p.textContent='Finished';a.classList.add('on');b.classList.remove('on');r.classList.remove('flashrow');void r.offsetWidth;r.classList.add('flashrow');}}
-  var RUN=8000,HOLD=3200,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
+  var live=document.getElementById('live'),lvb=document.getElementById('lvb'),lva=document.getElementById('lva'),lvw=document.getElementById('lvw'),lvtag=document.getElementById('lvtag'),lvst=document.getElementById('lvst'),liveJ=-1;
+  var RUN=9600,HOLD=3200,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
   new IntersectionObserver(function(es){cvis=es[0].isIntersecting;if(cvis){spd.classList.add('go');if(cstart===null)cstart=performance.now();}},{threshold:.2}).observe(spd);
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
     var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),p=Math.min(1,t/RUN);
     if(cyc!==lastCycle){lastCycle=cyc;celebrated=false;banner.classList.remove('show');}
     carc.style.strokeDashoffset=CC*(1-p);hh.setAttribute('transform','rotate('+(720*p)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*p)+' 190 190)');
     hrs.textContent=Math.floor(24*p);
-    var n=0;for(var j=0;j<8;j++){var ds=(j+0.35)/8.4,de=(j+1)/8.4+0.02;var st=p>=de?'done':p>=ds?'work':'need';if(p>=1)st='done';setRow(j,st);if(st==='done')n++;}
+    var n=0,cj=Math.min(7,Math.floor(p*8));for(var j=0;j<8;j++){var q=p*8-j;var st=q>=.85||p>=1?'done':q>0?'work':'need';setRow(j,st);if(st==='done')n++;}
     cnt.textContent=n;pct.textContent=Math.round(n/8*100)+'%';pbar.style.width=(n/8*100)+'%';
+    if(cj!==liveJ){liveJ=cj;lvb.src='assets/bonu_before_'+tdishes[cj][0]+'.jpg';lva.src='assets/bonu_'+tdishes[cj][0]+'.jpg';lvtag.textContent=tdishes[cj][1];}
+    var q2=p>=1?1:p*8-cj,w=ease(rg(q2,.12,.72));live.style.setProperty('--w',(w*100).toFixed(2)+'%');lvw.style.opacity=(w>0&&w<1)?1:0;
+    var fin=w>=1;lvst.textContent=fin?'Finished':'Your photo';lvst.classList.toggle('fin',fin);
     if(p>=1&&!celebrated){celebrated=true;banner.classList.add('show');confetti();}}
   if(!reduce)requestAnimationFrame(tick);else{carc.style.strokeDashoffset=0;hrs.textContent='24';for(var j=0;j<8;j++)setRow(j,'done');cnt.textContent='8';pct.textContent='100%';pbar.style.width='100%';}
 
