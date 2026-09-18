@@ -602,14 +602,20 @@
 <div class="faqw">
   
     <h3 class="faqh">Common questions</h3>
+    <details><summary>How much does it cost?</summary><p>It depends on how many dishes need photos. Hit Get started, tell us about your menu, and we&#39;ll send you a quote. No commitment.</p></details>
+    <details><summary>How fast is it?</summary><p>It depends on how fast you send us the photos. Send the whole menu at once and we can turn it around in about a day, or send dishes as you go and we&#39;ll keep pace.</p></details>
+    <details><summary>What do we need to send?</summary><p>One phone photo of each dish and a link to your menu. That&#39;s it.</p></details>
+    <details><summary>Who takes the photos?</summary><p>Anyone on staff. A few seconds per plate while it&#39;s on the pass.</p></details>
+    <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
+    <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
     <details><summary>Do you change the food?</summary><p>No. We adjust the angle, lighting and background. The plating stays exactly how you serve it, and every photo is checked against your original.</p></details>
     <details><summary>Do you use AI?</summary><p>Yes, as one part of the process. We use a series of editing tools, and some of the enhancement steps use AI. We never change your food or how it&#39;s plated. The only touch-ups are small cleanups, like a stray crumb or a misplaced garnish, or anything you specifically ask for. Every image starts from a photo of your real dish, a person checks it against your original, and you approve every photo before it goes live.</p></details>
-    <details><summary>Our photos aren&#39;t very good. Is that OK?</summary><p>That&#39;s expected. Kitchen light and a quick phone shot are fine. If one can&#39;t be used, it goes on your checklist to retake.</p></details>
-    <details><summary>How fast is it?</summary><p>It depends on how fast you send us the photos. Send the whole menu at once and we can turn it around in about a day, or send dishes as you go and we&#39;ll keep pace.</p></details>
-    <details><summary>Who takes the photos?</summary><p>Anyone on staff. A few seconds per plate while it&#39;s on the pass.</p></details>
-    <details><summary>How do we send them?</summary><p>Text, DM or a shared folder. Whatever&#39;s easiest for your kitchen.</p></details>
+    <details><summary>Will they work on DoorDash, Uber Eats and Grubhub?</summary><p>We size and format every photo for each app. Each platform reviews photos on its own, so approval is up to them, and we&#39;ll help fix any photo that gets flagged.</p></details>
+    <details><summary>What if we don&#39;t like a photo?</summary><p>Tell us what&#39;s off and we&#39;ll fix it. Nothing goes live until you approve it.</p></details>
+    <details><summary>What about new dishes later?</summary><p>Send them the same way whenever your menu changes, and they&#39;re finished to match the rest of your set.</p></details>
     <details><summary>Do you only do top-down photos?</summary><p>Top-down works best on delivery apps, so we start there. Styled, moody shots for social, your website or a new menu are an add-on, drinks included.</p></details>
     <details><summary>Do the files belong to us?</summary><p>Yes. Use them on every app, your website, Google, social and print.</p></details>
+    <details><summary>Do you need to be local?</summary><p>No. The whole service runs remotely, so it works for restaurants anywhere.</p></details>
   </div>
 </div>
 </section>
@@ -672,7 +678,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
 
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
 
-  var h='';for(var k=0;k<2;k++)dishes.slice(0,8).forEach(function(d){h+='<div class="mrow"><div><b>'+d[1]+'</b><span>'+d[2]+'</span></div><img src="assets/bonu_'+d[0]+'.jpg" alt=""></div>';});
+  var h='';for(var k=0;k<3;k++)dishes.slice(0,8).forEach(function(d){h+='<div class="mrow"><div><b>'+d[1]+'</b><span>'+d[2]+'</span></div><img src="assets/bonu_'+d[0]+'.jpg" alt=""></div>';});
   document.getElementById('roll').innerHTML=h;
 
   // story: every animation is scrubbed by scroll position
@@ -704,7 +710,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     bubs[2].classList.toggle('show',b>.42&&b<=.62);bubs[2].classList.toggle('gone',b>.62);
     bubs[3].classList.toggle('show',b>.62);bubs[4].classList.toggle('show',b>.78);
     // 03 sell
-    roll.style.transform='translateY('+(-48*ease(loc[2]))+'%)';
+    var leave=cl(-r.bottom/innerHeight+1),off=loc[2]*1.3+leave*1.6;off=off%1;roll.style.transform='translateY('+(-off*100/3).toFixed(3)+'%)';
   }
   window.addEventListener('scroll',story,{passive:true});window.addEventListener('resize',story);story();
 
