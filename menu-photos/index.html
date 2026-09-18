@@ -134,7 +134,7 @@
   .mrow img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none}
   .steps{padding-top:10svh}
   .step{min-height:130svh;display:flex;flex-direction:column;justify-content:flex-start;padding:30svh 0 0}
-  @media (min-width:901px){.step .card{position:sticky;top:34svh}}
+  @media (min-width:901px){.step .card{position:sticky;top:34svh}.step:last-child .card{position:static}.step:last-child{min-height:100svh}}
   .step .n{font-family:var(--serif);font-size:18px;color:var(--tomato);margin-bottom:12px}
   .step h2{font-size:clamp(46px,6vw,84px);margin-bottom:14px}
   .step p{font-size:19px;color:rgba(255,255,255,.78);max-width:26ch}
