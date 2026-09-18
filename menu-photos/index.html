@@ -445,6 +445,13 @@
   .proof .ptxt b{color:#fff}
   .proof small{display:block;margin-top:3px;font-size:11.5px;color:rgba(255,255,255,.5)}
   @media (max-width:900px){.proof{display:none}}
+  .gnote{display:flex;gap:10px;margin-top:22px;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);flex-wrap:wrap;justify-content:center}
+  .gnote span+span:before{content:"\00b7";margin-right:10px;color:rgba(255,255,255,.5)}
+  .people .txt .eyebrow{margin-bottom:0}
+  .people h2{margin:14px 0 22px!important}
+  .people .why{margin-bottom:30px!important}
+  .people .mia{margin-bottom:0}
+  .people .sig{margin-top:30px!important}
   .mcta{display:none}
   .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .rv.in{opacity:1;transform:none}
@@ -502,7 +509,7 @@
           <li><b>Send it.</b><span>Text us your photos and your menu. We finish every dish.</span></li>
           <li><b>Sell it.</b><span>Your whole menu, one clean look, online.</span></li>
         </ol>
-        <div class="proof"><div class="pnum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l6-6 4 4 6-7"/><path d="M14 7h6v6"/></svg>+44%</div><div class="ptxt"><b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small></div></div>
+        <div class="proof"><div class="pnum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg>+44%</div><div class="ptxt"><b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small></div></div>
         <div class="lcta"><button class="btn big" data-open>Get started</button></div>
       </div>
       <div class="lstage">
@@ -526,7 +533,7 @@
               <div class="status">Delivered</div>
               <div class="bub them typing"><i></i><i></i><i></i></div>
               <div class="bub them img"><img src="assets/bonu_spaghetto_di_bonu.jpg" alt=""></div>
-              <div class="bub them">Done! 3 of 24 finished. Checklist updated.</div>
+              <div class="bub them">Done! 22 of 24 finished. Just 2 to go.</div>
             </div>
           </div>
           <div class="layer l-app" data-l="2">
@@ -539,7 +546,6 @@
       </div>
       </div>
     </div>
-    <div class="cue" id="cue">Scroll</div>
   </div>
 </section>
 
@@ -600,6 +606,7 @@
     <div class="ginner">
       <h2 class="rv">Send us your menu.</h2>
       <button class="btn big rv" data-open>Get started</button>
+      <div class="gnote rv"><span>No shoot day</span><span>Any phone</span><span>About a day</span></div>
     </div>
   </div>
   <div class="people" id="people">
@@ -638,7 +645,7 @@
 </section>
 
 <footer>
-  Cravin&#39; Flavors &middot; A Cravin&#39; Adventure Studios service &middot; St. Petersburg, FL<br>
+  Cravin&#39; Flavors &middot; A Cravin&#39; Adventure Studios service<br>
   <a href="https://instagram.com/cravinflavors">@cravinflavors</a> &middot; <a href="mailto:cravinadventure@gmail.com">cravinadventure@gmail.com</a>
 </footer>
 
@@ -702,7 +709,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
       grid.innerHTML='';els=[];for(var r=0;r<rows;r++){els[r]=[];for(var c=0;c<cols;c++){var im=new Image();im.alt='';im.style.cssText='left:'+(c*ts)+'px;top:'+(r*ts)+'px;width:'+ts+'px;height:'+ts+'px';grid.appendChild(im);els[r][c]=im;}}
       paint();}
     function paint(){for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var s='assets/bonu_'+names[g[r][c]]+'.jpg';if(els[r][c].getAttribute('src')!==s)els[r][c].src=s;}}
-    function flip(){var r=Math.floor(Math.random()*rows),c=Math.floor(Math.random()*cols),im=els[r][c];if(!im)return;g[r][c]=pick(r,c);im.src='assets/bonu_'+names[g[r][c]]+'.jpg';}
+    function flip(){var r=Math.floor(Math.random()*rows),c=Math.floor(Math.random()*cols);if(!g[r]||!els[r])return;var im=els[r][c];if(!im)return;g[r][c]=pick(r,c);im.src='assets/bonu_'+names[g[r][c]]+'.jpg';}
     function frame(t){requestAnimationFrame(frame);if(!vis)return;var dt=Math.min(50,t-(last||t));last=t;ox+=dt*.018;oy+=dt*.018;
       if(ox>=ts){ox-=ts;for(var r=0;r<rows;r++){g[r].shift();g[r].push(null);}for(var r=0;r<rows;r++)g[r][cols-1]=pick(r,cols-1);paint();}
       if(oy>=ts){oy-=ts;g.shift();var row=[];for(var c=0;c<cols;c++)row.push(null);g.push(row);for(var c=0;c<cols;c++)g[rows-1][c]=pick(rows-1,c);paint();}
@@ -724,14 +731,13 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   function cl(x){return x<0?0:x>1?1:x;}
   function rg(x,a,b){return cl((x-a)/(b-a));}
   function ease(x){return x*x*(3-2*x);}
-  var land=document.getElementById('top'),lsteps=[].slice.call(document.querySelectorAll('#lsteps li')),cue=document.getElementById('cue');
+  var land=document.getElementById('top'),lsteps=[].slice.call(document.querySelectorAll('#lsteps li'));
   function story(){
     var r=land.getBoundingClientRect(),tot=r.height-innerHeight,P=cl(-r.top/tot);
     var loc=[0,1,2].map(function(i){return cl((P*3-i)/0.92);});
     var st=Math.min(2,Math.floor(P*3-0.0001<0?0:P*3));if(P>=1)st=2;
     layers.forEach(function(l,i){l.classList.toggle('on',i===st);});
     lsteps.forEach(function(l,i){l.classList.toggle('on',i===st);});
-    cue.style.opacity=P>0.05?0:1;
     // 01 snap
     var a=loc[0],fz=ease(rg(a,.05,.3));
     focus.style.opacity=fz*(1-rg(a,.55,.6));focus.style.transform='translate(-50%,-50%) scale('+(1.6-.6*fz)+')';
@@ -775,7 +781,7 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     if(st==='done'){r.classList.add('has');p.className='pill p-done';p.textContent='Finished';a.classList.add('on');b.classList.remove('on');r.classList.remove('flashrow');void r.offsetWidth;r.classList.add('flashrow');}}
   var live=document.getElementById('live'),lvb=document.getElementById('lvb'),lva=document.getElementById('lva'),lvw=document.getElementById('lvw'),lvtag=document.getElementById('lvtag'),lvst=document.getElementById('lvst'),liveJ=-1;
   var RUN=5600,HOLD=6600,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
-  new IntersectionObserver(function(es){cvis=es[0].isIntersecting;if(cvis){spd.classList.add('go');if(cstart===null)cstart=performance.now();}},{threshold:.2}).observe(spd);
+  new IntersectionObserver(function(es){var e=es[0];if(e.intersectionRatio>=.55&&!cvis){cvis=true;spd.classList.add('go');cstart=performance.now();lastCycle=-1;liveJ=-1;rowState=[];}else if(e.intersectionRatio<.05&&cvis){cvis=false;cstart=null;}},{threshold:[0,.05,.55]}).observe(spd);
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
     var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),u=Math.min(1,t/RUN),p=u<.55?.75*Math.pow(u/.55,1.6):.75+.25*(1-Math.pow(1-(u-.55)/.45,3));
     if(cyc!==lastCycle){lastCycle=cyc;celebrated=false;banner.classList.remove('show');}
