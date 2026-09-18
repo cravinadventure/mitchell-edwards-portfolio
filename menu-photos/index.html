@@ -153,8 +153,7 @@
   /* 4. speed */
   .speed{background:var(--tomato);color:#fff;padding:110px 0}
   .speed .g{display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:center}
-  .speed{position:relative;height:220svh;padding:0}
-  .speed .pin{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+  .speed{padding:110px 0}
   .clock{position:relative;width:min(380px,72vw);aspect-ratio:1}
   .clock svg{width:100%;height:100%;overflow:visible}
   .clock .face{fill:rgba(255,255,255,.1);stroke:rgba(255,255,255,.35);stroke-width:2}
@@ -352,7 +351,7 @@
     .tiles{grid-template-columns:repeat(4,1fr)}
     .vs{grid-template-columns:1fr;gap:14px}.vsx{text-align:center}.vcard{min-height:0}
     .final{grid-template-columns:1fr}.final .pic{order:-1;min-height:50svh}.final .txt{padding:56px 20px 70px}
-    .track,.stats,.styles,.takes,.faq{padding:80px 0}
+    .speed,.track,.stats,.styles,.takes,.faq{padding:80px 0}
     .mcta{display:flex;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:60;transform:translateY(140%);transition:transform .3s}
     .mcta.show{transform:none}
     .mcta .btn{flex:1;box-shadow:0 12px 30px rgba(0,0,0,.35)}
@@ -458,7 +457,7 @@
 
 <!-- 4. SPEED -->
 <section class="speed" id="speed">
-  <div class="pin"><div class="wrap g">
+  <div class="wrap g">
     <div class="clockcol">
       <div class="clock">
         <svg viewBox="0 0 380 380">
@@ -480,7 +479,7 @@
         <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Checklist of what&#39;s left</div>
       </div>
     </div>
-  </div></div>
+  </div>
 </section>
 
 <!-- 5. TRACKER -->
@@ -686,13 +685,16 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
 
   function count(el,to,dur){var t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 
-  // clock: scrubbed by scroll through the pinned speed section
+  // clock: plays forward on a loop, 0h to 24h, then starts again
   var spd=document.getElementById('speed'),carc=document.getElementById('carc'),hh=document.getElementById('hh'),mh=document.getElementById('mh'),hrs=document.getElementById('hrs'),CC=2*Math.PI*160;
-  carc.style.strokeDasharray=CC;
-  function clock(){var r=spd.getBoundingClientRect(),tot=r.height-innerHeight,p=cl(-r.top/tot);var e=ease(p);
-    carc.style.strokeDashoffset=CC*(1-e);hh.setAttribute('transform','rotate('+(720*e)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*e)+' 190 190)');
-    hrs.textContent=Math.round(24*e);spd.classList.toggle('go',p>.15);}
-  window.addEventListener('scroll',clock,{passive:true});clock();
+  carc.style.strokeDasharray=CC;carc.style.strokeDashoffset=CC;
+  var RUN=5200,HOLD=900,cstart=null,cvis=false;
+  new IntersectionObserver(function(es){cvis=es[0].isIntersecting;if(cvis){spd.classList.add('go');if(cstart===null)cstart=performance.now();}},{threshold:.2}).observe(spd);
+  function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
+    var t=(now-cstart)%(RUN+HOLD),p=Math.min(1,t/RUN);
+    carc.style.strokeDashoffset=CC*(1-p);hh.setAttribute('transform','rotate('+(720*p)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*p)+' 190 190)');
+    hrs.textContent=Math.floor(24*p+(p>=1?0:0));}
+  if(!reduce)requestAnimationFrame(tick);else{carc.style.strokeDashoffset=0;hrs.textContent='24';}
 
   // parallax on marked elements
   var pars=[].slice.call(document.querySelectorAll('[data-par]'));
