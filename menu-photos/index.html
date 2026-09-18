@@ -87,7 +87,7 @@
   .phone{position:relative;height:min(680px,80vh);aspect-ratio:9/19.5;border-radius:44px;background:#0b0b0b;padding:11px;box-shadow:0 0 0 2px #2c2c2c,0 40px 90px rgba(0,0,0,.6)}
   .phone .notch{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:34%;height:24px;background:#000;border-radius:20px;z-index:5}
   .screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#000}
-  .layer{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}
+  .layer{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
   .layer.on{opacity:1}
   .l-cam img.view{width:100%;height:100%;object-fit:cover}
   .l-cam .cam-top{position:absolute;top:0;left:0;right:0;height:9%;background:rgba(0,0,0,.72)}
@@ -99,11 +99,6 @@
   .l-cam .focus{position:absolute;left:50%;top:44%;width:78px;height:78px;border:2px solid var(--gold);border-radius:4px;transform:translate(-50%,-50%) scale(1.5);opacity:0}
   .l-cam .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
   .l-cam .snapimg{position:absolute;left:0;top:9%;width:100%;height:71%;object-fit:cover;opacity:0}
-  .l-cam.shoot .focus{animation:focus 1s ease forwards}
-  .l-cam.shoot .shutter{animation:press .25s .95s}
-  .l-cam.shoot .flash{animation:flash .45s 1s}
-  .l-cam.shoot .snapimg{animation:fly 1s 1.15s cubic-bezier(.6,0,.3,1) forwards}
-  .l-cam.shoot .thumb{animation:thumb .3s 2s forwards}
   @keyframes focus{0%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}40%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
   @keyframes press{50%{transform:scale(.86)}}
   @keyframes flash{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
@@ -113,8 +108,9 @@
   .l-send .hd{padding:46px 16px 10px;text-align:center;border-bottom:1px solid #ddd;background:#fafafa}
   .l-send .hd .av{width:34px;height:34px;border-radius:50%;background:var(--tomato);color:#fff;font:800 14px/34px var(--serif);margin:0 auto 4px}
   .l-send .hd b{font:600 12px/1.2 var(--sans);color:#111}
-  .l-send .thread{flex:1;padding:14px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end}
-  .bub{max-width:78%;border-radius:18px;padding:9px 13px;font-size:13.5px;line-height:1.35;opacity:0;transform:translateY(12px) scale(.96);transition:opacity .35s,transform .35s}
+  .l-send .thread{flex:1;min-height:0;overflow:hidden;padding:14px;display:flex;flex-direction:column;gap:8px;justify-content:flex-end}
+  .l-send .thread>*{flex:none}
+  .bub{max-width:78%;border-radius:18px;padding:9px 13px;font-size:13.5px;line-height:1.35;opacity:0;transform:translateY(12px) scale(.96);transition:opacity .25s,transform .25s}
   .bub.show{opacity:1;transform:none}
   .bub.me{align-self:flex-end;background:#0a84ff;color:#fff}
   .bub.them{align-self:flex-start;background:#e5e5ea;color:#111}
@@ -131,12 +127,14 @@
   .l-app .ah{padding:12px 14px 4px}.l-app .ah b{display:block;font:700 16px/1.2 var(--sans);color:#111}.l-app .ah span{font-size:11px;color:#777}
   .l-app .secl{padding:8px 14px 4px;font:700 12.5px/1 var(--sans);color:#111}
   .l-app .rows{flex:1;overflow:hidden;position:relative}
-  .l-app .roll{animation:roll 16s linear infinite}
+  .l-app .roll{will-change:transform}
   @keyframes roll{to{transform:translateY(-50%)}}
   .mrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 14px;border-top:1px solid #eee}
   .mrow b{display:block;font:700 13px/1.25 var(--sans);color:#111}.mrow span{font-size:11px;color:#777;line-height:1.3;display:block}
   .mrow img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none}
-  .step{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+  .steps{padding-top:10svh}
+  .step{min-height:130svh;display:flex;flex-direction:column;justify-content:flex-start;padding:30svh 0 0}
+  @media (min-width:901px){.step .card{position:sticky;top:34svh}}
   .step .n{font-family:var(--serif);font-size:18px;color:var(--tomato);margin-bottom:12px}
   .step h2{font-size:clamp(46px,6vw,84px);margin-bottom:14px}
   .step p{font-size:19px;color:rgba(255,255,255,.78);max-width:26ch}
@@ -144,8 +142,7 @@
   /* 3. people */
   .people{display:grid;grid-template-columns:1fr 1fr;height:100svh;min-height:600px;background:var(--cream)}
   .people .pic{position:relative;overflow:hidden}
-  .people .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 35%;transform:scale(1.08);transition:transform 2.4s cubic-bezier(.2,.7,.2,1)}
-  .people.go .pic img{transform:scale(1)}
+  .people .pic img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover;object-position:40% 35%}
   .people .txt{display:flex;flex-direction:column;justify-content:center;padding:80px clamp(24px,5vw,80px)}
   .people h2{font-size:clamp(42px,5vw,76px);margin:12px 0 26px}
   .people .mia{border-left:3px solid var(--tomato);padding-left:18px}
@@ -155,15 +152,23 @@
 
   /* 4. speed */
   .speed{background:var(--tomato);color:#fff;padding:110px 0}
-  .speed .g{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center}
-  .ring{position:relative;width:min(340px,70vw);aspect-ratio:1}
-  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-  .ring circle{fill:none;stroke-width:14}
-  .ring .bg{stroke:rgba(255,255,255,.22)}
-  .ring .fg{stroke:#fff;stroke-linecap:round;transition:stroke-dashoffset 2.6s cubic-bezier(.5,0,.2,1)}
-  .ring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-  .ring .mid b{font-family:var(--serif);font-size:clamp(70px,9vw,110px);line-height:.9;letter-spacing:-.03em}
-  .ring .mid span{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.9;margin-top:6px}
+  .speed .g{display:grid;grid-template-columns:auto 1fr;gap:72px;align-items:center}
+  .speed{position:relative;height:220svh;padding:0}
+  .speed .pin{position:sticky;top:0;height:100svh;display:flex;align-items:center}
+  .clock{position:relative;width:min(380px,72vw);aspect-ratio:1}
+  .clock svg{width:100%;height:100%;overflow:visible}
+  .clock .face{fill:rgba(255,255,255,.1);stroke:rgba(255,255,255,.35);stroke-width:2}
+  .clock .tick{stroke:rgba(255,255,255,.55);stroke-width:3;stroke-linecap:round}
+  .clock .tick.big{stroke:#fff;stroke-width:5}
+  .clock .arc{fill:none;stroke:#fff;stroke-width:10;stroke-linecap:round;opacity:.9}
+  .clock .hand{stroke:#fff;stroke-linecap:round}
+  .clock .hh{stroke-width:9}.clock .mh{stroke-width:5}
+  .clock .hub{fill:#fff}
+  .clock .hub2{fill:var(--tomato)}
+  .hours{margin-top:10px;display:flex;align-items:baseline;gap:12px;justify-content:center}
+  .hours b{font-family:var(--serif);font-size:clamp(64px,8vw,104px);line-height:.9;letter-spacing:-.03em;font-variant-numeric:tabular-nums;min-width:2ch;text-align:right}
+  .hours span{font-size:15px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+  .clockcol{display:flex;flex-direction:column;align-items:center}
   .speed h2{font-size:clamp(36px,5vw,68px);max-width:14ch}
   .chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
   .chip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:12px 18px;font-weight:700;font-size:15.5px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
@@ -286,7 +291,7 @@
   .final small{margin-top:16px;font-size:14px;color:rgba(255,255,255,.55)}
   .final small a{color:rgba(255,255,255,.8)}
   .final .pic{position:relative;overflow:hidden;min-height:60svh}
-  .final .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 16s ease-in-out infinite alternate}
+  .final .pic img{position:absolute;inset:-12% 0;width:100%;height:124%;object-fit:cover}
   @keyframes kb{from{transform:scale(1)}to{transform:scale(1.1)}}
   footer{background:var(--ink);color:rgba(255,255,255,.55);font-size:13.5px;padding:34px 20px max(34px,env(safe-area-inset-bottom));text-align:center;border-top:1px solid rgba(255,255,255,.06)}
   footer a{color:rgba(255,255,255,.8);text-decoration:none}
@@ -335,9 +340,11 @@
     .story .grid{grid-template-columns:1fr;gap:0}
     .stage{height:64svh;top:56px;z-index:2;background:linear-gradient(var(--ink) 88%,rgba(20,18,16,0))}
     .phone{height:56svh}
-    .step{min-height:78svh;justify-content:flex-start;padding-top:6svh;position:relative;z-index:3}
+    .steps{padding-top:0}
+    .step{min-height:120svh;justify-content:flex-start;padding-top:6svh;position:relative;z-index:3}
     .step .card{background:rgba(29,26,23,.94);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px 20px 20px}
     .step h2{font-size:40px;margin-bottom:6px}.step p{font-size:16px}
+    .bub.img img{width:84px;height:84px}.bub{font-size:12.5px}
     .people{grid-template-columns:1fr;height:auto;min-height:0}.people .pic{height:62svh}.people .txt{padding:48px 20px 64px}
     .speed .g{grid-template-columns:1fr;gap:34px;justify-items:center;text-align:center}.speed h2{margin:0 auto}.chips{justify-content:center}
     .track .g{grid-template-columns:1fr;gap:34px}
@@ -345,7 +352,7 @@
     .tiles{grid-template-columns:repeat(4,1fr)}
     .vs{grid-template-columns:1fr;gap:14px}.vsx{text-align:center}.vcard{min-height:0}
     .final{grid-template-columns:1fr}.final .pic{order:-1;min-height:50svh}.final .txt{padding:56px 20px 70px}
-    .speed,.track,.stats,.styles,.takes,.faq{padding:80px 0}
+    .track,.stats,.styles,.takes,.faq{padding:80px 0}
     .mcta{display:flex;position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:60;transform:translateY(140%);transition:transform .3s}
     .mcta.show{transform:none}
     .mcta .btn{flex:1;box-shadow:0 12px 30px rgba(0,0,0,.35)}
@@ -382,7 +389,7 @@
 <section class="pain" id="pain">
   <div class="wrap">
     <h2 class="sec-h rv">Sound familiar?</h2>
-    <div class="pgrid">
+    <div class="pgrid" data-par="-0.06">
       <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><b>No time for a photo shoot.</b><span>You&#39;re running a kitchen.</span></div>
       <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div><b>Half the menu has no photos.</b><span>Those dishes get scrolled past.</span></div>
       <div class="pcard"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e0431f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg></div><b>The photos don&#39;t match the food.</b><span>Great reviews, bad pictures.</span></div>
@@ -437,7 +444,7 @@
 
 <!-- 3. PEOPLE -->
 <section class="people" id="people">
-  <div class="pic"><img src="assets/owner_mia_crop.jpg" alt="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room" loading="lazy"></div>
+  <div class="pic"><img data-par="-0.12" src="assets/owner_mia_crop.jpg" alt="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room" loading="lazy"></div>
   <div class="txt">
     <div class="eyebrow rv">Who we do this for</div>
     <h2 class="rv">Behind every plate is a person.</h2>
@@ -451,10 +458,19 @@
 
 <!-- 4. SPEED -->
 <section class="speed" id="speed">
-  <div class="wrap g">
-    <div class="ring">
-      <svg viewBox="0 0 340 340"><circle class="bg" cx="170" cy="170" r="150"/><circle class="fg" id="ringfg" cx="170" cy="170" r="150"/></svg>
-      <div class="mid"><b><span id="hrs">0</span>h</b><span>full menu</span></div>
+  <div class="pin"><div class="wrap g">
+    <div class="clockcol">
+      <div class="clock">
+        <svg viewBox="0 0 380 380">
+          <circle class="face" cx="190" cy="190" r="178"/>
+          <line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(0 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(30 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(60 190 190)"/><line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(90 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(120 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(150 190 190)"/><line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(180 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(210 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(240 190 190)"/><line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(270 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(300 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(330 190 190)"/>
+          <circle class="arc" id="carc" cx="190" cy="190" r="160" transform="rotate(-90 190 190)"/>
+          <line class="hand hh" id="hh" x1="190" y1="190" x2="190" y2="100"/>
+          <line class="hand mh" id="mh" x1="190" y1="190" x2="190" y2="58"/>
+          <circle class="hub" cx="190" cy="190" r="12"/><circle class="hub2" cx="190" cy="190" r="5"/>
+        </svg>
+      </div>
+      <div class="hours"><b id="hrs">0</b><span>hours</span></div>
     </div>
     <div>
       <h2>About a day for your whole menu.</h2>
@@ -464,7 +480,7 @@
         <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Checklist of what&#39;s left</div>
       </div>
     </div>
-  </div>
+  </div></div>
 </section>
 
 <!-- 5. TRACKER -->
@@ -495,7 +511,7 @@
     <div class="eyebrow rv">Why it matters</div>
     <h2 class="rv">Hungry people are scrolling right now.</h2>
     <p class="lead rv">On a delivery app, the photo is your storefront.</p>
-    <div class="sgrid">
+    <div class="sgrid" data-par="-0.05">
       <div class="stat rv">
         <div><div class="num"><span class="count" data-to="44">0</span>%</div><p>more monthly sales, up to, for menus with item photos</p><small>DoorDash, 15,000+ merchants</small></div>
         <div class="bars" id="bars"><div><i data-h="45%"></i><span>No photos</span></div><div><i data-h="65%"></i><span>With photos</span></div></div>
@@ -515,7 +531,7 @@
     <h2 class="sec-h rv">One menu. One look.</h2>
     <p class="lead rv">The consistency chains pay for, from your own kitchen.</p>
   </div>
-  <div class="tiles" id="tiles"></div>
+  <div class="tiles" id="tiles" data-par="-0.04"></div>
 </section>
 
 <!-- 8. STYLES ADD-ON -->
@@ -569,7 +585,7 @@
     <button class="btn big rv" data-open>Get started</button>
     <small class="rv">Rather message? <a href="https://ig.me/m/cravinflavors">DM @cravinflavors</a></small>
   </div>
-  <div class="pic"><img src="assets/final_steak.jpg" alt="Seared steak with gnocchi and broccolini" loading="lazy"></div>
+  <div class="pic"><img data-par="-0.12" src="assets/final_steak.jpg" alt="Seared steak with gnocchi and broccolini" loading="lazy"></div>
 </section>
 
 <footer>
@@ -633,26 +649,34 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
   var h='';for(var k=0;k<2;k++)dishes.slice(0,8).forEach(function(d){h+='<div class="mrow"><div><b>'+d[1]+'</b><span>'+d[2]+'</span></div><img src="assets/bonu_'+d[0]+'.jpg" alt=""></div>';});
   document.getElementById('roll').innerHTML=h;
 
-  // story
-  var layers=document.querySelectorAll('.layer'),cam=document.getElementById('cam'),timers=[];
+  // story: every animation is scrubbed by scroll position
+  var layers=[].slice.call(document.querySelectorAll('.layer')),cam=document.getElementById('cam'),stepsEl=[].slice.call(document.querySelectorAll('.step'));
   var bubs=[].slice.call(document.querySelectorAll('#thread .bub')),status=document.querySelector('#thread .status');
-  function clear(){timers.forEach(clearTimeout);timers=[];}
-  function at(ms,fn){timers.push(setTimeout(fn,ms));}
-  function runSnap(){cam.classList.remove('shoot');void cam.offsetWidth;cam.classList.add('shoot');}
-  function runSend(){
-    bubs.forEach(function(b){b.classList.remove('show','gone');});status.classList.remove('show');
-    at(250,function(){bubs[0].classList.add('show');});
-    at(900,function(){bubs[1].classList.add('show');});
-    at(1400,function(){status.classList.add('show');});
-    at(1900,function(){bubs[2].classList.add('show');});
-    at(3300,function(){bubs[2].classList.add('gone');bubs[3].classList.add('show');});
-    at(3900,function(){bubs[4].classList.add('show');});
+  var focus=cam.querySelector('.focus'),flash=cam.querySelector('.flash'),snap=cam.querySelector('.snapimg'),thumb=cam.querySelector('.thumb'),shutter=cam.querySelector('.shutter'),roll=document.getElementById('roll');
+  function cl(x){return x<0?0:x>1?1:x;}
+  function rg(x,a,b){return cl((x-a)/(b-a));}
+  function ease(x){return x*x*(3-2*x);}
+  function story(){
+    var H=innerHeight,loc=stepsEl.map(function(s){var r=s.getBoundingClientRect();return cl((H*0.62-r.top)/(r.height*0.75));});
+    var st=0;stepsEl.forEach(function(s,i){if(s.getBoundingClientRect().top<H*0.62)st=i;});
+    layers.forEach(function(l,i){l.classList.toggle('on',i===st);});
+    // 01 snap
+    var a=loc[0],fz=ease(rg(a,.05,.3));
+    focus.style.opacity=fz*(1-rg(a,.55,.6));focus.style.transform='translate(-50%,-50%) scale('+(1.6-.6*fz)+')';
+    var fl=a<.42?0:a<.47?(a-.42)/.05:1-rg(a,.47,.6);flash.style.opacity=(fl*.95).toFixed(3);
+    shutter.style.transform='scale('+(1-.14*(a>.4&&a<.5?Math.sin((a-.4)/.1*Math.PI):0))+')';
+    var fly=ease(rg(a,.5,.85));snap.style.opacity=a>.46?1:0;
+    snap.style.transform='translate('+(-39*fly)+'%,'+(48*fly)+'%) scale('+(1-.86*fly)+')';snap.style.borderRadius=(40*fly)+'px';
+    var tb=rg(a,.84,.92);thumb.style.opacity=tb;thumb.style.transform='scale('+(.4+.6*tb)+')';
+    // 02 send
+    var b=loc[1];
+    bubs[0].classList.toggle('show',b>.08);bubs[1].classList.toggle('show',b>.22);status.classList.toggle('show',b>.32);
+    bubs[2].classList.toggle('show',b>.42&&b<=.62);bubs[2].classList.toggle('gone',b>.62);
+    bubs[3].classList.toggle('show',b>.62);bubs[4].classList.toggle('show',b>.78);
+    // 03 sell
+    var c=loc[2];roll.style.transform='translateY('+(-48*ease(c))+'%)';
   }
-  var cur=-1;
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var s=+e.target.getAttribute('data-s');if(s===cur)return;cur=s;clear();
-    layers.forEach(function(l){l.classList.toggle('on',+l.getAttribute('data-l')===s);});
-    if(s===0)runSnap();if(s===1)runSend();});},{rootMargin:'-45% 0px -45% 0px'});
-  document.querySelectorAll('.step').forEach(function(s){io.observe(s);});
+  window.addEventListener('scroll',story,{passive:true});window.addEventListener('resize',story);story();
 
   var rv=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target);}});},{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el){rv.observe(el);});
@@ -662,8 +686,18 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
 
   function count(el,to,dur){var t0=null;function f(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
 
-  var c=2*Math.PI*150,fg=document.getElementById('ringfg');fg.style.strokeDasharray=c;fg.style.strokeDashoffset=c;
-  when(document.getElementById('speed'),function(s){s.classList.add('go');fg.style.strokeDashoffset=0;count(document.getElementById('hrs'),24,2600);});
+  // clock: scrubbed by scroll through the pinned speed section
+  var spd=document.getElementById('speed'),carc=document.getElementById('carc'),hh=document.getElementById('hh'),mh=document.getElementById('mh'),hrs=document.getElementById('hrs'),CC=2*Math.PI*160;
+  carc.style.strokeDasharray=CC;
+  function clock(){var r=spd.getBoundingClientRect(),tot=r.height-innerHeight,p=cl(-r.top/tot);var e=ease(p);
+    carc.style.strokeDashoffset=CC*(1-e);hh.setAttribute('transform','rotate('+(720*e)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*e)+' 190 190)');
+    hrs.textContent=Math.round(24*e);spd.classList.toggle('go',p>.15);}
+  window.addEventListener('scroll',clock,{passive:true});clock();
+
+  // parallax on marked elements
+  var pars=[].slice.call(document.querySelectorAll('[data-par]'));
+  function parallax(){var H=innerHeight;pars.forEach(function(el){var r=el.parentNode.getBoundingClientRect();if(r.bottom<-200||r.top>H+200)return;var k=+el.getAttribute('data-par');var d=(r.top+r.height/2-H/2);el.style.transform='translate3d(0,'+(d*k).toFixed(1)+'px,0)';});}
+  window.addEventListener('scroll',parallax,{passive:true});parallax();
 
   // tracker
   var tdishes=dishes.slice(0,8),secs=['Starters','Starters','Starters','Starters','Pasta','Pasta','Salads','Pasta'],rh='';
