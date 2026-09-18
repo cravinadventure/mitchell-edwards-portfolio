@@ -413,18 +413,6 @@
 </section>
 
 <section class="close" id="start">
-  <div class="gsec" id="send">
-    <div class="tgrid" id="tgrid"></div>
-    <div class="gveil"></div>
-    <div class="ginner">
-      <div class="eyebrow rv">Hungry people are scrolling right now.</div>
-      <h2 class="rv">Let your food sell itself.</h2>
-      <p class="gline rv">Text us your dish photos, get back a menu that sells.</p>
-      <div class="proof rv" id="proof"><div class="pnum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg><span id="pn">+44%</span></div><div class="ptxt" id="pt"><b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small></div></div>
-      <button class="btn big rv" data-open>Get started</button>
-    </div>
-    <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
-  </div>
   <div class="people" id="people">
     <div class="pic"><img data-par="-0.12" src="assets/owner_mia_crop.jpg" alt="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room" loading="lazy"></div>
     <div class="txt">
@@ -457,6 +445,18 @@
     <details><summary>Do you need to be local?</summary><p>No. The whole service runs remotely, so it works for restaurants anywhere.</p></details>
   </div>
 </div>
+  <div class="gsec" id="send">
+    <div class="tgrid" id="tgrid"></div>
+    <div class="gveil"></div>
+    <div class="ginner">
+      <div class="eyebrow rv">Hungry people are scrolling right now.</div>
+      <h2 class="rv">Let your food sell itself.</h2>
+      <p class="gline rv">Text us your dish photos, get back a menu that sells.</p>
+      <div class="proof rv" id="proof"><div class="pnum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg><span id="pn">+44%</span></div><div class="ptxt" id="pt"><b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small></div></div>
+      <button class="btn big rv" data-open>Get started</button>
+    </div>
+    <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
+  </div>
 </section>
 
 <footer>
@@ -609,7 +609,7 @@ var FORM_FIELDS = {restaurant:"", contact:""};
 
   var PS=[["+44%","<b>Up to 44% more monthly sales</b> for menus with photos<small>DoorDash data, 15,000+ merchants</small>"],["+$330","<b>More per week</b> for menus with photos on 70%+ of items<small>Uber Eats merchant data</small>"],["55%","<b>Of first orders</b> at new restaurants come from browsing, not search<small>DoorDash data</small>"]],pi=0,pr=document.getElementById('proof');
   if(!reduce)setInterval(function(){pr.classList.add('swap');setTimeout(function(){pi=(pi+1)%PS.length;document.getElementById('pn').textContent=PS[pi][0];document.getElementById('pt').innerHTML=PS[pi][1];pr.classList.remove('swap');},350);},12000);
-  var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('start');
+  var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('send');
   function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
