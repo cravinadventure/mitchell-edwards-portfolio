@@ -282,8 +282,8 @@
   .gfine{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-size:10.5px;color:rgba(255,255,255,.5);z-index:2}
   .slogan{font-family:var(--serif);font-weight:600;font-style:italic;font-size:clamp(20px,1.9vw,26px);color:var(--tomato);margin-bottom:10px}
   @media (max-width:900px){.gsec .gline{white-space:normal;max-width:30ch}.lcopy .slogan{display:none}}
-  .bar{position:absolute!important;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:28px clamp(20px,4vw,56px)!important}
-  .bar .logo{font-size:18px;opacity:.9;letter-spacing:.01em}
+  .bar{position:fixed!important;pointer-events:none;mix-blend-mode:difference;background:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:28px clamp(20px,4vw,56px)!important}
+  .bar .logo{font-size:18px;letter-spacing:.01em;color:#fff;pointer-events:auto}
   .mcta{display:flex!important;position:fixed;right:24px;bottom:24px;left:auto;z-index:60;transform:translateY(160%);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
   .mcta.show{transform:none}
   .mcta .btn{padding:14px 24px;font-size:15px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.3)}
