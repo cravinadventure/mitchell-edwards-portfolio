@@ -615,9 +615,9 @@
         <div class="opts" data-name="dishes"><button type="button" class="opt">Under 15</button><button type="button" class="opt">15 to 40</button><button type="button" class="opt">40 or more</button><button type="button" class="opt">Not sure yet</button></div>
       </div>
       <div class="qstep" data-q="3">
-        <h3>How do we reach you?</h3><p class="qs">We&#39;ll send your checklist here.</p>
+        <h3>How do we reach you?</h3><p class="qs">We&#39;ll email your checklist here.</p>
         <input class="qin" name="name" placeholder="Your name" autocomplete="name">
-        <input class="qin" name="contact" placeholder="Phone or email" autocomplete="email">
+        <input class="qin" name="contact" type="email" inputmode="email" placeholder="Email" autocomplete="email">
       </div>
       <div class="qstep" data-q="4">
         <div class="qdone">
@@ -763,13 +763,13 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     if(q===0){if(!val('restaurant')){err.textContent='Add your restaurant name.';return;}ans.restaurant=val('restaurant');ans.city=val('city');}
     if(q===1&&!ans.locations){err.textContent='Tap one to continue.';return;}
     if(q===2&&!ans.dishes){err.textContent='Tap one to continue.';return;}
-    if(q===3){if(!val('name')||!val('contact')){err.textContent='Add your name and a phone or email.';return;}ans.name=val('name');ans.contact=val('contact');submit();return;}
+    if(q===3){if(!val('name')){err.textContent='Add your name.';return;}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('contact'))){err.textContent='Add a valid email.';return;}ans.name=val('name');ans.contact=val('contact');submit();return;}
     show(q+1);});
   form.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();next.click();}});
   function submit(){
     if(FORM_ENDPOINT){var fd=new FormData();Object.keys(FORM_FIELDS).forEach(function(k){if(FORM_FIELDS[k])fd.append(FORM_FIELDS[k],ans[k]||'');});
       fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(4);return;}
-    var body='Restaurant: '+ans.restaurant+'\nCity: '+ans.city+'\nLocations: '+ans.locations+'\nDishes needing photos: '+ans.dishes+'\nName: '+ans.name+'\nContact: '+ans.contact;
+    var body='Restaurant: '+ans.restaurant+'\nCity: '+ans.city+'\nLocations: '+ans.locations+'\nDishes needing photos: '+ans.dishes+'\nName: '+ans.name+'\nEmail: '+ans.contact;
     document.getElementById('qthanks').textContent='Hit send on the email that just opened and we’ll reach out with your checklist.';
     show(4);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+ans.restaurant)+'&body='+encodeURIComponent(body);
   }
