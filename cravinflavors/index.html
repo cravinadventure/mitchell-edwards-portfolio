@@ -303,7 +303,7 @@
     .speed .shead{margin-bottom:22px}
     .combo{grid-template-columns:1fr 1.25fr!important;gap:14px!important;align-items:center!important}
     .combo .cardcol{grid-column:1/-1;order:-1;max-width:none}
-    .combo .cardcol .lcard{width:min(250px,66vw);margin:0 auto}
+    .combo .cardcol .lcard{width:min(260px,68vw);margin:0 auto}
     .combo .cardcol .clabel{display:none}
     .speed h2{font-size:34px!important}.speed .shead p{font-size:18px}
     .combo .clockcol{max-width:none}
@@ -317,7 +317,6 @@
     .speed .drow .th{width:26px;height:26px;border-radius:7px}
     .speed .drow b{font-size:11.5px}.speed .drow small{display:none}
     .speed .drow .pill{display:none}
-    .speed .drow:nth-child(n+6){display:none}
     .done-banner b{font-size:20px}.done-banner span{font-size:12px}.done-banner .ck{width:48px;height:48px}
   }
   @media (max-width:700px){.gsec .stats{gap:8px;margin-bottom:20px}.gsec .stat{padding:9px 12px}.gsec .stat .snum{font-size:26px}.gsec .stat .snum svg{width:18px;height:18px}.gsec .stat .stxt{font-size:12.5px}.gsec .stat .ssrc{font-size:10px}.gsec .gline{margin-bottom:18px}.gsec h2{font-size:40px!important}}
@@ -342,17 +341,18 @@
     .l-send .status{font-size:8px}.l-cam .mode{font-size:7px}.l-cam .shutter{width:36px;height:36px}
     .combo .clockcol{display:none!important}
     .combo{grid-template-columns:1fr!important}
-    .speed .dash{max-width:320px!important;margin:0 auto}
+    .speed .dash{width:min(260px,68vw)!important;max-width:none!important;margin:0 auto}
     .speed .drow .pill{display:inline-block!important;width:92px!important;font-size:9px!important;padding:5px 6px!important}
     .speed .drow{grid-template-columns:26px 1fr 92px!important}
     .people{display:none!important}
     .gsec h2{font-size:34px!important}
   }
-  @media (min-width:901px){.speed .dash{aspect-ratio:1/1;display:flex;flex-direction:column;width:100%}.speed #drows{flex:1;min-height:0;overflow:hidden}}
+  .speed .dash{aspect-ratio:1/1;display:flex;flex-direction:column;width:100%}.speed #drows{flex:1;min-height:0;overflow:hidden}
   .combo .clockcol{display:none!important}
   @media (min-width:901px){.combo{grid-template-columns:400px 400px!important;justify-content:center;gap:72px!important}}
   .lsub{font-size:clamp(17px,1.5vw,21px);color:rgba(255,255,255,.85);margin:16px 0 0;max-width:30ch;line-height:1.4}
   @media (max-width:900px){.lgrid{grid-template-rows:auto auto 1fr auto!important}.lsub{grid-row:2;font-size:14px;margin:0!important}.lstage{grid-row:3!important}.lsteps{grid-row:4!important}}
+  @media (max-width:900px){.lcard .ltag,.lcard .lstate{font-size:9.5px!important;padding:6px 8px!important;top:10px!important}.lcard .ltag{left:10px!important}.lcard .lstate{right:10px!important}}
   .mcta{display:flex!important;position:fixed;right:24px;bottom:24px;left:auto;z-index:60;transform:translateY(160%);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
   .mcta.show{transform:none}
   .mcta .btn{padding:14px 24px;font-size:15px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.3)}
