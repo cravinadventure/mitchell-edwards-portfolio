@@ -158,7 +158,8 @@
   .qin:focus{outline:0;border-color:var(--tomato)}
   .qsel{appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23857a70' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center;padding-right:44px}
   .qsel:has(option[value=""]:checked){color:#8f857b}.qsel option{color:var(--text)}
-  .qmsg{resize:vertical;min-height:84px;line-height:1.4}
+  .qprog{height:6px;border-radius:6px;background:#ece5da;margin:4px 56px 22px 0;overflow:hidden}
+  .qprog i{display:block;height:100%;width:50%;border-radius:6px;background:var(--tomato);transition:width .6s cubic-bezier(.3,.7,.2,1)}
   .qhp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   .qdone .qs a{color:var(--tomato);font-weight:600}
   .qnext{padding:15px 26px}
@@ -482,16 +483,16 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="qtitle">
   <div class="qbox">
     <button class="qx" id="qx" aria-label="Close">&times;</button>
+    <div class="qprog" aria-hidden="true"><i id="qbar"></i></div>
     <form id="qform" novalidate>
       <div class="qstep on" data-q="0">
         <h3 id="qtitle">Let&#39;s get started.</h3><p class="qs">Tell us a little and we&#39;ll email you the next steps.</p>
         <input class="qin" name="restaurant" placeholder="Restaurant name" autocomplete="organization">
         <input class="qin" name="contact" type="email" inputmode="email" placeholder="Your email" autocomplete="email">
         <select class="qin qsel" name="dishes" aria-label="About how many dishes?"><option value="">How many dishes? (optional)</option><option>Under 15</option><option>15 to 40</option><option>40 to 60</option><option>60+</option></select>
-        <textarea class="qin qmsg" name="message" rows="3" placeholder="Anything else? (optional)"></textarea>
         <input class="qhp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="qerr" id="qerr"></div>
-        <button type="submit" class="btn qnext" id="qnext" style="width:100%">Get started</button>
+        <button type="submit" class="btn qnext" id="qnext" style="width:100%">Next</button>
       </div>
       <div class="qstep" data-q="1">
         <div class="qdone">
@@ -606,7 +607,7 @@ var FORM_ENDPOINT = "";
       if(++f<200)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
 
   var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),form=document.getElementById('qform'),err=document.getElementById('qerr');
-  function show(n){steps.forEach(function(s,i){s.classList.toggle('on',i===n);});}
+  function show(n){steps.forEach(function(s,i){s.classList.toggle('on',i===n);});document.getElementById('qbar').style.width=(n?100:50)+'%';}
   function open(){modal.classList.add('open');document.body.classList.add('lock');show(0);err.textContent='';if(window.innerWidth>900)setTimeout(function(){form.elements.restaurant.focus();},60);}
   function close(){modal.classList.remove('open');document.body.classList.remove('lock');}
   document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();open();});});
@@ -617,11 +618,11 @@ var FORM_ENDPOINT = "";
     var r=(form.elements.restaurant.value||'').trim(),m=(form.elements.contact.value||'').trim();
     if(!r){err.textContent='Add your restaurant name.';return;}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){err.textContent='Add a valid email.';return;}
-    var d=form.elements.dishes.value,x=(form.elements.message.value||'').trim();
+    var d=form.elements.dishes.value;
     if(form.elements.website.value){show(1);return;}
-    if(FORM_ENDPOINT){var fd=new FormData();fd.append('restaurant',r);fd.append('email',m);fd.append('dishes',d);fd.append('message',x);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);form.reset();return;}
+    if(FORM_ENDPOINT){var fd=new FormData();fd.append('restaurant',r);fd.append('email',m);fd.append('dishes',d);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);form.reset();return;}
     document.getElementById('qthanks').textContent='Hit send on the email that just opened and we\u2019ll reach back out today or soon.';
-    show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m+(d?'\nDishes: '+d:'')+(x?'\n\n'+x:''));});
+    show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m+(d?'\nDishes: '+d:''));});
 
   
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
