@@ -220,20 +220,33 @@
   .stats{background:var(--ink);color:#fff;padding:110px 0}
   .stats h2{font-size:clamp(38px,5.4vw,74px);max-width:14ch}
   .stats .lead{font-size:20px;color:rgba(255,255,255,.72);margin-top:14px}
-  .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
-  .stat{border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:30px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0))}
-  .stat .num{font-family:var(--serif);font-weight:800;font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--tomato);letter-spacing:-.03em}
-  .stat p{margin-top:14px;font-size:17px;color:rgba(255,255,255,.9);max-width:24ch}
-  .stat small{display:block;margin-top:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
-  .bars{display:flex;gap:14px;align-items:flex-end;height:180px}
-  .bars div{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
-  .bars i{display:block;width:46px;height:0;border-radius:10px 10px 4px 4px;background:rgba(255,255,255,.22);transition:height 1.6s cubic-bezier(.3,1,.4,1)}
-  .bars div:last-child i{background:var(--tomato)}
-  .bars span{font-size:11px;color:rgba(255,255,255,.6);text-align:center;line-height:1.2;width:62px}
-  .weeks{display:grid;grid-template-columns:repeat(13,10px);gap:5px}
-  .weeks i{width:10px;height:10px;border-radius:3px;background:rgba(255,255,255,.14);transition:background .2s}
-  .weeks i.on{background:var(--tomato)}
-  .wk-l{font-size:11px;color:rgba(255,255,255,.6);margin-top:10px;text-align:right}
+  .fomo{margin-top:44px;border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:34px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0))}
+  .fomo .row{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+  .crowd{display:grid;grid-template-columns:repeat(18,1fr);gap:8px 6px;max-width:640px}
+  .crowd svg{width:100%;height:auto;opacity:0;transform:translateY(8px) scale(.6);transition:opacity .35s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+  .crowd svg.in{opacity:1;transform:none}
+  .crowd svg path,.crowd svg circle{fill:rgba(255,255,255,.28)}
+  .crowd svg.miss path,.crowd svg.miss circle{fill:var(--tomato)}
+  .crowd svg.miss.in{animation:bob 1.6s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-3px)}}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px;font-size:14px;color:rgba(255,255,255,.75)}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px;background:rgba(255,255,255,.35)}
+  .legend .m i{background:var(--tomato)}
+  .fomo .big{font-family:var(--serif);font-weight:800;font-size:clamp(72px,9vw,128px);line-height:.85;color:var(--tomato);letter-spacing:-.03em}
+  .fomo .cap{font-size:18px;max-width:18ch;margin-top:10px;color:rgba(255,255,255,.9)}
+  .fomo small{display:block;margin-top:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+  .money{margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:30px 34px}
+  .money .big{font-family:var(--serif);font-weight:800;font-size:clamp(52px,6vw,84px);line-height:.9;color:#fff;letter-spacing:-.03em}
+  .money .big span{color:var(--tomato)}
+  .money p{font-size:16px;color:rgba(255,255,255,.8);margin-top:8px;max-width:22ch}
+  .money small{display:block;margin-top:8px;font-size:12.5px;color:rgba(255,255,255,.5)}
+  .line svg{width:100%;height:170px;overflow:visible}
+  .line .grid{stroke:rgba(255,255,255,.08)}
+  .line .area{fill:url(#lg);opacity:0;transition:opacity 1s .8s}
+  .line .ln{fill:none;stroke:var(--tomato);stroke-width:4;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2.2s cubic-bezier(.5,0,.2,1)}
+  .line .dotend{fill:var(--tomato);opacity:0;transition:opacity .3s 2.1s}
+  .line text{fill:rgba(255,255,255,.5);font:12px var(--sans)}
+  .stats.go .line .ln{stroke-dashoffset:0}.stats.go .line .area{opacity:.9}.stats.go .line .dotend{opacity:1}
   .fine{margin-top:22px;font-size:13px;color:rgba(255,255,255,.45)}
 
   /* 7. wall */
@@ -247,16 +260,18 @@
 
   /* 8. styles add-on */
   .styles{background:var(--ink);color:#fff;padding:110px 0}
-  .styles .top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:36px;flex-wrap:wrap}
-  .styles h2{font-size:clamp(38px,5vw,68px);max-width:14ch}
-  .styles .top p{font-size:18px;color:rgba(255,255,255,.78);max-width:34ch}
-  .sgal{display:flex;gap:12px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-  .strip{display:flex;gap:12px;flex:none;animation:marq 40s linear infinite}
+  .styles .top{text-align:center;margin-bottom:40px}
+  .styles h2{font-size:clamp(40px,5.6vw,78px);margin-top:10px}
+  .styles .top p{font-size:19px;color:rgba(255,255,255,.78);max-width:40ch;margin:14px auto 0}
+  .styles .honest{text-align:center}
+  .sgal{overflow:hidden}
+  .strip{display:flex;gap:12px;width:max-content;will-change:transform;padding:0 20px}
   .strip figure{position:relative;flex:none;width:clamp(200px,22vw,300px)}
   .strip img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
   .strip figcaption{position:absolute;left:10px;bottom:10px;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.55);padding:7px 9px;border-radius:999px}
   @keyframes marq{to{transform:translateX(calc(-100% - 12px))}}
-  .honest{margin-top:40px;font-family:var(--serif);font-size:clamp(24px,3vw,38px);font-weight:600;max-width:24ch}
+  .honest{margin-top:40px;font-family:var(--serif);font-size:clamp(20px,2.7vw,38px);font-weight:600;white-space:nowrap}
+  @media (max-width:700px){.honest{white-space:normal}}
   .honest span{color:var(--tomato)}
 
   /* 9. all it takes */
@@ -354,7 +369,7 @@
     .people{grid-template-columns:1fr;height:auto;min-height:0}.people .pic{height:62svh}.people .txt{padding:48px 20px 64px}
     .combo{grid-template-columns:1fr;gap:28px;justify-items:center}.combo .dash{width:100%}.clock{width:min(260px,64vw)}
     .track .g{grid-template-columns:1fr;gap:34px}
-    .sgrid{grid-template-columns:1fr}.stat{grid-template-columns:1fr}
+    .fomo{padding:22px}.fomo .row{grid-template-columns:1fr;gap:20px}.crowd{grid-template-columns:repeat(12,1fr)}.money{grid-template-columns:1fr;gap:18px;padding:22px}
     .tiles{grid-template-columns:repeat(4,1fr)}
     .vs{grid-template-columns:1fr;gap:14px}.vsx{text-align:center}.vcard{min-height:0}
     .final{grid-template-columns:1fr}.final .pic{order:-1;min-height:50svh}.final .txt{padding:56px 20px 70px}
@@ -508,15 +523,35 @@
   <div class="wrap">
     <div class="eyebrow rv">Why it matters</div>
     <h2 class="rv">Hungry people are scrolling right now.</h2>
-    <p class="lead rv">On a delivery app, the photo is your storefront.</p>
-    <div class="sgrid" data-par="-0.05">
-      <div class="stat rv">
-        <div><div class="num"><span class="count" data-to="44">0</span>%</div><p>more monthly sales, up to, for menus with item photos</p><small>DoorDash, 15,000+ merchants</small></div>
-        <div class="bars" id="bars"><div><i data-h="45%"></i><span>No photos</span></div><div><i data-h="65%"></i><span>With photos</span></div></div>
+    <p class="lead rv">They&#39;re picking dinner from photos. Here&#39;s who you miss without them.</p>
+    <div class="fomo rv">
+      <div class="row">
+        <div>
+          <div class="crowd" id="crowd"></div>
+          <div class="legend"><span><i></i>Orders you get now</span><span class="m"><i></i>Orders you could be missing</span></div>
+        </div>
+        <div>
+          <div class="big">+<span class="count" data-to="44">0</span></div>
+          <div class="cap">more for every 100, when the menu has photos.</div>
+          <small>DoorDash: up to 44% more monthly sales, 15,000+ merchants</small>
+        </div>
       </div>
-      <div class="stat rv">
-        <div><div class="num">$<span class="count" data-to="330">0</span></div><p>more per week with photos on 70%+ of the menu</p><small>Uber Eats</small></div>
-        <div><div class="weeks" id="weeks"></div><div class="wk-l">52 weeks &asymp; $17,000 a year</div></div>
+    </div>
+    <div class="money rv">
+      <div>
+        <div class="big"><span>$</span><span class="count" data-to="17160">0</span></div>
+        <p>a year, from $330 more a week with photos on 70%+ of the menu.</p>
+        <small>Uber Eats average</small>
+      </div>
+      <div class="line">
+        <svg viewBox="0 0 600 170" preserveAspectRatio="none">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a36" stop-opacity=".45"/><stop offset="1" stop-color="#ff5a36" stop-opacity="0"/></linearGradient></defs>
+          <line class="grid" x1="0" y1="150" x2="600" y2="150"/><line class="grid" x1="0" y1="100" x2="600" y2="100"/><line class="grid" x1="0" y1="50" x2="600" y2="50"/>
+          <path class="area" d="M0 150 L600 12 L600 150 Z"/>
+          <path class="ln" d="M0 150 L600 12"/>
+          <circle class="dotend" cx="600" cy="12" r="7"/>
+          <text x="0" y="168">Jan</text><text x="285" y="168">Jun</text><text x="570" y="168">Dec</text>
+        </svg>
       </div>
     </div>
     <p class="fine rv">Reported by the platforms about their own merchants. Averages, not a promise for any one restaurant.</p>
@@ -533,15 +568,13 @@
 </section>
 
 <!-- 8. STYLES ADD-ON -->
-<section class="styles">
+<section class="styles" id="styles">
   <div class="wrap top">
-    <div>
-      <div class="eyebrow rv">Add-on &middot; Styled shots</div>
-      <h2 class="rv">Want another look?</h2>
-    </div>
-    <p class="rv">Top-down is built for delivery apps, where you&#39;ll see the biggest return. For social, your site or a new menu, add styled shots, drinks included.</p>
+    <div class="eyebrow rv">Add-on &middot; Styled shots</div>
+    <h2 class="rv">Want another look?</h2>
+    <p class="rv">Top-down wins on delivery apps. For social, your site or a new menu, add styled shots, drinks included.</p>
   </div>
-  <div class="sgal"><div class="strip" id="strip"></div><div class="strip" id="strip2" aria-hidden="true"></div></div>
+  <div class="sgal"><div class="strip" id="strip"></div></div>
   <div class="wrap"><p class="honest rv">This only works if your food is good. <span>We can&#39;t fake it.</span></p></div>
 </section>
 
@@ -720,12 +753,14 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=1.1;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
       if(++f<110)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
 
-  var wk=document.getElementById('weeks'),s='';for(var i=0;i<52;i++)s+='<i></i>';wk.innerHTML=s;
-  when(document.getElementById('stats'),function(){
-    document.querySelectorAll('.count').forEach(function(el){count(el,+el.getAttribute('data-to'),1800);});
-    document.querySelectorAll('#bars i').forEach(function(b,i){setTimeout(function(){b.style.height=b.getAttribute('data-h');},i*300);});
-    [].forEach.call(wk.children,function(c,i){setTimeout(function(){c.classList.add('on');},200+i*35);});
-  },.3);
+  var crowd=document.getElementById('crowd'),ch='',person='<svg viewBox="0 0 20 28"><circle cx="10" cy="6" r="5"/><path d="M2 27c0-6 3.6-11 8-11s8 5 8 11z"/></svg>';
+  for(var i=0;i<144;i++)ch+=person;crowd.innerHTML=ch;
+  var ppl=[].slice.call(crowd.children);ppl.slice(100).forEach(function(x){x.classList.add('miss');});
+  when(document.getElementById('stats'),function(s){s.classList.add('go');
+    ppl.slice(0,100).forEach(function(x,i){setTimeout(function(){x.classList.add('in');},i*12);});
+    ppl.slice(100).forEach(function(x,i){setTimeout(function(){x.classList.add('in');},1500+i*45);});
+    var cs=document.querySelectorAll('.stats .count');count(cs[0],44,3400);setTimeout(function(){count(cs[1],17160,2200);},400);
+  },.25);
 
   var tiles=document.getElementById('tiles'),th='';
   for(var i=0;i<16;i++){th+='<div class="tile"><img class="f" src="assets/bonu_'+dishes[i][0]+'.jpg" alt="" loading="lazy"><img class="b" src="assets/bonu_'+dishes[(i+5)%16][0]+'.jpg" alt="" loading="lazy"></div>';}
@@ -734,9 +769,11 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     back.src='assets/bonu_'+dishes[(idx++*7+i)%16][0]+'.jpg';t.classList.toggle('flip');},450);
 
   var st=[["jeremiahs_01","Bee&#39;s Knees"],["jeremiahs_03","Lobster roll"],["the_hallows_05","Margarita"],["jelous_monk_03","Burger"],["jeremiahs_05","Steak"],["the_hallows_01","Cast iron chop suey"],["jelous_monk_06","Soft pretzel"],["jeremiahs_07","Wedge salad"]];
-  var sh='';st.forEach(function(x){sh+='<figure><img src="assets/style_'+x[0]+'.jpg" alt="'+x[1]+'" loading="lazy"><figcaption>'+x[1]+'</figcaption></figure>';});
-  document.getElementById('strip').innerHTML=sh;document.getElementById('strip2').innerHTML=sh;
-
+  var sh='';st.concat(st).forEach(function(x){sh+='<figure><img src="assets/style_'+x[0]+'.jpg" alt="'+x[1]+'" loading="lazy"><figcaption>'+x[1]+'</figcaption></figure>';});
+  var strip=document.getElementById('strip'),sty=document.getElementById('styles');strip.innerHTML=sh;
+  function stripScroll(){var r=sty.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;var p=cl((innerHeight-r.top)/(innerHeight+r.height));
+    var max=strip.scrollWidth-sty.clientWidth;strip.style.transform='translate3d('+(-max*p).toFixed(1)+'px,0,0)';}
+  window.addEventListener('scroll',stripScroll,{passive:true});window.addEventListener('resize',stripScroll);stripScroll();
   when(document.getElementById('takes'),function(s){s.classList.add('go');},.4);
 
   // questionnaire
