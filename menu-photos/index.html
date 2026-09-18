@@ -488,46 +488,6 @@
   </div>
 </section>
 
-<!-- 2. WHY -->
-<section class="stats" id="stats">
-  <div class="wrap">
-    <div class="eyebrow rv">Why it matters</div>
-    <h2 class="rv">Hungry people are scrolling right now.</h2>
-    <p class="lead rv">They&#39;re picking dinner from photos. Here&#39;s who you miss without them.</p>
-    <div class="fomo rv">
-      <div class="row">
-        <div>
-          <div class="crowd" id="crowd"></div>
-          <div class="legend"><span><i></i>Orders you get now</span><span class="m"><i></i>Orders you could be missing</span></div>
-        </div>
-        <div>
-          <div class="big">+<span class="count" data-to="44">0</span></div>
-          <div class="cap">more for every 100, when the menu has photos.</div>
-          <small>DoorDash: up to 44% more monthly sales, 15,000+ merchants</small>
-        </div>
-      </div>
-    </div>
-    <div class="money rv">
-      <div>
-        <div class="big"><span>$</span><span class="count" data-to="17160">0</span></div>
-        <p>a year, from $330 more a week with photos on 70%+ of the menu.</p>
-        <small>Uber Eats average</small>
-      </div>
-      <div class="line">
-        <svg viewBox="0 0 600 170" preserveAspectRatio="none">
-          <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a36" stop-opacity=".45"/><stop offset="1" stop-color="#ff5a36" stop-opacity="0"/></linearGradient></defs>
-          <line class="grid" x1="0" y1="150" x2="600" y2="150"/><line class="grid" x1="0" y1="100" x2="600" y2="100"/><line class="grid" x1="0" y1="50" x2="600" y2="50"/>
-          <path class="area" d="M0 150 L600 12 L600 150 Z"/>
-          <path class="ln" d="M0 150 L600 12"/>
-          <circle class="dotend" cx="600" cy="12" r="7"/>
-          <text x="0" y="168">Jan</text><text x="285" y="168">Jun</text><text x="570" y="168">Dec</text>
-        </svg>
-      </div>
-    </div>
-    <p class="fine rv">Reported by the platforms about their own merchants. Averages, not a promise for any one restaurant.</p>
-  </div>
-</section>
-
 <!-- 3. HOW FAST -->
 <section class="speed" id="speed">
   <div class="wrap">
@@ -739,15 +699,6 @@ var FORM_FIELDS = {restaurant:"", city:"", locations:"", dishes:"", name:"", con
     for(var i=0;i<140;i++)ps.push({x:W/2,y:H*.45,vx:(Math.random()-.5)*28,vy:-Math.random()*30-8,s:6+Math.random()*10,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%5]});
     var f=0;(function loop(){cx.clearRect(0,0,W,H);ps.forEach(function(p){p.vy+=1.1;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore();});
       if(++f<110)requestAnimationFrame(loop);else cx.clearRect(0,0,W,H);})();}
-
-  var crowd=document.getElementById('crowd'),ch='',person='<svg viewBox="0 0 20 28"><circle cx="10" cy="6" r="5"/><path d="M2 27c0-6 3.6-11 8-11s8 5 8 11z"/></svg>';
-  for(var i=0;i<144;i++)ch+=person;crowd.innerHTML=ch;
-  var ppl=[].slice.call(crowd.children);ppl.slice(100).forEach(function(x){x.classList.add('miss');});
-  when(document.getElementById('stats'),function(s){s.classList.add('go');
-    ppl.slice(0,100).forEach(function(x,i){setTimeout(function(){x.classList.add('in');},i*12);});
-    ppl.slice(100).forEach(function(x,i){setTimeout(function(){x.classList.add('in');},1500+i*45);});
-    var cs=document.querySelectorAll('.stats .count');count(cs[0],44,3400);setTimeout(function(){count(cs[1],17160,2200);},400);
-  },.25);
 
   // questionnaire
   var modal=document.getElementById('modal'),steps=[].slice.call(document.querySelectorAll('.qstep')),prog=document.querySelectorAll('#qprog i'),q=0;
