@@ -156,6 +156,11 @@
   .qstep .qs{font-size:15px;color:var(--soft);margin-bottom:18px}
   .qin{width:100%;font:500 17px var(--sans);padding:15px 16px;border-radius:14px;border:1.5px solid #ddd3c6;background:#fff;margin-bottom:10px;color:var(--text)}
   .qin:focus{outline:0;border-color:var(--tomato)}
+  .qsel{appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23857a70' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center;padding-right:44px}
+  .qsel:has(option[value=""]:checked){color:#8f857b}.qsel option{color:var(--text)}
+  .qmsg{resize:vertical;min-height:84px;line-height:1.4}
+  .qhp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .qdone .qs a{color:var(--tomato);font-weight:600}
   .qnext{padding:15px 26px}
   .qnext[disabled]{opacity:.4;pointer-events:none}
   .qdone{text-align:center;padding:10px 0}
@@ -479,16 +484,19 @@
     <button class="qx" id="qx" aria-label="Close">&times;</button>
     <form id="qform" novalidate>
       <div class="qstep on" data-q="0">
-        <h3 id="qtitle">Let&#39;s get started.</h3><p class="qs">We&#39;ll email you the next steps.</p>
+        <h3 id="qtitle">Let&#39;s get started.</h3><p class="qs">Tell us a little and we&#39;ll email you the next steps.</p>
         <input class="qin" name="restaurant" placeholder="Restaurant name" autocomplete="organization">
         <input class="qin" name="contact" type="email" inputmode="email" placeholder="Your email" autocomplete="email">
+        <select class="qin qsel" name="dishes" aria-label="About how many dishes?"><option value="">How many dishes? (optional)</option><option>Under 15</option><option>15 to 40</option><option>40 to 60</option><option>60+</option><option>Not sure</option></select>
+        <textarea class="qin qmsg" name="message" rows="3" placeholder="Anything else? (optional)"></textarea>
+        <input class="qhp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="qerr" id="qerr"></div>
         <button type="submit" class="btn qnext" id="qnext" style="width:100%">Get started</button>
       </div>
       <div class="qstep" data-q="1">
         <div class="qdone">
           <div class="ck"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></div>
-          <h3>Got it!</h3><p class="qs" id="qthanks">We&#39;ll be in touch soon.</p>
+          <h3>Thanks for your interest!</h3><p class="qs" id="qthanks">We&#39;ll reach back out today or soon. Check your inbox for a note from <a href="mailto:cravinadventure@gmail.com">cravinadventure@gmail.com</a>.</p>
         </div>
       </div>
     </form>
@@ -497,7 +505,6 @@
 
 <script>
 var FORM_ENDPOINT = "";
-var FORM_FIELDS = {restaurant:"", contact:""};
 
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -610,9 +617,11 @@ var FORM_FIELDS = {restaurant:"", contact:""};
     var r=(form.elements.restaurant.value||'').trim(),m=(form.elements.contact.value||'').trim();
     if(!r){err.textContent='Add your restaurant name.';return;}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){err.textContent='Add a valid email.';return;}
-    if(FORM_ENDPOINT){var fd=new FormData();if(FORM_FIELDS.restaurant)fd.append(FORM_FIELDS.restaurant,r);if(FORM_FIELDS.contact)fd.append(FORM_FIELDS.contact,m);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);return;}
-    document.getElementById('qthanks').textContent='Hit send on the email that just opened and we\u2019ll be in touch soon.';
-    show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m);});
+    var d=form.elements.dishes.value,x=(form.elements.message.value||'').trim();
+    if(form.elements.website.value){show(1);return;}
+    if(FORM_ENDPOINT){var fd=new FormData();fd.append('restaurant',r);fd.append('email',m);fd.append('dishes',d);fd.append('message',x);fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});show(1);form.reset();return;}
+    document.getElementById('qthanks').textContent='Hit send on the email that just opened and we\u2019ll reach back out today or soon.';
+    show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m+(d?'\nDishes: '+d:'')+(x?'\n\n'+x:''));});
 
   
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
