@@ -349,7 +349,7 @@
   .land{position:relative;height:340svh;background:#0e0b09;color:#fff}
   .land .pin{position:sticky;top:0;height:100svh;overflow:hidden}
   .land video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .land .veil{position:absolute;inset:0;background:radial-gradient(circle at 72% 50%,rgba(255,90,54,.22),transparent 45%),radial-gradient(circle at 15% 85%,rgba(255,201,74,.08),transparent 40%)}
+  .land .veil{position:absolute;inset:0;background:radial-gradient(circle at 30% 52%,rgba(255,90,54,.14),transparent 34%)}
   .lgrid{position:relative;height:100%;width:min(1240px,100% - 40px);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:50px}
   .lcopy h1{font-size:clamp(40px,5vw,78px);max-width:12ch}
   .lcopy h1 em{font-style:normal;color:var(--tomato)}
@@ -432,6 +432,7 @@
   .combo{align-items:start!important}
   .clabel{font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-align:center;margin-bottom:22px;min-height:18px}
   .colw{gap:0!important}
+  @media (min-width:901px){.lgrid{grid-template-columns:.9fr 1.1fr}.lstage{order:-1}.lcopy{padding-left:12px}}
   .mcta{display:none}
   .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
   .rv.in{opacity:1;transform:none}
