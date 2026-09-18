@@ -8,7 +8,7 @@
 <meta name="description" content="Snap every dish on your phone. We turn it into menu photos that sell online.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Cravin' Flavors">
-<meta property="og:title" content="From your kitchen to your online storefront">
+<meta property="og:title" content="From your kitchen to online delivery apps">
 <meta property="og:description" content="Snap it. Send it. Sell it.">
 <meta property="og:url" content="https://cravinadventure.com/cravinflavors/">
 <meta property="og:image" content="https://cravinadventure.com/cravinflavors/assets/og-cravinflavors.jpg">
@@ -253,7 +253,7 @@
   .tgrid{position:absolute;left:0;top:0;will-change:transform}
   .gsec{background:#fff!important}
   .tgrid img{position:absolute;display:block;max-width:none;object-fit:cover}
-  .gsec .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.9) 0%,rgba(10,8,7,.74) 45%,rgba(10,8,7,.58) 100%)}
+  .gsec .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.94) 0%,rgba(10,8,7,.86) 50%,rgba(10,8,7,.78) 100%)}
   .gsec .ginner{position:relative;padding:80px 20px;display:flex;flex-direction:column;align-items:center}
   .gsec h2{font-size:clamp(50px,7.6vw,116px);margin:12px 0 18px}
   .gsec .eyebrow{font-size:13px}
@@ -321,6 +321,38 @@
     .done-banner b{font-size:20px}.done-banner span{font-size:12px}.done-banner .ck{width:48px;height:48px}
   }
   @media (max-width:700px){.gsec .stats{gap:8px;margin-bottom:20px}.gsec .stat{padding:9px 12px}.gsec .stat .snum{font-size:26px}.gsec .stat .snum svg{width:18px;height:18px}.gsec .stat .stxt{font-size:12.5px}.gsec .stat .ssrc{font-size:10px}.gsec .gline{margin-bottom:18px}.gsec h2{font-size:40px!important}}
+  .gsec .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;width:min(860px,100%);margin:6px auto 34px;text-align:center}
+  .gsec .stat{background:none!important;border:0!important;border-radius:0;padding:4px 22px!important;display:block!important}
+  .gsec .stat+.stat{border-left:1px solid rgba(255,255,255,.18)!important}
+  .gsec .stat .snum{display:block!important;font-family:var(--serif);font-weight:800;font-size:clamp(34px,4vw,52px)!important;color:#fff!important;margin:0 0 6px!important;line-height:1}
+  .gsec .stat .stxt{font-size:14px!important;color:rgba(255,255,255,.8)!important;line-height:1.35}
+  .gsec .stat .ssrc{display:block;margin-top:6px!important;font-size:10.5px!important;color:rgba(255,255,255,.45)!important;text-decoration:none!important}
+  @media (max-width:700px){.gsec .stat{padding:2px 8px!important}.gsec .stat .snum{font-size:26px!important}.gsec .stat .stxt{font-size:11px!important}.gsec .stat .ssrc{font-size:8.5px!important}}
+  .phone{border-radius:15% / 7%!important}
+  .screen{border-radius:12% / 5.6%!important}
+  .phone .notch{top:2.6%!important;height:3.6%!important;width:30%!important}
+  @media (max-width:900px){
+    .lcopy h1{font-size:clamp(26px,7.4vw,34px)!important}
+    .lsteps li b{font-size:22px!important}.lsteps li span{font-size:13px!important}
+    .lstage .phone{height:48svh!important}
+    .l-app .ah b{font-size:12px}.l-app .ah span{font-size:9px}.l-app .secl{font-size:10px;padding:6px 10px 3px}
+    .mrow{padding:6px 10px;gap:6px}.mrow b{font-size:10.5px}.mrow span{font-size:8.5px}.mrow img{width:42px;height:42px;border-radius:7px}
+    .l-send .hd{padding:26px 10px 6px}.l-send .hd .av{width:24px;height:24px;font-size:10px;line-height:24px}.l-send .hd b{font-size:9.5px}
+    .bub{font-size:10px!important;padding:6px 9px;border-radius:13px}.bub.img img{width:64px!important;height:64px!important;border-radius:10px}
+    .l-send .status{font-size:8px}.l-cam .mode{font-size:7px}.l-cam .shutter{width:36px;height:36px}
+    .combo .clockcol{display:none!important}
+    .combo{grid-template-columns:1fr!important}
+    .speed .dash{max-width:320px!important;margin:0 auto}
+    .speed .drow .pill{display:inline-block!important;width:92px!important;font-size:9px!important;padding:5px 6px!important}
+    .speed .drow{grid-template-columns:26px 1fr 92px!important}
+    .people{display:none!important}
+    .gsec h2{font-size:34px!important}
+  }
+  @media (min-width:901px){.speed .dash{aspect-ratio:1/1;display:flex;flex-direction:column;width:100%}.speed #drows{flex:1;min-height:0;overflow:hidden}}
+  .combo .clockcol{display:none!important}
+  @media (min-width:901px){.combo{grid-template-columns:400px 400px!important;justify-content:center;gap:72px!important}}
+  .lsub{font-size:clamp(17px,1.5vw,21px);color:rgba(255,255,255,.85);margin:16px 0 0;max-width:30ch;line-height:1.4}
+  @media (max-width:900px){.lgrid{grid-template-rows:auto auto 1fr auto!important}.lsub{grid-row:2;font-size:14px;margin:0!important}.lstage{grid-row:3!important}.lsteps{grid-row:4!important}}
   .mcta{display:flex!important;position:fixed;right:24px;bottom:24px;left:auto;z-index:60;transform:translateY(160%);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
   .mcta.show{transform:none}
   .mcta .btn{padding:14px 24px;font-size:15px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.3)}
@@ -357,7 +389,8 @@
     <div class="lgrid">
       <div class="lcopy">
         <div class="slogan">Let your food sell itself.</div>
-        <h1>From your kitchen to your <em>online storefront.</em></h1>
+        <h1>From your kitchen to <em>online delivery apps.</em></h1>
+        <p class="lsub">We turn your phone photos of each dish into professional menu photos.</p>
         <ol class="lsteps" id="lsteps">
           <li class="on"><b>Snap it.</b><span>You snap each dish on your own phone. No one comes in, nothing to schedule.</span></li>
           <li><b>Send it.</b><span>Text us your photos and your menu. We finish every dish.</span></li>
@@ -378,7 +411,7 @@
             <div class="flash"></div>
           </div>
           <div class="layer l-send" data-l="1">
-            <div class="hd"><div class="av">CF</div><b>Cravin' Flavors</b></div>
+            <div class="hd"><b>Cravin' Flavors</b></div>
             <div class="thread" id="thread">
               <div class="stamp">Today 8:42 PM</div>
               <div class="bub me img"><img src="assets/bonu_before_spaghetto_di_bonu.jpg" alt=""></div>
@@ -406,26 +439,12 @@
   <canvas id="confetti"></canvas>
   <div class="wrap wide">
     <div class="shead">
-      <h2 class="rv">About a day for your whole menu.</h2>
+      <h2 class="rv">24 hours for your whole menu.</h2>
       <p class="rv">Watch it come to life.</p>
     </div>
     <div class="combo">
-      <div class="clockcol">
-        <div class="clabel">Send it all, same day</div>
-        <div class="clock">
-          <svg viewBox="0 0 380 380">
-          <circle class="face" cx="190" cy="190" r="178"/>
-          <line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(0 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(30 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(60 190 190)"/><line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(90 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(120 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(150 190 190)"/><line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(180 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(210 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(240 190 190)"/><line class="tick big" x1="190" y1="22" x2="190" y2="40" transform="rotate(270 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(300 190 190)"/><line class="tick" x1="190" y1="22" x2="190" y2="34" transform="rotate(330 190 190)"/>
-          <circle class="arc" id="carc" cx="190" cy="190" r="160" transform="rotate(-90 190 190)"/>
-          <line class="hand hh" id="hh" x1="190" y1="190" x2="190" y2="100"/>
-          <line class="hand mh" id="mh" x1="190" y1="190" x2="190" y2="58"/>
-          <circle class="hub" cx="190" cy="190" r="12"/><circle class="hub2" cx="190" cy="190" r="5"/>
-        </svg>
-        </div>
-        <div class="hours"><b id="hrs">0</b><span>hours</span></div>
-      </div>
       <div class="colw cardcol">
-        <div class="clabel">Or send as you go</div>
+        <div class="clabel">Send it all, same day</div>
       <div class="lcard" id="live">
         <img class="lb" id="lvb" src="assets/bonu_before_burrata.jpg" alt="">
         <img class="la" id="lva" src="assets/bonu_burrata.jpg" alt="">
@@ -451,19 +470,6 @@
 </section>
 
 <section class="close" id="start">
-  <div class="people" id="people">
-    <div class="pic"><img data-par="-0.12" src="assets/owner_mia_crop.jpg" alt="Mia Maccarrone, co-owner of Bonu&#39; Taverna Italiana, holding a dish in her dining room" loading="lazy"></div>
-    <div class="txt">
-      <div class="eyebrow rv">Why this matters to us</div>
-      <h2 class="rv">Behind every plate is a person.</h2>
-      <p class="why rv">On a delivery app, your photo is the only introduction a stranger gets to the people who made their dinner. We make sure it does them justice.</p>
-      <div class="mia rv">
-        <q>Food is essential. We need to eat. And so, we&#39;d like to make sure everyone can afford it.</q>
-        <small>Mia Maccarrone, co-owner, Bonu&#39; Taverna Italiana, St. Petersburg. Every dish on this page came out of her kitchen.</small>
-      </div>
-      <div class="sig rv">Real people. Real plates. Real stories.</div>
-    </div>
-  </div>
   <div class="wrap"><div class="faqw">
   
     <h3 class="faqh">Common questions</h3>
@@ -493,7 +499,7 @@
       <div class="eyebrow rv">Hungry people are scrolling right now.</div>
       <h2 class="rv">Let your food sell itself.</h2>
       <p class="gline rv">You snap the photos. We do the rest.</p>
-      <div class="stats rv"><div class="stat"><div class="snum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg>44%</div><div class="stxt"><b>More monthly sales</b> for menus with photos</div><span class="ssrc">DoorDash data, 15,000+ merchants. Source checked 2026</span></div><div class="stat"><div class="snum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V4"/><path d="M5 11l7-7 7 7"/></svg>$330</div><div class="stxt"><b>More per week</b> with photos on 70%+ of items</div><span class="ssrc">Uber Eats merchant data. Source checked 2026</span></div><div class="stat"><div class="snum">55%</div><div class="stxt"><b>Of first orders</b> at new restaurants come from browsing, not search</div><span class="ssrc">DoorDash data. Source checked 2026</span></div></div>
+      <div class="stats rv"><div class="stat"><div class="snum">44%</div><div class="stxt">Up to 44% more monthly sales for menus with photos</div><span class="ssrc">DoorDash data, 15,000+ merchants, checked 2026</span></div><div class="stat"><div class="snum">$330</div><div class="stxt">More per week with photos on 70%+ of items</div><span class="ssrc">Uber Eats merchant data, checked 2026</span></div><div class="stat"><div class="snum">55%</div><div class="stxt">Of first orders at new restaurants come from browsing</div><span class="ssrc">DoorDash data, checked 2026</span></div></div>
       <button class="btn big rv" data-open>Get started</button>
     </div>
     <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
@@ -603,28 +609,26 @@ var FORM_FIELDS = {restaurant:"", contact:""};
     rh+='<div class="drow" id="r'+i+'"><div class="th"><img class="b" src="assets/'+b+'.jpg" alt=""><img class="a" src="assets/bonu_'+d[0]+'.jpg" alt=""></div><div><b>'+d[1]+'</b><small>'+secs[i]+'</small></div><span class="pill p-need">Photo needed</span></div>';});
   document.getElementById('drows').innerHTML=rh;
   var cnt=document.getElementById('cnt'),pct=document.getElementById('pct'),pbar=document.getElementById('progbar'),banner=document.getElementById('donebanner');
-  var spd=document.getElementById('speed'),carc=document.getElementById('carc'),hh=document.getElementById('hh'),mh=document.getElementById('mh'),hrs=document.getElementById('hrs'),CC=2*Math.PI*160;
-  carc.style.strokeDasharray=CC;carc.style.strokeDashoffset=CC;
+  var spd=document.getElementById('speed');
   var rowState=[];function setRow(i,st){if(rowState[i]===st)return;rowState[i]=st;var r=document.getElementById('r'+i),p=r.querySelector('.pill'),b=r.querySelector('img.b'),a=r.querySelector('img.a');
     if(st==='need'){r.classList.remove('has');p.className='pill p-need';p.textContent='Photo needed';b.classList.remove('on');a.classList.remove('on');}
     if(st==='work'){r.classList.add('has');p.className='pill p-work';p.textContent='In progress';b.classList.add('on');a.classList.remove('on');}
     if(st==='done'){r.classList.add('has');p.className='pill p-done';p.textContent='Finished';a.classList.add('on');b.classList.remove('on');r.classList.remove('flashrow');void r.offsetWidth;r.classList.add('flashrow');}}
   var live=document.getElementById('live'),lvb=document.getElementById('lvb'),lva=document.getElementById('lva'),lvw=document.getElementById('lvw'),lvtag=document.getElementById('lvtag'),lvst=document.getElementById('lvst'),liveJ=-1;
-  var RUN=5600,HOLD=6600,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
+  var lastScrollJ=-1,scrollTarget=0,RUN=5600,HOLD=6600,cstart=null,cvis=false,lastCycle=-1,celebrated=false;
   function spdCheck(){var r=spd.getBoundingClientRect(),H=innerHeight,inV=r.top<H*.62&&r.bottom>H*.25,gone=r.bottom<0||r.top>H;if(inV&&!cvis){cvis=true;spd.classList.add('go');cstart=performance.now();lastCycle=-1;liveJ=-1;rowState=[];}else if(gone&&cvis){cvis=false;cstart=null;}}
   window.addEventListener('scroll',spdCheck,{passive:true});window.addEventListener('resize',spdCheck);spdCheck();
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
     var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),u=Math.min(1,t/RUN),p=u<.55?.75*Math.pow(u/.55,1.6):.75+.25*(1-Math.pow(1-(u-.55)/.45,3));
-    if(cyc!==lastCycle){lastCycle=cyc;celebrated=false;banner.classList.remove('show');}
-    carc.style.strokeDashoffset=CC*(1-p);hh.setAttribute('transform','rotate('+(720*p)+' 190 190)');mh.setAttribute('transform','rotate('+(8640*p)+' 190 190)');
-    hrs.textContent=Math.floor(24*p);
-    var n=0,cj=Math.min(7,Math.floor(p*8));for(var j=0;j<8;j++){var q=p*8-j;var st=q>=.85||p>=1?'done':q>0?'work':'need';setRow(j,st);if(st==='done')n++;}
+    if(cyc!==lastCycle){lastCycle=cyc;lastScrollJ=-1;scrollTarget=0;var _d=document.getElementById('drows');if(_d){_d.scrollTop=0;}celebrated=false;banner.classList.remove('show');}
+    var n=0,cj=Math.min(7,Math.floor(p*8));if(cj!==lastScrollJ){lastScrollJ=cj;var dr=document.getElementById('drows'),row=document.getElementById('r'+cj);if(dr&&row){scrollTarget=Math.max(0,Math.min(dr.scrollHeight-dr.clientHeight,row.offsetTop-dr.offsetTop-dr.clientHeight*0.45));}}
+    var _dr=document.getElementById('drows');if(_dr){_dr.scrollTop+= (scrollTarget-_dr.scrollTop)*0.12;}for(var j=0;j<8;j++){var q=p*8-j;var st=q>=.85||p>=1?'done':q>0?'work':'need';setRow(j,st);if(st==='done')n++;}
     cnt.textContent=n;pct.textContent=Math.round(n/8*100)+'%';pbar.style.width=(n/8*100)+'%';
     if(cj!==liveJ){liveJ=cj;lvb.src='assets/bonu_before_'+tdishes[cj][0]+'.jpg';lva.src='assets/bonu_'+tdishes[cj][0]+'.jpg';lvtag.textContent=tdishes[cj][1];}
     var q2=p>=1?1:p*8-cj,w=ease(rg(q2,.12,.72));live.style.setProperty('--w',(w*100).toFixed(2)+'%');lvw.style.opacity=(w>0&&w<1)?1:0;
     var fin=w>=1;lvst.textContent=fin?'Finished':'Your photo';lvst.classList.toggle('fin',fin);
     if(p>=1&&!celebrated){celebrated=true;banner.classList.add('show');confetti();}}
-  if(!reduce)requestAnimationFrame(tick);else{carc.style.strokeDashoffset=0;hrs.textContent='24';for(var j=0;j<8;j++)setRow(j,'done');cnt.textContent='8';pct.textContent='100%';pbar.style.width='100%';}
+  if(!reduce)requestAnimationFrame(tick);else{for(var j=0;j<8;j++)setRow(j,'done');cnt.textContent='8';pct.textContent='100%';pbar.style.width='100%';}
 
   var cv=document.getElementById('confetti'),cx=cv.getContext('2d');
   function confetti(){if(reduce)return;var W=cv.width=cv.offsetWidth,H=cv.height=cv.offsetHeight,ps=[],cols=['#ffffff','#2f8f5b','#ffc94a','#0a84ff','#ff9ec4','#141210'];
