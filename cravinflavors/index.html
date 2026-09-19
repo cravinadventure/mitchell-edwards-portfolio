@@ -624,7 +624,7 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
 
   
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
-  var dl=[].slice.call(document.querySelectorAll('.dyk-line'));if(dl.length){var di=0;setInterval(function(){dl[di].classList.remove('on');di=(di+1)%dl.length;dl[di].classList.add('on');},4600);}
+  var dl=[].slice.call(document.querySelectorAll('.dyk-line'));if(dl.length){var di=0;setInterval(function(){dl[di].classList.remove('on');di=(di+1)%dl.length;dl[di].classList.add('on');},8000);}
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('send');
   function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();var sp=document.getElementById('speed'),spr=sp.getBoundingClientRect(),inSpeed=innerWidth<=900&&spr.top<innerHeight&&spr.bottom>innerHeight*.35;m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9&&!inSpeed);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
