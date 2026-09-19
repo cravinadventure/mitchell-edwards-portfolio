@@ -184,6 +184,10 @@
   .lstage .phone{height:min(660px,78svh)}
   .close{background:var(--cream)}
   .faqw{padding:70px 0 90px;max-width:860px;margin:0 auto}
+  .faqbtn{margin-top:30px;background:none;border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.9);border-radius:999px;padding:12px 30px;font:600 14px/1 var(--sans);letter-spacing:.08em;cursor:pointer;transition:border-color .2s,color .2s}
+  .faqbtn:hover{border-color:rgba(255,255,255,.6);color:#fff}
+  .faqbtn span{margin-left:4px}
+  #faqpanel{background:var(--cream)}
   .faqh{font-size:clamp(28px,3vw,40px);margin-bottom:18px}
   @media (max-width:900px){
     .land{height:330svh}
@@ -436,9 +440,20 @@
 </section>
 
 <section class="close" id="start">
+  <div class="gsec" id="send">
+    <div class="tgrid" id="tgrid"></div>
+    <div class="gveil"></div>
+    <div class="ginner">
+      <h2 class="rv">Let your food sell itself.</h2>
+      <button class="btn big rv" data-open>Get started</button>
+      <div class="dyk rv"><div class="dyk-stage"><p class="dyk-line on">Menus with photos see up to 44% more monthly sales.<span class="dyk-src">DoorDash, 2026</span></p><p class="dyk-line">Restaurants see about $330 more per week when most dishes have photos.<span class="dyk-src">Uber Eats, 2026</span></p><p class="dyk-line">55% of first orders come from people browsing dish photos, not searching.<span class="dyk-src">DoorDash, 2026</span></p></div></div>
+      <button class="faqbtn rv" id="faqbtn" aria-expanded="false">FAQ <span>+</span></button>
+    </div>
+    <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
+  </div>
+  <div id="faqpanel" hidden>
   <div class="wrap"><div class="faqw">
   
-    <h3 class="faqh">Common questions</h3>
     <details><summary>How does it work?</summary><p>Snap each dish on your phone and text us the photos. We send back clean menu photos, ready for delivery apps, where good photos help dishes sell.</p><button class="faqgo" data-open>Get started</button></details>
     <details><summary>How much does it cost?</summary><p>It depends on how many dishes. Hit Get started and we&#39;ll send a quote. No commitment.</p></details>
     <details><summary>Who takes the photos?</summary><p>You do, on your phone. We recommend a chef or food runner snap each dish as it goes out. No skills needed, no one comes in, nothing to schedule. A real person on our team checks every photo.</p></details>
@@ -459,15 +474,6 @@
     <button class="morebtn" id="morebtn" aria-expanded="false">See all questions <span>+</span></button>
   </div>
 </div>
-  <div class="gsec" id="send">
-    <div class="tgrid" id="tgrid"></div>
-    <div class="gveil"></div>
-    <div class="ginner">
-      <h2 class="rv">Let your food sell itself.</h2>
-      <button class="btn big rv" data-open>Get started</button>
-      <div class="dyk rv"><div class="dyk-stage"><p class="dyk-line on">Menus with photos see up to 44% more monthly sales.<span class="dyk-src">DoorDash, 2026</span></p><p class="dyk-line">Restaurants see about $330 more per week when most dishes have photos.<span class="dyk-src">Uber Eats, 2026</span></p><p class="dyk-line">55% of first orders come from people browsing dish photos, not searching.<span class="dyk-src">DoorDash, 2026</span></p></div></div>
-    </div>
-    <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
   </div>
 </section>
 
@@ -623,6 +629,8 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
     show(1);window.location.href='mailto:cravinadventure@gmail.com?subject='+encodeURIComponent('Menu photos: '+r)+'&body='+encodeURIComponent('Restaurant: '+r+'\nEmail: '+m+(d?'\nDishes: '+d:''));});
 
   
+  var fb=document.getElementById('faqbtn'),fp=document.getElementById('faqpanel');
+  fb.addEventListener('click',function(){var opening=fp.hasAttribute('hidden');if(opening){fp.removeAttribute('hidden');fb.setAttribute('aria-expanded','true');fb.innerHTML='FAQ <span>&minus;</span>';setTimeout(function(){fp.scrollIntoView({behavior:'smooth',block:'start'});},40);}else{fp.setAttribute('hidden','');fb.setAttribute('aria-expanded','false');fb.innerHTML='FAQ <span>+</span>';}});
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
   var dl=[].slice.call(document.querySelectorAll('.dyk-line'));if(dl.length){var di=0;setInterval(function(){dl[di].classList.remove('on');di=(di+1)%dl.length;dl[di].classList.add('on');},8000);}
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('send');
