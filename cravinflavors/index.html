@@ -224,7 +224,7 @@
   .tgrid{position:absolute;left:0;top:0;will-change:transform}
   .gsec{background:#fff!important}
   .tgrid img{position:absolute;display:block;max-width:none;object-fit:cover}
-  .gsec .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.965) 0%,rgba(10,8,7,.93) 50%,rgba(10,8,7,.88) 100%)}
+  .gsec .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.94) 0%,rgba(10,8,7,.86) 50%,rgba(10,8,7,.78) 100%)}
   .gsec .ginner{position:relative;padding:80px 20px;display:flex;flex-direction:column;align-items:center}
   .gsec h2{font-size:clamp(50px,7.6vw,116px);margin:12px 0 18px}
   .gsec .eyebrow{font-size:13px}
@@ -519,13 +519,13 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
       paint();}
     function paint(){for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var s='assets/bonu_'+names[g[r][c]]+'.jpg';if(els[r][c].getAttribute('src')!==s)els[r][c].src=s;}}
     function flip(){var r=Math.floor(Math.random()*rows),c=Math.floor(Math.random()*cols);if(!g[r]||!els[r])return;var im=els[r][c];if(!im)return;g[r][c]=pick(r,c);im.src='assets/bonu_'+names[g[r][c]]+'.jpg';}
-    function frame(t){requestAnimationFrame(frame);if(!vis)return;var dt=Math.min(50,t-(last||t));last=t;ox+=dt*.008;oy+=dt*.008;
+    function frame(t){requestAnimationFrame(frame);if(!vis)return;var dt=Math.min(50,t-(last||t));last=t;ox+=dt*.018;oy+=dt*.018;
       if(ox>=ts){ox-=ts;for(var r=0;r<rows;r++){g[r].shift();g[r].push(null);}for(var r=0;r<rows;r++)g[r][cols-1]=pick(r,cols-1);paint();}
       if(oy>=ts){oy-=ts;g.shift();var row=[];for(var c=0;c<cols;c++)row.push(null);g.push(row);for(var c=0;c<cols;c++)g[rows-1][c]=pick(rows-1,c);paint();}
       grid.style.transform='translate3d('+(-ts-ox).toFixed(1)+'px,'+(-ts-oy).toFixed(1)+'px,0)';}
     build();window.addEventListener('resize',build);
     new IntersectionObserver(function(es){vis=es[0].isIntersecting;last=0;},{rootMargin:'100px'}).observe(sec);
-    if(!reduce){requestAnimationFrame(frame);setInterval(function(){if(vis){flip();}},220);}
+    if(!reduce){requestAnimationFrame(frame);setInterval(function(){if(vis){flip();flip();flip();}},70);}
   })();
 
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
