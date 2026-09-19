@@ -241,7 +241,6 @@
   .l-send .thread{justify-content:flex-start!important;padding-top:18px}
   .l-send .stamp{align-self:center;font-size:10.5px;color:#8e8e93;margin-bottom:4px}
   @media (max-width:900px){.l-send .thread{justify-content:flex-end!important}.l-send .stamp{display:none}}
-  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:min(920px,100%);margin:0 0 26px;text-align:left}.stat{background:rgba(63,208,127,.1);border:1px solid rgba(63,208,127,.35);border-radius:16px;padding:16px 18px}.stat .snum{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-weight:800;font-size:42px;line-height:1;color:#3fd07f;margin-bottom:8px}.stat .snum svg{width:26px;height:26px}.stat .stxt{font-size:15px;line-height:1.35;color:rgba(255,255,255,.85)}.stat .stxt b{color:#fff}.stat .ssrc{display:block;margin-top:8px;font-size:11.5px;color:rgba(255,255,255,.55)}@media (max-width:700px){.stats{grid-template-columns:1fr;gap:10px}.stat{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;padding:12px 14px}.stat .snum{font-size:32px;margin:0;grid-row:span 2}.stat .ssrc{margin-top:4px}}
   .gsec .gfine{font-size:10.5px!important;margin:0!important;color:rgba(255,255,255,.5)!important}
   .gfine{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-size:10.5px;color:rgba(255,255,255,.5);z-index:2}
   .slogan{font-family:var(--serif);font-weight:600;font-style:italic;font-size:clamp(20px,1.9vw,26px);color:var(--tomato);margin-bottom:10px}
@@ -271,14 +270,7 @@
     .speed .drow .pill{display:none}
     .done-banner b{font-size:20px}.done-banner span{font-size:12px}.done-banner .ck{width:48px;height:48px}
   }
-  @media (max-width:700px){.gsec .stats{gap:8px;margin-bottom:20px}.gsec .stat{padding:9px 12px}.gsec .stat .snum{font-size:26px}.gsec .stat .snum svg{width:18px;height:18px}.gsec .stat .stxt{font-size:12.5px}.gsec .stat .ssrc{font-size:10px}.gsec .gline{margin-bottom:18px}.gsec h2{font-size:40px!important}}
-  .gsec .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;width:min(860px,100%);margin:6px auto 34px;text-align:center}
-  .gsec .stat{background:none!important;border:0!important;border-radius:0;padding:4px 22px!important;display:block!important}
-  .gsec .stat+.stat{border-left:1px solid rgba(255,255,255,.18)!important}
-  .gsec .stat .snum{display:block!important;font-family:var(--serif);font-weight:800;font-size:clamp(34px,4vw,52px)!important;color:#fff!important;margin:0 0 6px!important;line-height:1}
-  .gsec .stat .stxt{font-size:14px!important;color:rgba(255,255,255,.8)!important;line-height:1.35}
-  .gsec .stat .ssrc{display:block;margin-top:6px!important;font-size:10.5px!important;color:rgba(255,255,255,.45)!important;text-decoration:none!important}
-  @media (max-width:700px){.gsec .stat{padding:2px 8px!important}.gsec .stat .snum{font-size:26px!important}.gsec .stat .stxt{font-size:11px!important}.gsec .stat .ssrc{font-size:8.5px!important}}
+  @media (max-width:700px){.gsec .gline{margin-bottom:18px}.gsec h2{font-size:40px!important}}
   .phone{border-radius:15% / 7%!important}
   .screen{border-radius:12% / 5.6%!important}
   .phone .notch{top:2.6%!important;height:3.6%!important;width:30%!important}
@@ -307,6 +299,19 @@
   .cardcol .lcard{order:0!important}.cardcol .clabel{order:-1}
   @media (min-width:901px){.gsec .eyebrow{font-size:17px!important;letter-spacing:.14em}}
   .ready{margin-top:34px;width:min(760px,90vw);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .speed .ready{width:100%;margin:74px 0 0}
+  .speed .ready .rlabel{color:rgba(255,255,255,.65)}
+  .speed .ready .rrow span{color:#fff}
+  .speed .ready .rrow span:after{background:rgba(255,255,255,.55)}
+  .speed .ready .rtrack{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  @media (max-width:700px){.speed .ready{margin-top:48px}}
+  .dyk{margin:30px auto 0;width:min(720px,100%)}
+  .dyk-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
+  .dyk-stage{position:relative;min-height:110px}
+  .dyk-line{position:absolute;inset:0;margin:0;font-family:var(--serif);font-weight:800;font-size:clamp(21px,2.5vw,30px);line-height:1.35;color:#fff;opacity:0;transform:translateY(10px);transition:opacity .8s ease,transform .8s ease;pointer-events:none}
+  .dyk-line.on{opacity:1;transform:none}
+  .dyk-src{display:block;margin-top:12px;font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+  @media (max-width:700px){.dyk-stage{min-height:150px}.dyk-line{font-size:18px}}
   .ready .rlabel{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5)}
   .ready .rtrack{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
   .ready .rrow{display:flex;width:max-content;animation:rmarq 28s linear infinite}
@@ -317,9 +322,7 @@
   @media (prefers-reduced-motion:reduce){.ready .rrow{animation:none}}
   .faqgo{margin-top:14px;background:var(--tomato);color:#fff;border:0;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px}
   .faqgo:hover{background:var(--tomato-d)}
-  .gsec .stats{width:min(640px,100%)!important;margin:30px auto 0!important}
-  .gsec .stat .stxt{font-size:14px!important;max-width:22ch;margin:0 auto}
-  @media (max-width:900px){.gsec .stat{padding:2px 8px!important}.gsec .stat .snum{font-size:28px!important}.gsec .stat .stxt{font-size:12px!important}.gsec .stat .ssrc{font-size:9.5px!important}.gsec .btn.big{font-size:18px!important;padding:18px 38px!important}.gsec .gline{font-size:15px!important}.ready .rrow span{font-size:16px!important}}
+  @media (max-width:900px){.gsec .btn.big{font-size:18px!important;padding:18px 38px!important}.gsec .gline{font-size:15px!important}.ready .rrow span{font-size:16px!important}}
   .mcta{display:flex!important;position:fixed;right:24px;bottom:24px;left:auto;z-index:60;transform:translateY(160%);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
   .mcta.show{transform:none}
   .mcta .btn{padding:14px 24px;font-size:15px;background:#fff;color:var(--ink);box-shadow:0 14px 34px rgba(0,0,0,.3)}
@@ -431,6 +434,7 @@
       </div>
     </div>
   </div>
+  <div class="ready rv"><div class="rlabel">Ready for</div><div class="rtrack"><div class="rrow"><span>DoorDash</span><span>Uber Eats</span><span>Grubhub</span><span>Toast</span><span>Your website</span><span>Google</span><span>Instagram</span><span>DoorDash</span><span>Uber Eats</span><span>Grubhub</span><span>Toast</span><span>Your website</span><span>Google</span><span>Instagram</span></div></div></div>
 </section>
 
 <section class="close" id="start">
@@ -465,8 +469,7 @@
       <h2 class="rv">Let your food sell itself.</h2>
       <p class="gline rv">You snap the photos. We do the rest.</p>
       <button class="btn big rv" data-open>Get started</button>
-      <div class="ready rv"><div class="rlabel">Ready for</div><div class="rtrack"><div class="rrow"><span>DoorDash</span><span>Uber Eats</span><span>Grubhub</span><span>Toast</span><span>Your website</span><span>Google</span><span>Instagram</span><span>DoorDash</span><span>Uber Eats</span><span>Grubhub</span><span>Toast</span><span>Your website</span><span>Google</span><span>Instagram</span></div></div></div>
-      <div class="stats rv"><div class="stat"><div class="snum">44%</div><div class="stxt">up to 44% more monthly sales, when the menu has photos</div><span class="ssrc">DoorDash, 2026</span></div><div class="stat"><div class="snum">$330</div><div class="stxt">more per week when most dishes have photos</div><span class="ssrc">Uber Eats, 2026</span></div><div class="stat"><div class="snum">55%</div><div class="stxt">of first orders come from people browsing dish photos, not searching</div><span class="ssrc">DoorDash, 2026</span></div></div>
+      <div class="dyk rv"><div class="dyk-label">Did you know?</div><div class="dyk-stage"><p class="dyk-line on">Menus with photos see up to 44% more monthly sales.<span class="dyk-src">DoorDash, 2026</span></p><p class="dyk-line">Restaurants see about $330 more per week when most dishes have photos.<span class="dyk-src">Uber Eats, 2026</span></p><p class="dyk-line">55% of first orders come from people browsing dish photos, not searching.<span class="dyk-src">DoorDash, 2026</span></p></div></div>
     </div>
     <p class="gfine">Figures are averages reported by the platforms, not a guarantee of results.</p>
   </div>
@@ -586,9 +589,9 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
   function spdCheck(){var r=spd.getBoundingClientRect(),H=innerHeight,inV=r.top<H*.62&&r.bottom>H*.25,gone=r.bottom<0||r.top>H;if(inV&&!cvis){cvis=true;spd.classList.add('go');cstart=performance.now();lastCycle=-1;liveJ=-1;rowState=[];}else if(gone&&cvis){cvis=false;cstart=null;}}
   window.addEventListener('scroll',spdCheck,{passive:true});window.addEventListener('resize',spdCheck);spdCheck();
   function tick(now){requestAnimationFrame(tick);if(!cvis||cstart===null)return;
-    var el=now-cstart,cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),u=Math.min(1,t/RUN),p=u<.72?.86*Math.pow(u/.72,1.5):.86+.14*(1-Math.pow(1-(u-.72)/.28,2));
+    var el=Math.max(0,now-cstart),cyc=Math.floor(el/(RUN+HOLD)),t=el%(RUN+HOLD),u=Math.min(1,t/RUN),p=u<.72?.86*Math.pow(u/.72,1.5):.86+.14*(1-Math.pow(1-(u-.72)/.28,2));
     if(cyc!==lastCycle){lastCycle=cyc;lastScrollJ=-1;scrollTarget=0;var _d=document.getElementById('drows');if(_d){_d.scrollTop=0;}celebrated=false;banner.classList.remove('show');}
-    var n=0,cj=Math.min(7,Math.floor(p*8));if(cj!==lastScrollJ){lastScrollJ=cj;var dr=document.getElementById('drows'),row=document.getElementById('r'+cj);if(dr&&row){scrollTarget=Math.max(0,Math.min(dr.scrollHeight-dr.clientHeight,row.offsetTop-dr.offsetTop-dr.clientHeight*0.45));}}
+    var n=0,cj=Math.min(7,Math.max(0,Math.floor(p*8)||0));if(cj!==lastScrollJ){lastScrollJ=cj;var dr=document.getElementById('drows'),row=document.getElementById('r'+cj);if(dr&&row){scrollTarget=Math.max(0,Math.min(dr.scrollHeight-dr.clientHeight,row.offsetTop-dr.offsetTop-dr.clientHeight*0.45));}}
     var _dr=document.getElementById('drows');if(_dr){_dr.scrollTop+= (scrollTarget-_dr.scrollTop)*0.12;}for(var j=0;j<8;j++){var q=p*8-j;var st=q>=.85||p>=1?'done':q>0?'work':'need';setRow(j,st);if(st==='done')n++;}
     cnt.textContent=n;pct.textContent=Math.round(n/8*100)+'%';pbar.style.width=(n/8*100)+'%';
     if(cj!==liveJ){liveJ=cj;lvb.src='assets/bonu_before_'+tdishes[cj][0]+'.jpg';lva.src='assets/bonu_'+tdishes[cj][0]+'.jpg';lvtag.textContent=tdishes[cj][1];}
@@ -625,6 +628,7 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
 
   
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
+  var dl=[].slice.call(document.querySelectorAll('.dyk-line'));if(dl.length){var di=0;setInterval(function(){dl[di].classList.remove('on');di=(di+1)%dl.length;dl[di].classList.add('on');},4600);}
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),start=document.getElementById('send');
   function onScroll(){var y=window.scrollY;barEl.classList.toggle('solid',y>40);var sr=start.getBoundingClientRect();var sp=document.getElementById('speed'),spr=sp.getBoundingClientRect(),inSpeed=innerWidth<=900&&spr.top<innerHeight&&spr.bottom>innerHeight*.35;m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&sr.top>innerHeight*.9&&!inSpeed);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
