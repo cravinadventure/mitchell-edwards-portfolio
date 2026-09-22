@@ -613,7 +613,7 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
     var names='burrata calamari polpo carpaccio gnocchi linguine rucola spaghetto_di_bonu bolognese polpette porcini cesare tiramisu cannoli gelato_pistacchio torta_limone'.split(' '),N=names.length,ts,cols,rows,g=[],els=[],ox=0,oy=0,vis=false,last=0;
     function nb(r,c){var o=[];for(var dr=-1;dr<=1;dr++)for(var dc=-1;dc<=1;dc++){if(!dr&&!dc)continue;var rr=r+dr,cc=c+dc;if(g[rr]&&g[rr][cc]!=null)o.push(g[rr][cc]);}return o;}
     function pick(r,c){var bad=nb(r,c);if(g[r]&&g[r][c]!=null)bad.push(g[r][c]);var ok=[];for(var k=0;k<N;k++)if(bad.indexOf(k)<0)ok.push(k);return ok[Math.floor(Math.random()*ok.length)];}
-    function build(){var W=sec.clientWidth,H=sec.clientHeight;if(W<1||H<1){rows=0;cols=0;grid.innerHTML='';els=[];return;}ts=Math.ceil(W/(W>900?8:4));cols=Math.ceil(W/ts)+2;rows=Math.ceil(H/ts)+2;
+    function build(){var W=sec.clientWidth,H=Math.max(sec.clientHeight,window.innerHeight,screen.height||0);if(W<1||H<1){rows=0;cols=0;grid.innerHTML='';els=[];return;}ts=Math.ceil(W/(W>900?8:4));cols=Math.ceil(W/ts)+2;rows=Math.ceil(H/ts)+2;
       g=[];for(var r=0;r<rows;r++){g[r]=[];for(var c=0;c<cols;c++){g[r][c]=null;}}
       for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)g[r][c]=pick(r,c);
       grid.innerHTML='';els=[];for(var r=0;r<rows;r++){els[r]=[];for(var c=0;c<cols;c++){var im=new Image();im.alt='';im.style.cssText='left:'+(c*ts)+'px;top:'+(r*ts)+'px;width:'+ts+'px;height:'+ts+'px';grid.appendChild(im);els[r][c]=im;}}
@@ -624,9 +624,10 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
       if(ox>=ts){ox-=ts;for(var r=0;r<rows;r++){g[r].shift();g[r].push(null);}for(var r=0;r<rows;r++)g[r][cols-1]=pick(r,cols-1);paint();}
       if(oy>=ts){oy-=ts;g.shift();var row=[];for(var c=0;c<cols;c++)row.push(null);g.push(row);for(var c=0;c<cols;c++)g[rows-1][c]=pick(rows-1,c);paint();}
       grid.style.transform='translate3d('+(-ts-ox).toFixed(1)+'px,'+(-ts-oy).toFixed(1)+'px,0)';}
-    build();window.addEventListener('resize',build);
+    var bw=0,bh=0;function rebuild(){var W=sec.clientWidth,H=sec.clientHeight;if(W===bw&&H<=bh)return;bw=W;bh=Math.max(H,bh);build();}
+    rebuild();window.addEventListener('resize',rebuild);
     new IntersectionObserver(function(es){vis=es[0].isIntersecting;last=0;},{rootMargin:'100px'}).observe(sec);
-    if(!reduce){requestAnimationFrame(frame);setInterval(function(){if(vis){flip();flip();flip();}},70);}
+    if(!reduce){requestAnimationFrame(frame);var big=innerWidth>900;setInterval(function(){if(vis&&!document.hidden){flip();if(big){flip();flip();}}},big?70:420);}
   })();
 
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
