@@ -109,7 +109,7 @@ p.body{color:var(--body-soft);max-width:70ch;margin-top:16px}
 
 /* contact */
 .contact{text-align:center;padding:140px 6vw}
-.contact .mail{display:inline-block;max-width:100%;overflow-wrap:normal;white-space:nowrap;font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(11px,3.6vw,40px);letter-spacing:.01em;border-bottom:3px solid var(--accent);padding-bottom:6px;transition:color .3s}
+.contact .mail{display:inline-block;font-family:var(--body);font-size:14px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .3s}
 .contact .mail:hover{color:var(--accent)}
 .contact p{color:var(--muted);margin-top:22px;font-size:14px}
 .cform{max-width:620px;margin:34px auto 38px;display:grid;gap:12px;text-align:left}
@@ -124,6 +124,7 @@ p.body{color:var(--body-soft);max-width:70ch;margin-top:16px}
 .cdone{margin:34px auto 38px;display:grid;gap:6px}
 .cdone b{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(18px,2.4vw,26px)}
 .cdone span{color:var(--muted);font-size:14px}
+.cdone[hidden],.cform[hidden]{display:none}
 @media(max-width:860px){.crow{grid-template-columns:1fr}}
 
 footer{border-top:1px solid var(--line);padding:34px 28px;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
