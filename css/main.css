@@ -112,6 +112,19 @@ p.body{color:var(--body-soft);max-width:70ch;margin-top:16px}
 .contact .mail{display:inline-block;max-width:100%;overflow-wrap:normal;white-space:nowrap;font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(11px,3.6vw,40px);letter-spacing:.01em;border-bottom:3px solid var(--accent);padding-bottom:6px;transition:color .3s}
 .contact .mail:hover{color:var(--accent)}
 .contact p{color:var(--muted);margin-top:22px;font-size:14px}
+.cform{max-width:620px;margin:34px auto 38px;display:grid;gap:12px;text-align:left}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cform input,.cform textarea{width:100%;font:400 15px var(--body);color:var(--paper);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:15px 16px;outline:0;transition:border-color .2s}
+.cform textarea{resize:vertical;min-height:120px;line-height:1.5}
+.cform input:focus,.cform textarea:focus{border-color:var(--accent)}
+.cform .chp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cform button{justify-self:center;font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#fff;background:var(--paper);border:0;border-radius:6px;padding:16px 44px;cursor:pointer;transition:background .25s,opacity .25s}
+.cform button:hover{background:var(--accent)}
+.cform button[disabled]{opacity:.35;cursor:default}
+.cdone{margin:34px auto 38px;display:grid;gap:6px}
+.cdone b{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(18px,2.4vw,26px)}
+.cdone span{color:var(--muted);font-size:14px}
+@media(max-width:860px){.crow{grid-template-columns:1fr}}
 
 footer{border-top:1px solid var(--line);padding:34px 28px;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 

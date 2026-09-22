@@ -123,6 +123,13 @@
 
 <section class="contact" id="contact">
   <h2 class="head rv">Contact</h2>
+  <form class="cform rv" id="cform" novalidate>
+    <div class="crow"><input name="name" placeholder="Your name" autocomplete="name" aria-label="Your name"><input name="email" type="email" inputmode="email" placeholder="Your email" autocomplete="email" aria-label="Your email"></div>
+    <textarea name="message" rows="4" placeholder="What are you working on?" aria-label="Message"></textarea>
+    <input class="chp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit" id="csend" disabled>Send</button>
+  </form>
+  <div class="cdone" id="cdone" hidden><b>Thanks, got it.</b><span>I'll get back to you soon.</span></div>
   <a class="mail rv" href="mailto:cravinadventure@gmail.com">cravinadventure@gmail.com</a>
   <p class="rv">St. Petersburg, FL · looking for a full-time in-house or agency team, remote or local</p>
 </section>
@@ -132,5 +139,16 @@
 <footer>Mitchell Edwards</footer>
 
 <script src="js/main.js"></script>
+<script>
+(function(){var f=document.getElementById('cform');if(!f)return;
+  var ENDPOINT="https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMaT5l3jhsREPOvmn9hS7syrPwWcVrEk-g6hlX80Xo0l0IcXGqk/exec";
+  var b=document.getElementById('csend');
+  function ok(){return (f.elements.name.value||'').trim()&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((f.elements.email.value||'').trim());}
+  f.addEventListener('input',function(){b.disabled=!ok();});
+  f.addEventListener('submit',function(e){e.preventDefault();if(!ok())return;
+    if(!f.elements.website.value){var fd=new URLSearchParams();fd.append('source','portfolio');fd.append('name',f.elements.name.value.trim());fd.append('email',f.elements.email.value.trim());fd.append('message',f.elements.message.value.trim());fetch(ENDPOINT,{method:'POST',mode:'no-cors',body:fd}).catch(function(){});}
+    f.hidden=true;document.getElementById('cdone').hidden=false;});
+})();
+</script>
 </body>
 </html>
