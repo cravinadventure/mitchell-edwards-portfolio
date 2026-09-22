@@ -403,6 +403,17 @@
   }
   @media (max-width:900px){.lstage .phone{height:min(66svh,calc(100svh - 250px))!important}}
   @media (max-width:900px){.mcta{display:none!important}}
+  .intro{position:relative;height:100svh;min-height:520px;overflow:hidden;background:#0e0b09;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center}
+  .intro .tgrid{position:absolute;left:0;top:0;will-change:transform}
+  .intro .tgrid img{position:absolute;display:block;max-width:none;object-fit:cover}
+  .intro .gveil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,8,7,.93) 0%,rgba(10,8,7,.85) 50%,rgba(10,8,7,.76) 100%)}
+  .intro .iinner{position:relative;padding:0 20px}
+  .intro h1{font-family:var(--serif);font-weight:800;font-size:clamp(40px,6.2vw,96px);line-height:1.02;letter-spacing:-.02em;margin:0}
+  .intro h1 em{display:block;font-style:normal;color:var(--tomato)}
+  .intro p{margin:20px 0 0;font-size:clamp(16px,1.7vw,24px);color:rgba(255,255,255,.88)}
+  .intro .icue{position:absolute;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));width:14px;height:14px;margin-left:-7px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);transform:rotate(45deg);animation:icue 1.8s ease-in-out infinite}
+  @keyframes icue{0%,100%{transform:translateY(0) rotate(45deg);opacity:.5}50%{transform:translateY(8px) rotate(45deg);opacity:1}}
+  @media (max-width:900px){.intro h1{font-size:9.4vw;white-space:nowrap}.intro p{font-size:3.8vw;white-space:nowrap;margin-top:14px}}
 </style>
 </head>
 <body>
@@ -411,6 +422,14 @@
   <a class="logo" href="#top">Cravin' Flavors</a>
 </header>
 
+<section class="intro" id="intro" aria-label="Cravin' Flavors">
+  <div class="tgrid" id="tgrid" aria-hidden="true"></div><div class="gveil" aria-hidden="true"></div>
+  <div class="iinner">
+    <h1>Your phone photos, <em>delivery-app ready.</em></h1>
+    <p>No photographer. No shoot day. Just your phone.</p>
+  </div>
+  <span class="icue" aria-hidden="true"></span>
+</section>
 <section class="land" id="top">
   <div class="pin">
     <div class="veil"></div>
@@ -582,6 +601,27 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  (function(){
+    var sec=document.getElementById('intro'),grid=document.getElementById('tgrid');if(!sec||!grid)return;
+    var names='burrata calamari polpo carpaccio gnocchi linguine rucola spaghetto_di_bonu bolognese polpette porcini cesare tiramisu cannoli gelato_pistacchio torta_limone'.split(' '),N=names.length,ts,cols,rows,g=[],els=[],ox=0,oy=0,vis=false,last=0;
+    function nb(r,c){var o=[];for(var dr=-1;dr<=1;dr++)for(var dc=-1;dc<=1;dc++){if(!dr&&!dc)continue;var rr=r+dr,cc=c+dc;if(g[rr]&&g[rr][cc]!=null)o.push(g[rr][cc]);}return o;}
+    function pick(r,c){var bad=nb(r,c);if(g[r]&&g[r][c]!=null)bad.push(g[r][c]);var ok=[];for(var k=0;k<N;k++)if(bad.indexOf(k)<0)ok.push(k);return ok[Math.floor(Math.random()*ok.length)];}
+    function build(){var W=sec.clientWidth,H=sec.clientHeight;if(W<1||H<1){rows=0;cols=0;grid.innerHTML='';els=[];return;}ts=Math.ceil(W/(W>900?8:4));cols=Math.ceil(W/ts)+2;rows=Math.ceil(H/ts)+2;
+      g=[];for(var r=0;r<rows;r++){g[r]=[];for(var c=0;c<cols;c++){g[r][c]=null;}}
+      for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)g[r][c]=pick(r,c);
+      grid.innerHTML='';els=[];for(var r=0;r<rows;r++){els[r]=[];for(var c=0;c<cols;c++){var im=new Image();im.alt='';im.style.cssText='left:'+(c*ts)+'px;top:'+(r*ts)+'px;width:'+ts+'px;height:'+ts+'px';grid.appendChild(im);els[r][c]=im;}}
+      paint();}
+    function paint(){for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){var s='assets/bonu_'+names[g[r][c]]+'.jpg';if(els[r][c].getAttribute('src')!==s)els[r][c].src=s;}}
+    function flip(){var r=Math.floor(Math.random()*rows),c=Math.floor(Math.random()*cols);if(!g[r]||!els[r])return;var im=els[r][c];if(!im)return;g[r][c]=pick(r,c);im.src='assets/bonu_'+names[g[r][c]]+'.jpg';}
+    function frame(t){requestAnimationFrame(frame);if(!vis)return;var dt=Math.min(50,t-(last||t));last=t;ox+=dt*.018;oy+=dt*.018;
+      if(ox>=ts){ox-=ts;for(var r=0;r<rows;r++){g[r].shift();g[r].push(null);}for(var r=0;r<rows;r++)g[r][cols-1]=pick(r,cols-1);paint();}
+      if(oy>=ts){oy-=ts;g.shift();var row=[];for(var c=0;c<cols;c++)row.push(null);g.push(row);for(var c=0;c<cols;c++)g[rows-1][c]=pick(rows-1,c);paint();}
+      grid.style.transform='translate3d('+(-ts-ox).toFixed(1)+'px,'+(-ts-oy).toFixed(1)+'px,0)';}
+    build();window.addEventListener('resize',build);
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting;last=0;},{rootMargin:'100px'}).observe(sec);
+    if(!reduce){requestAnimationFrame(frame);setInterval(function(){if(vis){flip();flip();flip();}},70);}
+  })();
+
   var dishes=[["burrata","Burrata","Tomato, basil pesto, olive oil"],["calamari","Calamari","Crispy, with marinara"],["polpo","Grilled octopus","Pistachio pesto, cannellini"],["carpaccio","Carpaccio","Beef, arugula, parmigiano"],["gnocchi","Gnocchi","Four-cheese cream"],["linguine","Seafood linguine","Scallops, shrimp, clams"],["rucola","Arugula salad","Cherry tomato, parmigiano"],["spaghetto_di_bonu","Spaghetto","Tomato, burrata, basil"],["bolognese","Bolognese","Beef ragu"],["polpette","Meatballs","Marinara, parmigiano"],["porcini","Porcini fettuccine","Mushroom cream, truffle"],["cesare","Caesar","Romaine, croutons, parmigiano"],["tiramisu","Tiramisu","Espresso, mascarpone"],["cannoli","Cannoli","Orange ricotta"],["gelato_pistacchio","Pistachio gelato","House-made"],["torta_limone","Lemon tart","Meringue"]];
 
   var h='';for(var k=0;k<3;k++)dishes.slice(0,8).forEach(function(d){h+='<div class="mrow"><div><b>'+d[1]+'</b><span>'+d[2]+'</span></div><img src="assets/bonu_'+d[0]+'.jpg" alt=""></div>';});
@@ -699,7 +739,7 @@ var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBPDBJ5ZOwQYBfcVMa
   var mb=document.getElementById('morebtn'),mo=document.getElementById('more');mb.addEventListener('click',function(){var o=mo.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.innerHTML=o?'Show fewer <span>&minus;</span>':'See all questions <span>+</span>';});
   var barEl=document.getElementById('bar'),m=document.getElementById('mcta'),pz=document.getElementById('price');
   function onScroll(){var y=window.scrollY;var lt=false;['inapp'].forEach(function(id){var z=document.getElementById(id);if(z){var r=z.getBoundingClientRect();if(r.top<60&&r.bottom>40)lt=true;}});barEl.classList.toggle('onlight',lt);barEl.classList.toggle('solid',y>40);
-    m.classList.toggle('show',y>document.getElementById('top').offsetHeight-innerHeight*.5&&pz.getBoundingClientRect().top>innerHeight*.9);}
+    var tp=document.getElementById('top');m.classList.toggle('show',y>tp.offsetTop+tp.offsetHeight-innerHeight*.5&&pz.getBoundingClientRect().top>innerHeight*.9);}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
